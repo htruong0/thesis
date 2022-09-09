@@ -165,7 +165,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
         + \sum_{f} \bar{\psi}_{i}^{f}(\mathrm{i}\slashed{D}_{ij} - \delta_{ij}m_{f})\psi_{j}^{f} \, ,
     \end{equation}
     where twice repeated indices are summed over.
-    The fields $\psi_{i}^{(f)}$ ($\bar{\psi}_{i}^{f}$) are the fermions (antifermions),
+    The fields $\psi_{i}^{f}$ ($\bar{\psi}_{i}^{f}$) are the fermions (antifermions),
     representing quarks (antiquarks) with flavours $f$: 
     up $u$, down $d$, strange $s$, charm $c$, top $t$, and bottom $b$,
     with masses $m_{f}$. They transform under the fundamental
@@ -198,44 +198,174 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     \begin{equation}\label{eqn:alpha_s}
         \alpha_{\mathrm{s}} = \dfrac{g_{\mathrm{s}}^{2}}{4\pi} \, ,
     \end{equation}
-    for reasons which will become clear when we introduce
+    for reasons which will become clear when we discuss
     scattering amplitudes.
 
-\subsection{Running coupling}
-\begin{itemize}
-    \item Strength of the coupling depends on the energy
-    that the process occurs at. This is known as the running
-    of the coupling.
-    \item The value of $\alpha_{s}$ is usually quoted
-    at the mass of the Z boson.
-    \item In QCD the evolution of $\alpha_{s}$ is governed
-    by the renormalisation group equation (Callan-Symanzik
-    $\beta$ function). The coefficients of this function
-    are known to many loops.
-    \item Asymptotic freedom is a property of non-abelian
-    gauge groups and this discovery won a Nobel prize.
-\end{itemize}
-\subsection{Scattering amplitudes}
-\begin{itemize}
-    \item S-matrix/Transition matrix
-    \item Make the link between Feynman diagrams and
-    scattering amplitudes/matrix elements. The sum
-    of all Feynman diagrams you can draw for a particular
-    process is the matrix element.
-    \item Explicitly state how the QCD Feynman rules are
-    derived and have the corresponding diagrams.
-    \item Explain how you can basically join these
-    Feynman rules into a diagram which represents a
-    convenient way to calculate interactions between
-    particles.
-    \item Introduce the concept of loop amplitudes here,
-    which naturally leads onto divergences.
-    \item UV divergences lead to the introduction of
-    dimensional regularisation and also to renormalisation
-    of fields to make them represent physical quantities.
-    The main scheme that people use is the modified minimal
-    subtraction scheme.
-\end{itemize}
+    To remove unphysical degrees of freedom from the
+    theory we need to gauge-fix the theory
+    and add a ghost Lagrangian. The gauge-fixing term
+    in the $R_{\xi}$ gauges is written as
+    \begin{equation}\label{eqn:L_GF}
+        \mathcal{L}_{\mathrm{GF}} = -\dfrac{1}{2\xi}(\partial^{\mu}A_{\mu}^{a})^{2} \, ,
+    \end{equation}
+    where $\xi = 1$ corresponds to the Feynman-'t-Hooft gauge.
+    The ghost Lagrangian is most commonly written
+    in the Faddeev-Popov procedure as
+    \begin{equation}\label{eqn:L_ghost}
+        \mathcal{L}_{\mathrm{ghost}} = (\partial_{\mu}\bar{c}^{a})(\delta^{ac}\partial_{\mu} + g_{\mathrm{s}}f^{abc}A^{b}_{\mu})c^{c} \, ,
+    \end{equation}
+    where $c^{a}$ ($\bar{c}^{a}$) are Faddeev-Popov ghosts (anti-ghosts).
+    They are unphysical external states but must be
+    included in internal lines for a Lorentz invariant
+    perturbative gauge theory.
+
+    Now that we have written down the QCD Lagrangian,
+    we can examine the terms to write down how the
+    gauge bosons interact with the fermions. A convenient
+    way to do this is with Feynman rules, which can be
+    pieced together to form Feynman diagrams. We will see
+    that Feynman diagrams are a simple, but powerful, tool
+    to systematically build all the possible ways a process
+    can occur. This will be discussed further in the
+    scattering amplitude section.
+
+    Expanding (\ref{eqn:L_QCD}) and extracting the terms
+    that mix the gauge and fermions fields, we get an interaction Lagrangian
+    \begin{equation}\label{L_int}
+        \mathcal{L}_{\mathrm{int}} = g_{\mathrm{s}}A^{a}_{\mu}\bar{\psi}_{i}^{f}\gamma^{\mu}T^{a}_{ij}\psi_{j}^{f}-g_{\mathrm{s}}f^{abc}(\partial_{\mu}A^{a}_{\nu})A^{b,\,\mu}A^{c,\,\nu} -\dfrac{g_{\mathrm{s}}^{2}}{4}f^{abc}A^{b}_{\mu}A^{c}_{\nu}f^{ade}A^{d,\,\mu}A^{e,\,\nu} \, ,
+    \end{equation}
+    which we can interpret as follows: the first term
+    is an interaction between a gluon, a quark, and an
+    anti-quark, the second term is a triple gluon
+    self-interaction and the third term is a four gluon
+    self-interaction. These mixing terms can be recast
+    as Feynman rules as interaction vertices.
+
+    To connect vertices we require propagators, which
+    we can read off from the kinetic Lagrangian where
+    we collect terms from (\ref{eqn:L_QCD}) and (\ref{eqn:L_GF}), 
+    \begin{equation}\label{L_kin}
+        \mathcal{L}_{\mathrm{kin}} = -\dfrac{1}{4}(\partial_{\mu}A^{a}_{\nu}-\partial_{\nu}A^{a}_{\mu})^{2} - \dfrac{1}{2\xi}(\partial_{\mu}A^{a}_{\mu})^{2} + \bar{\psi}_{i}^{f}(\mathrm{i}\slashed{\partial}-m_{f})\psi_{i}^{f} \, ,
+    \end{equation}
+    where the first two terms corresponds to a gluon
+    propagator and the third term corresponds to
+    a quark propagator.
+
+    Note that we have only written down the vertices
+    and propagators for the physical gluons and quarks,
+    ghosts also have associated Feynman rules but we do
+    not collect those here. A full list of Feynman rules
+    in the SM can be found at Ref. \cite{Romao:2012pq}.
+
+    Now that we have the Feynman rules for the theory
+    we can move on to discuss scattering amplitudes
+    and cross-sections.
+
+\subsection{Scattering amplitudes and cross-sections}
+    In collider experiments we typically collide
+    two beams, consisting of bundles of energetic
+    particles, and analyse the resulting products
+    of these collisions. To model collisions in
+    a collider experiment, we look at the specific
+    case of two particles colliding into $n$ particles.
+    To mathematically describe these
+    scattering processes, scattering amplitudes are used.
+    For an initial-state
+    $|i\rangle$ and final-state $|f\rangle$
+    the scattering amplitude can be written as
+    \begin{equation}\label{eqn:scattering}
+        \langle f | S | i \rangle \, ,
+    \end{equation}
+    where the scattering matrix, or $S$-matrix
+    can be decomposed into an identity matrix
+    and a transfer matrix $\mathcal{T}$,
+    \begin{equation}\label{eqn:S_matrix}
+        S = \mathbbm{1} + \mathrm{i}\mathcal{T} \, .
+    \end{equation}
+    The $S$-matrix encodes all the information
+    about how the initial-state will evolve
+    into the final-state over time. By writing
+    the $S$-matrix in this way, all the interactions
+    are separated into the transfer matrix $\mathcal{T}$,
+    as the identity matrix describes the free theory.
+    By imposing a momentum conserving constraint
+    on the $S$-matrix, the matrix element,
+    $\mathcal{M}$, is defined in the following expression
+    \begin{equation}\label{eqn:matrix_element}
+        \langle f | \mathcal{T} | i \rangle = (2\pi)^{4} \delta^{4}\left(p_{a} + p_{b} - \sum_{f=1}^{n} p_{f}^{\mu}\right) \mathcal{M} \, .
+    \end{equation}
+    where we take $p_{a}$ and $p_{b}$ to be
+    the momenta of the two colliding
+    particles in the initial-state, and $p_{f}$ to be the
+    momenta of the $n$-particle final states.
+    The transition probability of this scattering process
+    is the modulus squared of the scattering amplitude
+    \begin{equation}\label{eqn:S_prob}
+        P = |\langle f | S | i \rangle|^{2} \propto |\langle f | \mathcal{M} | i \rangle 
+    \end{equation}
+    where $|\langle f | \mathcal{M} | i \rangle|^{2}  \equiv |\mathcal{M}|^{2}$
+    is the matrix element squared.
+
+    Matrix elements can be calculated from
+    first principles in QFT using Feynman diagrams.
+    
+    Since detectors at collider experiments
+    have limited resolution, single scattering
+    events are not measured. Instead we consider
+    the cross-section, $\sigma$, which is a property
+    of the particles being scattered, and is independant
+    of the way the experiment is carried out.
+    The cross-section directly relates the
+    matrix elements which we calculate in our QFT,
+    to measurable observables at experiments.
+    In practice, it is more useful to consider the
+    differential cross-section, $\mathrm{d}\sigma$
+    where the cross-section can be differential
+    in quantities such as energies and angles.
+    This is because the final-state particles
+    will be produced with a range of, for example,
+    energies and momenta so the cross-section would
+    be vanishing for an exact momentum configuration.
+
+    The differential cross-section can be written as
+    \begin{equation}\label{eqn:dsigma}
+        \mathrm{d}\sigma = \dfrac{1}{\mathcal{F}}|\mathcal{M}_{2 \rightarrow n}|^{2} \mathrm{d}\Phi_{n} \, .
+    \end{equation}
+    $\mathcal{F}$, known as the flux factor
+    is
+    \begin{equation}\label{eqn:flux}
+        \mathcal{F} = 4\sqrt{(p_{a}p_{b})^{2} - m_{a}^{2}m_{b}^{2}} \xrightarrow[\mathrm{limit}]{\mathrm{massless}} 2(p_{a} + p_{b})^{2} = 2s_{ab} \, .
+    \end{equation}
+
+    $\mathrm{d}\Phi_{n}$ is the Lorentz-invariant
+    phase-space which contains all the possible
+    configurations of the $n$-particle final state.
+    Absorbing the momentum conserving $\delta$-function
+    from (\ref{eqn:matrix_element}),
+    we can write it as
+    % \begin{equation}\label{eqn:dlips}
+    %     \mathrm{d}\Phi_{n} = (2\pi)^{d}\delta^{(d)}\left(p_{a} + p_{b} - \sum_{f} p_{f}^{\mu}\right) \prod_{f=1}^{n} \dfrac{\mathrm{d}^{d}p_{f}}{(2\pi)^{d-1}}\delta(p_{f}^{2} - m_{f}^{2})\theta(E_{f}) \, ,
+    % \end{equation}
+    \begin{equation}\label{eqn:dlips_4d}
+        \mathrm{d}\Phi_{n} = (2\pi)^{4}\delta^{4}\left(p_{a} + p_{b} - \sum_{f=1}^{n} p_{f}^{\mu}\right) \prod_{f=1}^{n} \dfrac{\mathrm{d}^{4}p_{f}}{(2\pi)^{3}}\delta(p_{f}^{2} - m_{f}^{2})\theta(E_{f}) \, ,
+    \end{equation}
+    where the second $\delta$-function restricts
+    the final state particles to be on mass-shell
+    (on-shell). The step function selects only
+    the positive energy solution for this constraint.
+% \begin{itemize}
+%     \item Strength of the coupling depends on the energy
+%     that the process occurs at. This is known as the running
+%     of the coupling.
+%     \item The value of $\alpha_{s}$ is usually quoted
+%     at the mass of the Z boson.
+%     \item In QCD the evolution of $\alpha_{s}$ is governed
+%     by the renormalisation group equation (Callan-Symanzik
+%     $\beta$ function). The coefficients of this function
+%     are known to many loops.
+%     \item Asymptotic freedom is a property of non-abelian
+%     gauge groups and this discovery won a Nobel prize.
+% \end{itemize}
 \section{Experiments and Phenomonology}
 \subsection{Observables}
 \begin{itemize}
