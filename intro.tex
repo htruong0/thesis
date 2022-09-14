@@ -143,8 +143,8 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     length in standard reference texts \cite{Peskin:1995ev,Schwartz:2014sze,Romao:2012pq}.
 
 
-\section{Introduction to quantum chromodynamics}
-    \subsection{The QCD Lagrangian}
+\section{Introduction to quantum chromodynamics}\label{sec:qcd}
+    \subsection{The QCD Lagrangian}\label{sec:L_qcd}
     Quantum chronodynamics (QCD) is the sector of the SM that
     describes the strong interaction. 
     QCD is a non-Abelian gauge theory with gauge group
@@ -191,9 +191,15 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
         \alpha_{\mathrm{s}} = \dfrac{g_{\mathrm{s}}^{2}}{4\pi} \, .
     \end{equation}
     The strong coupling constant, is in fact not constant, but
-    is dependent on the energy scale of the process, $\mu$. This
+    is dependent on the energy scale of the process. This
     is due to the process of renormalisation which will be discussed
     in section ...
+    The implications of this is that at collider
+    experiments where collisions are extremely high energy,
+    the strong coupling constant becomes small, a
+    propery known as asymptotic freedom. A consequence
+    of this is that predictions made in QCD can be expressed
+    in the form of perturbative expansions in $\alpha_{\mathrm{s}}$.
 
     To remove unphysical degrees of freedom from the
     theory we need to gauge-fix the theory
@@ -213,7 +219,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     included in internal lines for a Lorentz invariant
     perturbative gauge theory.
 
-    \subsection{QCD Feynman rules}
+    \subsection{QCD Feynman rules}\label{sec:qcd_feynman}
     Now that we have written down the QCD Lagrangian,
     we can examine the terms to write down how the
     gauge bosons interact with the fermions. A convenient
@@ -246,17 +252,29 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     propagator and the third term corresponds to
     a quark propagator.
 
-    Note that we have only written down the vertices
-    and propagators for the physical gluons and quarks,
+    {\color{red} Need to write down the Feynman
+    rules and draw diagrams. Best to put it in a
+    figure that we can refer back to.}
+
+    Note that we have only written down the vertices,
+    propagators, and external lines for the physical gluons and quarks,
     ghosts also have associated Feynman rules but we do
     not collect those here. A full list of Feynman rules
     in the SM can be found at Ref. \cite{Romao:2012pq}.
 
-    Now that we have the Feynman rules for the theory
-    we can move on to discuss scattering amplitudes
-    and cross-sections.
+    From these Feynman rules, we identify that each
+    quark-antiquark-gluon and triple gluon vertices
+    are associated with one power of $\alpha_{\mathrm{s}}$,
+    and the four gluon vertex is associated with
+    two powers of $\alpha_{\mathrm{s}}$. This relationship
+    between vertices and $\alpha_{\mathrm{s}}$ allows
+    us to systematically build up Feynman diagrams
+    that correspond to a fixed order in $\alpha_{\mathrm{s}}$.
+    This point will be elaborated on in Section
+    \ref{sec:xs} where we discuss scattering amplitudes
+    and how they are related to Feynman diagrams.
 
-\section{Factorisation theorem}
+\section{Factorisation theorem}\label{sec:factorisation}
     At the LHC, collisions occur between two protons,
     which have constituent quarks and gluons, collectively
     named partons.
@@ -268,10 +286,11 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     and gluons that are constantly absorbed and
     emitted on a timescale inversely proportional
     to the mass of the proton (or hadron in general).
-    This fluctuation timescale is much longer
+    The timescale of this fluctuation is much longer
     than the timescale of the interaction between
-    an incoming probing parton from another proton in a
-    highly energetic collision, like at the LHC.
+    a parton and a highly energetic probing parton
+    from another proton. This is the scenario
+    that occurs at collisions at the LHC.
     During the collision, or the hard scattering,
     the probe is able to interact with a
     parton that is effectively frozen.
@@ -279,7 +298,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     proton being probed, except for the fact
     that it collided with a parton carrying
     a fraction of the proton momentum. The
-    distribution of partons within a parton
+    distribution of partons within a proton
     is process independent and a fundamental
     property of the proton, meaning it can be
     separated from the actual scattering between
@@ -288,13 +307,15 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     This heuristic argument motivates the form of
     the factorisation equation, where the production of
     particles from a hadronic collision, the hadronic
-    cross-section, can be
-    written as
+    cross-section, can be written as
     \begin{equation}\label{eqn:hadronic_cs}
         \sigma_{AB \rightarrow n} = \sum_{a, b}\int_{0}^{1} \mathrm{d}x_{a}\mathrm{d}x_{b} \; f_{a/A}(x_{a},\mu_{\mathrm{F}})f_{b/B}(x_{b}, \mu_{\mathrm{F}}) \; \hat{\sigma}_{ab \rightarrow n}(Q, \mu_{\mathrm{F}}, \mu_{\mathrm{R}}) + \mathcal{O}\left(\dfrac{\Lambda_{\mathrm{QCD}}}{Q}\right)\, ,
     \end{equation}
-    where $a$ is the parton identified from hadron $A$,
-    and $b$ is the parton identified from hadron $B$.
+    where $a$ is the parton from hadron $A$,
+    and $b$ is the parton from hadron $B$.
+    The sum over initial-state partons $a$ and $b$
+    indicates the sum over flavours, which depends
+    on the hadron composition in general.
     This factorisation is not exact as indicated by the
     correction term inversely proportional to characteristic
     hard scale $Q$. However, for high energy collisions, where
@@ -313,7 +334,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     the probability of finding parton $a$ within $h$
     carrying a momentum fraction $x$ at the energy scale $\mu$.
     PDFs are non-perturbative objects that encapsulate
-    the soft effects in a scattering process below energy
+    the soft effects of the scattering which occur below energy
     $\mu_{\mathrm{F}}$. They are non-perturbative because
     they are determined by fitting to experimental data,
     instead of calculated in perturbation theory.
@@ -322,15 +343,24 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     are accessed through the LHAPDF interface (cite here).
     The evolution of PDFs between factorisation scales is possible
     through the use of the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP)
-     equations (cite here).
+    equations (cite here).
+
+    The momenta fractions, $x$, also link the
+    squared centre-of-mass energies of the hadronic collision,
+    denoted as $s$, to the partonic equivalent as
+    \begin{equation}\label{eqn:E_cm_partonic}
+        \hat{s} = x_{a}x_{b}s \, .
+    \end{equation}
 
     $\hat{\sigma}_{ab \rightarrow n}(Q, \mu_{\mathrm{F}}, \mu_{\mathrm{R}})$
     is the partonic cross-section which descibes the interaction of
     partons $a$ and $b$ scattering into $n$ particles,
-    with the scattering occurs at energy scale $Q$.
+    where the scattering occurs at energy scale $Q$,
+    which is often taken to the $\hat{s}$.
     Notice that the partonic cross-section depends on
     both the factorisation scale, $\mu_{\mathrm{F}}$ and
-    the renormalisation scale, $\mu_{\mathrm{R}}$.
+    the renormalisation scale, $\mu_{\mathrm{R}}$
+    (see \ref{chapter:qcd}).
     {\color{red} Need to mention how these scales
     are unphysical but there is a residual dependence
     on them at fixed-order calculations. Scale
@@ -338,20 +368,35 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     the effects of higher order terms.
     Renormalisation will be discussed in Chapter 2
     when divergences are introduced.}
-    
-    The discussion of how $\hat{\sigma}_{ab \rightarrow n}$
-    is computed is discussed in detail in the next section.
 
-\section{Scattering amplitudes and cross-sections}
-    {\color{red} Cross-sections here are all
-    partonic cross-sections. Need to talk about
-    how they can be calculated order by order
-    in perturbation theory with Feynman diagrams.}
+    The discussion so far has been focused hadron-hadron
+    initiated scattering, however, a similar argument
+    can be made about electron-positron annihilation,
+    where the electron-positron annihilates to form a
+    photon ($Z$ boson) which fluctuates into a quark-antiquark
+    pair. For a sufficiently high energy collision,
+    these interactions can be calculated in perturbation
+    theory.
+    Since electrons and positrons are not composite
+    particles, there is no requirement for PDFs,
+    therefore (\ref{eqn:hadronic_cs}) simplifies
+    to just the partonic cross-section, which
+    will be computed in perturbation theory.
     
-    In collider experiments we typically collide
+    The details of how $\hat{\sigma}_{ab \rightarrow n}$
+    is computed is discussed in the next section.
+
+\section{Scattering amplitudes and cross-sections}\label{sec:xs}
+    As mentioned in the previous section, at
+    collider experiments we typically collide
     two beams, consisting of bundles of energetic
     particles, and analyse the resulting products
-    of these collisions. To model collisions in
+    of these collisions. The predictions we make
+    from our theoretical model are the partonic
+    cross-sections. To arrive at an expression
+    for the partonic cross-section, we need to
+    first consider the hard scattering of particles.
+    To model the hard collisions in
     a collider experiment, we look at the specific
     case of two particles colliding into $n$ particles.
     To mathematically describe these
@@ -387,25 +432,33 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     The transition probability of this scattering process
     is the modulus squared of the scattering amplitude
     \begin{equation}\label{eqn:S_prob}
-        P = |\langle f | S | i \rangle|^{2} \propto |\langle f | \mathcal{M} | i \rangle 
+        P = |\langle f | S | i \rangle|^{2} \propto | \langle f | \mathcal{M} | i \rangle |^{2}
     \end{equation}
     where $|\langle f | \mathcal{M} | i \rangle|^{2}  \equiv |\mathcal{M}|^{2}$
-    is the matrix element squared.
-
-    Matrix elements can be calculated from
-    first principles in QFT using Feynman diagrams.
+    is the matrix element squared \footnote{from henceforth we refer to the matrix
+    element squared as matrix element}.
     
     Since detectors at collider experiments
     have limited resolution, single scattering
     events are not measured. Instead we consider
-    the cross-section, $\sigma$, which is a property
+    the cross-section, $\sigma$, as introduced in
+    (\ref{eqn:hadronic_cs}). The cross-section is a property
     of the particles being scattered, and is independent
     of the way the experiment is carried out.
-    The cross-section directly relates the
-    matrix elements which we calculate in our QFT,
+    Since the hadronic cross-section factorises
+    the soft energy effects into the non-perturbative PDFs,
+    which are determined once and for all for all
+    processes, the object of interest now becomes the
+    partonic cross-section, $\hat{\sigma}$, which
+    encodes the scattering information of the specific
+    process considered.
+
+    Given that cross-sections are measurable
+    quantities, the partonic cross-section directly
+    relates the matrix elements which we calculate in our QFT,
     to measurable observables at experiments.
     In practice, it is more useful to consider the
-    differential cross-section, $\mathrm{d}\sigma$,
+    differential cross-section, $\mathrm{d}\hat{\sigma}$,
     where the cross-section can be differential
     in quantities such as energies and angles.
     This is because the final-state particles
@@ -413,15 +466,22 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     energies and momenta so the cross-section would
     be vanishing for an exact momentum configuration.
 
-    The differential cross-section can be written as
+    The differential partonic cross-section can be written as
     \begin{equation}\label{eqn:dsigma}
-        \mathrm{d}\sigma = \dfrac{1}{\mathcal{F}}|\mathcal{M}_{2 \rightarrow n}|^{2} \mathrm{d}\Phi_{n} \, .
+        \mathrm{d}\hat{\sigma} = \dfrac{1}{\mathcal{F}}|\mathcal{M}_{2 \rightarrow n}|^{2} \mathrm{d}\Phi_{n} \, .
     \end{equation}
-    $\mathcal{F}$, known as the flux factor
-    is
+    $\mathcal{F}$, the flux factor is
     \begin{equation}\label{eqn:flux}
-        \mathcal{F} = 4\sqrt{(p_{a}p_{b})^{2} - m_{a}^{2}m_{b}^{2}} \xrightarrow[\mathrm{limit}]{\mathrm{massless}} 2(p_{a} + p_{b})^{2} = 2s_{ab} \, .
+        \mathcal{F} = 4\sqrt{(p_{a}p_{b})^{2} - m_{a}^{2}m_{b}^{2}} \, ,
     \end{equation}
+    which in the massless limit reduces to
+    \begin{equation}\label{eqn:massless_flux}
+        \mathcal{F} = 2(p_{a} + p_{b})^{2} = 2\hat{s} \, .
+    \end{equation}
+    It is common to use the massless limit because
+    the centre-of-mass energy of a collider
+    experiment is much greater than the mass
+    of the colliding particles.
 
     $\mathrm{d}\Phi_{n}$ is the Lorentz-invariant
     phase-space which contains all the possible
@@ -439,7 +499,79 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     the final state particles to be on mass-shell
     (on-shell). The step function selects only
     the positive energy solution for this constraint.
+    This gives an intuitive picture of the partonic
+    cross-section as the probability of a $2\rightarrow n$
+    process occurring, summed over all the possible
+    valid final-state configurations.
 
+    From (\ref{eqn:S_prob}), it becomes clear
+    that the matrix element is the object which
+    relates back to the Lagrangian of the theory
+    as it encodes the interactions of the particles.
+    We saw in Section \ref{sec:qcd_feynman} that
+    interactions could be codified into Feynman
+    rules which are pieced together to construct
+    Feynman diagrams. In this picture, matrix elements
+    are exactly the sum over all Feynman diagrams
+    \footnote{technically the interference of
+    Feynman diagrams as we are working on the level
+    of $|\mathcal{M}|^{2}$}
+    for a particular process. However, there are
+    an infinite number of Feynman diagrams you can
+    draw as there is no constraints on how the
+    vertices and propagators can be connected.
+    Fortunately because $\alpha_{\mathrm{s}}$
+    is small in high energy collisions, we can expand
+    the matrix element as a perturbative series in
+    $\alpha_{\mathrm{s}}$ to write
+    \begin{equation}\label{eqn:matrix_element}
+        |\mathcal{M}|^{2} =  \alpha_{\mathrm{s}}^{m} |\mathcal{M}|^{2}_{\mathrm{LO}} + \alpha_{\mathrm{s}}^{m+1} |\mathcal{M}|^{2}_{\mathrm{NLO}} + \alpha_{\mathrm{s}}^{m+2} |\mathcal{M}|^{2}_{\mathrm{NNLO}} + \mathcal{O}(\alpha_{\mathrm{s}}^{m+3}) \, ,
+    \end{equation}
+    where $m$ corresponds to the powers of $\alpha_{\mathrm{s}}$
+    in the simplest Feynman diagrams you can draw
+    for the process of interest.
+    Since each term of this expansion is at a fixed-order
+    in $\alpha_{\mathrm{s}}$, it is possible to systematically
+    compute the diagrams which contribute at the given order of $\alpha_{\mathrm{s}}$.
+    The set of diagrams that contribute at the lowest
+    order in $\alpha_{\mathrm{s}}$ are $|\mathcal{M}|^{2}_{\mathrm{LO}}$,
+    where LO stands for leading order. The next term
+    in the expansion corresponds to the leading order
+    diagrams with an additional loop, or external leg,
+    which contributes an extra factor of $\alpha_{\mathrm{s}}$.
+    This term is dubbed NLO for next-to-leading order
+    in $\alpha_{\mathrm{s}}$, and the following term
+    next-to-next-to-leading order has again an additional
+    loop or leg. In general, we have terms
+    N$^{k}$LO where each additional power of $\alpha_{\mathrm{s}}$
+    increases complixity of the computations, however,
+    because the expansion $\alpha_{\mathrm{s}}$
+    is small, each additional term contribute less.
+    This means that the first terms dominate the expansion,
+    and it is sufficient to terminate the series after
+    a few terms to reach an acceptable level of accuracy.
+    A further discussion of this point will be given
+    in Chapter~\ref{chapter:qcd} where we break down
+    the computation of each term in (\ref{eqn:matrix_element}).
+
+    In summary, the partonic cross-section of a collision
+    reduces to the computation of the matrix elements
+    up to a fixed-order in the coupling expansion,
+    which is then integrated over the valid phase-space of
+    final-state particle configurations. For hadronic
+    collisions the partonic cross-section also needs to
+    be convoluted with the PDFs to obtain the hadronic
+    cross-sections.
+
+    With the introduction of matrix elements and
+    cross-sections complete, we will move the discussion onto
+    Monte Carlo event generators (MCEG). These event
+    generators are multi-purpose tools that
+    incorporate many aspects of the theory discussed
+    so far (and to be discussed) for practical use.
+    Most importantly, they are
+    used to compare theoretical predictions to
+    experimental measurements.
 
 \section{Monte Carlo event generator overview}
 \subsection{Event unweighting}

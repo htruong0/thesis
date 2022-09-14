@@ -1,12 +1,67 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
-\chapter{Quantum chromodynamics}
+\chapter{Quantum chromodynamics in practice}
 \label{chapter:qcd}
-\section{Fixed order perturbation theory}
-\subsection{NLO QCD}
+    In the previous chapter we introduced the basic concepts
+    of QCD and setup the framework of calculating
+    cross-sections. Cross-sections are the most relevant
+    quantities to compute as they can be measured
+    experimentally, and are a property of the particles
+    being collided, rather than depending on the
+    specifics of the experimental procedure.
+    This provides a bridge to compare
+    theoretical predictions and experiment.
+    From (\ref{eqn:dsigma}, the partonic cross-section
+    is the matrix element integrated over the relevant
+    final-state phase-space, normalised by a flux factor.
+    The matrix elements are
+    calculated order-by-order in the strong coupling
+    $\alpha_{\mathrm{s}}$, (\ref{eqn:matrix_element}),
+    where each order corresponds to a set of Feynman diagrams
+    that have the appropriate number of vertices,
+    as each QCD vertex brings along a factor of $\alpha_{\mathrm{s}}$.
+
+    In this chapter we will discuss the problems that
+    arise when evaluating these Feynman diagrams and outline
+    some solutions that have been widely adopted to circumvent
+    these issues to provide real-world applicable predictions.
+    This chapter forms the theoretical foundations on which
+    the work of this thesis is built upon.
+
+    We will consider the divergent nature of matrix
+    elements and introduce the most widely used techniques
+    to tame these singularities.
+
 \section{Divergent structures}
+    We have seen that matrix element computations
+    result in evaluating Feynman diagrams. From
+    the QCD Feynman rules (ref here), it becomes
+    clear that integrating over all momentum modes
+    will give rise to singularities. The divergences
+    associated with high energy modes are ultraviolet
+    (UV) divergences. On the opposite end of the energy
+    spectrum, low energy modes also give rise to 
+    infrared (IR) divergences.
+
+    The de-facto methods to alleviate these
+    divergences are through regularisation
+    for UV divergences, and through subtraction
+    schemes for IR divergences. Both of these
+    methods will be discussed in this section.
+
+\subsection{Ultraviolet divergences}
+    In loop diagrams we have to evaluate integrals of the form
+    \begin{equation}
+        \int_{0}^{\Lambda} \dfrac{\mathrm{d}^{4}k}{(2\pi)^{4}}\dfrac{1}{k^{2}(k+p)^{2}} \sim \log{\Lambda} \, ,
+    \end{equation}
+    where a cutoff scale $\Lambda$ has been introduced to
+    capture the divergence as the loop momenta
+    $k \rightarrow \infty$. It is clear that the
+    integral divergences in this high energy limit,
+    hence the name ultraviolet divergence.
+\subsection{Renormalisation}
 \subsection{Running of the coupling constant}
-The behaviour of $\alpha_{\mathrm{s}}$
+    The behaviour of $\alpha_{\mathrm{s}}$
     is governed by the Callan-Symanzik \cite{Callan:1970yg,Symanzik:1970rt}
     $\beta$-function
     \begin{equation}\label{eqn:beta_fn}
@@ -50,9 +105,11 @@ The behaviour of $\alpha_{\mathrm{s}}$
     hadrons. The most common example of a hadron
     is the proton which is the origin of the name
     Large Hadron Collider.
-\section{Infrared factorisation}
-\subsection{Collinear limits}
-\subsection{Soft limits}
+\subsection{Infrared divergences}
+\subsection{Factorisation of matrix elements}
+\subsubsection{Soft limits}
+\subsubsection{Collinear limits}
+
 \section{Subtraction}
 \subsection{Catani-Seymour dipoles}
 \subsection{Antenna subtraction}
