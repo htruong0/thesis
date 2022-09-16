@@ -197,7 +197,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     \end{align}
     where $C_{F}=4/3$ and $C_{A}=3$ for QCD.
     They are collectively referred to as colour factors.
-    
+
     The gauge coupling of the group $g_{s}$
     is a dimensionless free parameter of the theory.
     It is common to use the strong coupling constant
@@ -356,10 +356,48 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     Multiple groups release PDF fits (cite groups here).
     In practice, these PDF fits
     are accessed through the LHAPDF interface (cite here).
+
     The evolution of PDFs between factorisation scales is possible
     through the use of the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP)
-    equations (cite here).
-
+    equations (cite here)
+    \begin{equation}\label{eqn:DGLAP}
+        \mu_{F}^{2} \dfrac{\partial}{\partial \mu_{F}^{2}}
+        \begin{pmatrix}
+            f_{q/h}(x,\mu_{F}) \\
+            f_{g/h}(x,\mu_{F})
+        \end{pmatrix} \\
+        = \dfrac{\alpha_{s}(\mu_{F})}{2\pi} \int_{x}^{1} \dfrac{\mathrm{d}z}{z}
+        \begin{pmatrix}
+            P_{qq}(\frac{x}{z}) & P_{qg}(\frac{x}{z}) \\
+            P_{gq}(\frac{x}{z}) & P_{gg}(\frac{x}{z})
+        \end{pmatrix}
+        \begin{pmatrix}
+            f_{q/h}(x,\mu_{F}) \\
+            f_{g/h}(x,\mu_{F})
+        \end{pmatrix} \, ,
+    \end{equation}
+    where $P_{ba}(\dfrac{x}{z})$ are splitting functions
+    representing parton $b$ emitting a parton $a$ carrying
+    a momentum fraction $z$. These splitting functions are calculable
+    as a power series in $\alpha_{s}$ where they have been computed
+    up to three-loops (cite here). At leading order (cite here) they are
+    \begin{align}\label{eqn:AP_kernels}
+        P^{(0)}_{qq}(z) &= C_{F}\left[\dfrac{1+z^{2}}{(1-z)_{+}} + \dfrac{3}{2}\delta(1-z)\right] \\
+        P^{(0)}_{qg}(z) &= T_{R}\left[z^{2} + (1-z)^{2}\right] \\
+        P^{(0)}_{gq}(z) &= C_{F}\left[\dfrac{1+(1-z)^{2}}{z^{2}}\right] \\
+        P^{(0)}_{gg}(z) &= 2C_{A}\left[\dfrac{z}{(1-z)_{+}}+\dfrac{1-z}{z}+z(1-z)\right] + \left(\dfrac{11C_{A}-4T_{R}n_{f}}{6}\right)\delta(1-z)
+    \end{align}
+    where the `$+$'-prescription has been used to regulate divergences
+    at $z = 1$.
+    \begin{equation}\label{eqn:plus_prescription}
+        \int_{0}^{1} \mathrm{d}z \; [g(z)]_{+}f(z) = \int_{0}^{1}\mathrm{d}z \; g(z)(f(z)-f(1)) \, ,
+    \end{equation}
+    where the function $f(z)$ cancels the divergence if it is
+    sufficiently smooth at $z=1$.
+    At leading order, there is a physical interpretation
+    of the splitting kernels as the probability of finding a parton
+    $a$ in parton $b$ carrying a fraction $x$ of the parent parton.
+    
     The momenta fractions, $x$, also link the
     squared centre-of-mass energies of the hadronic collision,
     denoted as $s$, to the partonic equivalent as
