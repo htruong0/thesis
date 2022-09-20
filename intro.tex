@@ -62,7 +62,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     one of the most well tested theories we have in science today.
     Some highlights include the highly precise predictions of the
     anomalous magnetic moment of the electron, agreeing with experimental
-    measurements to more than 10 significant figures \cite{Aoyama:2017uqe}.
+    measurements to more than 10 significant figures \cite{Aoyama:2017uqe},
     and the discovery of the Higgs boson in 2012 by the ATLAS \cite{ATLAS:2012yve}
     and CMS experiments \cite{CMS:2012qbp} at the Large Hadron Collider
     (LHC) which was theorised decades prior.
@@ -75,7 +75,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     \end{equation}
     where subscripts denote the charges of the gauge groups. The first gauge
     group with colour charge $C$ describes the interactions of the
-    strong force within the theory of quantum chronodynamics (QCD), which we
+    strong force within the theory of quantum chromodynamics (QCD), which we
     will elaborate more on in the next section. The second
     and third gauge groups represent the electroweak sector of the SM with
     charges $L$ for left and $Y$ for hypercharge. Under electroweak
@@ -102,7 +102,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     neutrinos (electron neutrino $\nu_{e}$, muon neutrino $\nu_{\mu}$, tau
     neutrino $\nu_{\tau}$ and their antiparticles) which only experience the
     weak force. Neutrinos are massless in the SM but this is not a requirement
-    of the model. In fact they have been observed to have mass (cittation here).
+    of the model. In fact they have been observed to have mass \cite{Super-Kamiokande:1998kpq,SNO:2002tuh}.
 
     The particle content of the SM is summarised in Figure \ref{fig:SM_particles}
     showing the quarks, leptons and bosons along with their masses, charges
@@ -145,7 +145,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
 
 \section{Introduction to quantum chromodynamics}\label{sec:qcd}
     \subsection{The QCD Lagrangian}\label{sec:L_qcd}
-    Quantum chronodynamics (QCD) is the sector of the SM that
+    Quantum chromodynamics (QCD) is the sector of the SM that
     describes the strong interaction. 
     QCD is a non-Abelian gauge theory with gauge group
     $\mathrm{SU}(3)_{c}$ where the charge is named colour.
@@ -197,7 +197,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     The implications of this is that at collider
     experiments where collisions are extremely high energy,
     the strong coupling constant becomes small, a
-    propery known as asymptotic freedom. A consequence
+    property known as asymptotic freedom. A consequence
     of this is that predictions made in QCD can be expressed
     in the form of perturbative expansions in $\alpha_{\mathrm{s}}$.
 
@@ -320,9 +320,9 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     correction term inversely proportional to characteristic
     hard scale $Q$. However, for high energy collisions, where
     $Q \gg \Lambda_{\mathrm{QCD}}$, this term and higher order
-    terms are suppresed.
+    terms are suppressed.
     In fact, the factorisation equation has only been
-    proven for a few specific cases (DIS etc, cite here).
+    proven for a few specific cases \cite{Collins:2011zzd,Collins:1987pm,Collins:1989gx,Amoroso:2022eow}.
 
     $f_{a/h}(x, \mu)$ are parton distribution functions
     (PDFs) which depend on the momenta fractions $x$ parton $a$
@@ -338,12 +338,14 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     $\mu_{\mathrm{F}}$. They are non-perturbative because
     they are determined by fitting to experimental data,
     instead of calculated in perturbation theory.
-    Multiple groups release PDF fits (cite groups here).
-    In practice, these PDF fits
-    are accessed through the LHAPDF interface (cite here).
+    For a review of PDFs and how they are determined
+    see Ref. \cite{Ethier:2020way,Jimenez-Delgado:2013sma}.
+    In practice, these PDF fits are accessed through the
+    LHAPDF interface \cite{Buckley:2014ana} which provides
+    PDF sets from multiple working groups \cite{PDF4LHCWorkingGroup:2022cjn,Hou:2019efy,Bailey:2020ooq,NNPDF:2021njg}.
     The evolution of PDFs between factorisation scales is possible
     through the use of the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP)
-    equations (cite here).
+    equations \cite{Dokshitzer:1977sg,Gribov:1972ri,Lipatov:1974qm,Altarelli:1977zs}.
 
     The momenta fractions, $x$, also link the
     squared centre-of-mass energies of the hadronic collision,
@@ -353,7 +355,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     \end{equation}
 
     $\hat{\sigma}_{ab \rightarrow n}(Q, \mu_{\mathrm{F}}, \mu_{\mathrm{R}})$
-    is the partonic cross-section which descibes the interaction of
+    is the partonic cross-section which describes the interaction of
     partons $a$ and $b$ scattering into $n$ particles,
     where the scattering occurs at energy scale $Q$,
     which is often taken to the $\hat{s}$.
@@ -399,8 +401,8 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     To model the hard collisions in
     a collider experiment, we look at the specific
     case of two particles colliding into $n$ particles.
-    To mathematically describe these
-    scattering processes, scattering amplitudes are used.
+    Scattering amplitudes are used to mathematically
+    describe these scattering processes.
     For an initial-state
     $|i\rangle$ and final-state $|f\rangle$
     the scattering amplitude can be written as
@@ -447,7 +449,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     of the way the experiment is carried out.
     Since the hadronic cross-section factorises
     the soft energy effects into the non-perturbative PDFs,
-    which are determined once and for all for all
+    which are determined once and for all
     processes, the object of interest now becomes the
     partonic cross-section, $\hat{\sigma}$, which
     encodes the scattering information of the specific
@@ -544,7 +546,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     next-to-next-to-leading order has again an additional
     loop or leg. In general, we have terms
     N$^{k}$LO where each additional power of $\alpha_{\mathrm{s}}$
-    increases complixity of the computations, however,
+    increases complexity of the computations, however,
     because the expansion $\alpha_{\mathrm{s}}$
     is small, each additional term contribute less.
     This means that the first terms dominate the expansion,
@@ -566,7 +568,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     With the introduction of matrix elements and
     cross-sections complete, we will move the discussion onto
     Monte Carlo event generators (MCEG). These event
-    generators are multi-purpose tools that
+    generators are multipurpose tools that
     incorporate many aspects of the theory discussed
     so far (and to be discussed) for practical use.
     Most importantly, they are
