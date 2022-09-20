@@ -237,21 +237,87 @@
     stemming from high energy behaviour would occur
     in loop diagrams. On the other end of the energy
     spectrum we also have divergences from low energy
-    modes. Since they are related to low energy
-    behaviours they are called IR divergences. There
+    modes. Since these divergences emerge from low energy
+    behaviour they are called infrared (IR) divergences. There
     are two cases in which these divergences arise:
     in loop integrals (virtual) and when an emission
-    of an extra particle becomes soft or collinear
-    (real).
+    of an extra particle (c.f. splitting functions
+    \ref{eqn:AP_kernels}) has vanishing energy (soft),
+    or becomes parallel to an external colourful line (collinear).
 
-    Virtual divergences can be understood by looking
-    at the integral (\ref{eqn:loop_integral})
+    Virtual IR divergences can be understood by looking
+    at an integral of the form
+    \begin{equation}\label{eqn:virtual_IR_integral}
+        \int \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}} \dfrac{1}{\ell^{2}(\ell+p_{1})^{2}(\ell-p_{2})^{2}} \, ,
+    \end{equation}
+    which is encountered when calculating the one-loop
+    virtual correction to the gluon-quark-antiquark vertex.
+    It is clear that the denominator vanishes when $\ell \rightarrow 0$
+    or when either $(\ell + p_{1})^{2}$ or $(\ell - p_{2})^{2} \rightarrow 0$.
+    These situations correspond to the gluon in the loop propagator
+    going soft, or collinear to the external quark or antiquark.
+    These divergences are regulated in DR to give
+    \begin{equation}\label{eqn:virtual_IR_DR}
+    \end{equation}
+    where we see a double $\epsilon$ pole corresponding to the
+    soft and collinear divergence.
 
-\section{Factorisation of matrix elements}
-\subsection{Soft limits}
-\subsection{Collinear limits}
+    Real IR divergences are manifest when integrating
+    matrix elements over the phase-space of external state momenta.
+    Matrix elements can be written as functions of Mandelstam variables
+    \begin{equation}\label{eqn:mandelstam}
+        s_{ij} = (p_{i} + p_{j})^{2} \xrightarrow[\mathrm{limit}]{\mathrm{massless}} 2 E_{i}E_{j}(1-\cos \theta_{ij}) \, ,
+    \end{equation}
+    where $p_{i}$ and $p_{j}$ are the 4-momenta of partons $i$ and $j$
+    in the hard scattering.
+    When either of the partons beecome soft, $E_{i,j}\rightarrow 0$,
+    or when they go collinear to each other, $\theta_{ij} \rightarrow 0$,
+    the matrix element will diverge if $s_{ij}$ appears
+    in the demoninator. These scenarios correspond to an external
+    particle becoming unresolved.
 
-\section{Subtraction}
-\subsection{Catani-Seymour dipoles}
-\subsection{Antenna subtraction}
+    In Section~\ref{sec:renormalisation}, we removed UV divergences
+    through the use of counterterms to renormalise the theory, making
+    predictions from the theory physical.
+    IR divergences, on the other hand, arise even after the theory
+    has been renormalised. The resolution to IR divergences is given by the
+    Kinoshita-Lee-Nauenberg (KLN) theorem (cite here) which states
+    that at each order of perturbation theory, the virtual and real
+    contributions exactly cancel out, leaving only finite corrections.
+    This cancellation occurs because the infrared pole structure is
+    identical in the real and virtual corrections, but with an opposite sign.
+
+    At a detector of a collider experiment, there is a finite
+    energy resolution of the calorimeter. This means that
+    it is not physically possible to observe arbitrarily soft
+    partons. It is also not possible to distinguish two partons
+    at arbitrarily small angles from one parton with the combined
+    momenta. These limitations along with the KLN theorem
+    means that any physical observable that we wish to predict
+    with fixed-order perturbation theory must be insensitive to the
+    emissions of soft or collinear partons. Any observable obeying
+    this criteria is an infrared and collinear (IRC) safe observable.
+    This leads to the concept of jets (cite here) which are collimated
+    particles combined according to some jet algorithm.    
+
+    In DR, the singularities from soft and collinear divergences
+    are manifest as $\epsilon$ poles which makes the cancellation
+    simple between the real and virtual parts. However, in practice, 
+    the phase-space integrals of the matrix elements are rarely carried
+    out analytically due to the high dimensionality of the integral.
+    Instead they are done numerically with the use
+    of Monte Carlo methods, which requires the integral to be in
+    integer dimensions. Therefore, numerical techniques
+    have been developed to deal with these IR divergences as well. The
+    most common technique, subtraction, will be discussed in
+    more detail in Section~\ref{sec:subtraction}.
+    
+\section{Factorisation of matrix elements}\label{sec:me_factorisation}
+
+\subsection{Soft limits}\label{sec:me_soft}
+\subsection{Collinear limits}\label{sec:me_collinear}
+
+\section{Subtraction}\label{sec:subtraction}
+\subsection{Catani-Seymour dipoles}\label{sec:CS_dipoles}
+\subsection{Antenna}\label{sec:antenna_functions}
 \end{document}
