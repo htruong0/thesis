@@ -163,11 +163,11 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     The gauge fields $A^{a}_{\mu}$, corresponding to gluons, 
     appear in the quark covariant derivative
     \begin{equation}\label{eqn:covariant_deriv}
-        (D_{\mu})_{ij} = \delta_{ij}\partial_{\mu} - ig_{\mathrm{s}}T^{a}_{ij}A^{a}_{\mu} \, ,
+        (D_{\mu})_{ij} = \delta_{ij}\partial_{\mu} - ig_{s}T^{a}_{ij}A^{a}_{\mu} \, ,
     \end{equation}
     and the gauge field strength tensor
     \begin{equation}\label{eqn:F_munu}
-        F^{a}_{\mu\nu} = \partial_{\mu}A^{a}_{\nu} - \partial_{\nu}A^{a}_{\mu} + g_{\mathrm{s}} f^{abc}A^{b}_{\mu}A^{c}_{\nu} \, .
+        F^{a}_{\mu\nu} = \partial_{\mu}A^{a}_{\nu} - \partial_{\nu}A^{a}_{\mu} + g_{s} f^{abc}A^{b}_{\mu}A^{c}_{\nu} \, .
     \end{equation}
     Gauge fields transform under the adjoint representation, 
     which is an $N_{c}^{2}-1$ dimensional representation, meaning
@@ -183,12 +183,27 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
         [T^{a}, T^{b}] = \mathrm{i}f^{abc}T^{c} \, ,
     \end{equation}
     where $f^{abc}$ are the structure constants of SU(3).
-    The gauge coupling of the group $g_{\mathrm{s}}$
+    The generators are normalised by convention to be
+    \begin{equation}\label{eqn:generator_normalisation}
+        \mathrm{Tr}(T^{a}T^{b}) = \delta^{ab}T_{R} \, , \quad T_{R} = \dfrac{1}{2} \, .
+    \end{equation}
+    This normalisation sets the values of the Casimirs
+    of the group as
+    \begin{align}\label{eqn:casimirs}
+        \begin{split}
+            T^{a}_{ij}T^{a}_{jk} &= \delta{ik}C_{F} \, , \quad C_{F} = \dfrac{N_{c}^2-1}{2N_{c}} \, , \\
+            f^{abc}f^{abd} &= \delta^{cd}C_{A} \, , \quad C_{A} = N_{c} \, ,
+        \end{split}
+    \end{align}
+    where $C_{F}=4/3$ and $C_{A}=3$ for QCD.
+    They are collectively referred to as colour factors.
+
+    The gauge coupling of the group $g_{s}$
     is a dimensionless free parameter of the theory.
     It is common to use the strong coupling constant
     instead, 
     \begin{equation}\label{eqn:alpha_s}
-        \alpha_{\mathrm{s}} = \dfrac{g_{\mathrm{s}}^{2}}{4\pi} \, .
+        \alpha_{s} = \dfrac{g_{s}^{2}}{4\pi} \, .
     \end{equation}
     The strong coupling constant, is in fact not constant, but
     is dependent on the energy scale of the process. This
@@ -199,7 +214,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     the strong coupling constant becomes small, a
     property known as asymptotic freedom. A consequence
     of this is that predictions made in QCD can be expressed
-    in the form of perturbative expansions in $\alpha_{\mathrm{s}}$.
+    in the form of perturbative expansions in $\alpha_{s}$.
 
     To remove unphysical degrees of freedom from the
     theory we need to gauge-fix the theory
@@ -212,7 +227,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     The ghost Lagrangian is most commonly written
     in the Faddeev-Popov procedure as
     \begin{equation}\label{eqn:L_ghost}
-        \mathcal{L}_{\mathrm{ghost}} = (\partial_{\mu}\bar{c}^{a})(\delta^{ac}\partial_{\mu} + g_{\mathrm{s}}f^{abc}A^{b}_{\mu})c^{c} \, ,
+        \mathcal{L}_{\mathrm{ghost}} = (\partial_{\mu}\bar{c}^{a})(\delta^{ac}\partial_{\mu} + g_{s}f^{abc}A^{b}_{\mu})c^{c} \, ,
     \end{equation}
     where $c^{a}$ ($\bar{c}^{a}$) are Faddeev-Popov ghosts (anti-ghosts).
     They are unphysical external states but must be
@@ -233,7 +248,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     Expanding (\ref{eqn:L_QCD}) and extracting the terms
     that mix the gauge and fermions fields, we get an interaction Lagrangian
     \begin{equation}\label{L_int}
-        \mathcal{L}_{\mathrm{int}} = g_{\mathrm{s}}A^{a}_{\mu}\bar{\psi}_{i}^{f}\gamma^{\mu}T^{a}_{ij}\psi_{j}^{f}-g_{\mathrm{s}}f^{abc}(\partial_{\mu}A^{a}_{\nu})A^{b,\,\mu}A^{c,\,\nu} -\dfrac{g_{\mathrm{s}}^{2}}{4}f^{abc}A^{b}_{\mu}A^{c}_{\nu}f^{ade}A^{d,\,\mu}A^{e,\,\nu} \, ,
+        \mathcal{L}_{\mathrm{int}} = g_{s}A^{a}_{\mu}\bar{\psi}_{i}^{f}\gamma^{\mu}T^{a}_{ij}\psi_{j}^{f}-g_{s}f^{abc}(\partial_{\mu}A^{a}_{\nu})A^{b,\,\mu}A^{c,\,\nu} -\dfrac{g_{s}^{2}}{4}f^{abc}A^{b}_{\mu}A^{c}_{\nu}f^{ade}A^{d,\,\mu}A^{e,\,\nu} \, ,
     \end{equation}
     which we can interpret as follows: the first term
     is an interaction between a gluon, a quark, and an
@@ -264,12 +279,12 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
 
     From these Feynman rules, we identify that each
     quark-antiquark-gluon and triple gluon vertices
-    are associated with one power of $\alpha_{\mathrm{s}}$,
+    are associated with one power of $\alpha_{s}$,
     and the four gluon vertex is associated with
-    two powers of $\alpha_{\mathrm{s}}$. This relationship
-    between vertices and $\alpha_{\mathrm{s}}$ allows
+    two powers of $\alpha_{s}$. This relationship
+    between vertices and $\alpha_{s}$ allows
     us to systematically build up Feynman diagrams
-    that correspond to a fixed order in $\alpha_{\mathrm{s}}$.
+    that correspond to a fixed order in $\alpha_{s}$.
     This point will be elaborated on in Section
     \ref{sec:xs} where we discuss scattering amplitudes
     and how they are related to Feynman diagrams.
@@ -309,7 +324,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     particles from a hadronic collision, the hadronic
     cross-section, can be written as
     \begin{equation}\label{eqn:hadronic_cs}
-        \sigma_{AB \rightarrow n} = \sum_{a, b}\int_{0}^{1} \mathrm{d}x_{a}\mathrm{d}x_{b} \; f_{a/A}(x_{a},\mu_{\mathrm{F}})f_{b/B}(x_{b}, \mu_{\mathrm{F}}) \; \hat{\sigma}_{ab \rightarrow n}(Q, \mu_{\mathrm{F}}, \mu_{\mathrm{R}}) + \mathcal{O}\left(\dfrac{\Lambda_{\mathrm{QCD}}}{Q}\right)\, ,
+        \sigma_{AB \rightarrow n} = \sum_{a, b}\int_{0}^{1} \mathrm{d}x_{a}\mathrm{d}x_{b} \; f_{a/A}(x_{a},\mu_{F})f_{b/B}(x_{b}, \mu_{F}) \; \hat{\sigma}_{ab \rightarrow n}(Q, \mu_{F}, \mu_{R}) + \mathcal{O}\left(\dfrac{\Lambda_{\mathrm{QCD}}}{Q}\right)\, ,
     \end{equation}
     where $a$ is the parton from hadron $A$,
     and $b$ is the parton from hadron $B$.
@@ -327,7 +342,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     $f_{a/h}(x, \mu)$ are parton distribution functions
     (PDFs) which depend on the momenta fractions $x$ parton $a$
     has with respect to its parent hadron $h$, at a scale $\mu$,
-    usually taken to be the factorisation scale $\mu_{\mathrm{F}}$,
+    usually taken to be the factorisation scale $\mu_{F}$,
     the interface between soft and hard physics.
     The interpretation of PDFs at leading order are
     as probability distributions. $f_{a/h}(x, \mu)$ is
@@ -335,9 +350,10 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     carrying a momentum fraction $x$ at the energy scale $\mu$.
     PDFs are non-perturbative objects that encapsulate
     the soft effects of the scattering which occur below energy
-    $\mu_{\mathrm{F}}$. They are non-perturbative because
+    $\mu_{F}$. They are non-perturbative because
     they are determined by fitting to experimental data,
     instead of calculated in perturbation theory.
+    
     For a review of PDFs and how they are determined
     see Ref. \cite{Ethier:2020way,Jimenez-Delgado:2013sma}.
     In practice, these PDF fits are accessed through the
@@ -346,7 +362,44 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     The evolution of PDFs between factorisation scales is possible
     through the use of the Dokshitzer-Gribov-Lipatov-Altarelli-Parisi (DGLAP)
     equations \cite{Dokshitzer:1977sg,Gribov:1972ri,Lipatov:1974qm,Altarelli:1977zs}.
-
+    \begin{equation}\label{eqn:DGLAP}
+        \mu_{F}^{2} \dfrac{\partial}{\partial \mu_{F}^{2}}
+        \begin{pmatrix}
+            f_{q/h}(x,\mu_{F}) \\
+            f_{g/h}(x,\mu_{F})
+        \end{pmatrix} \\
+        = \dfrac{\alpha_{s}(\mu_{F})}{2\pi} \int_{x}^{1} \dfrac{\mathrm{d}z}{z}
+        \begin{pmatrix}
+            P_{qq}(\frac{x}{z}) & P_{qg}(\frac{x}{z}) \\
+            P_{gq}(\frac{x}{z}) & P_{gg}(\frac{x}{z})
+        \end{pmatrix}
+        \begin{pmatrix}
+            f_{q/h}(x,\mu_{F}) \\
+            f_{g/h}(x,\mu_{F})
+        \end{pmatrix} \, ,
+    \end{equation}
+    where $P_{ba}(\dfrac{x}{z})$ are splitting functions
+    representing parton $b$ emitting a parton $a$ carrying
+    a momentum fraction $z$. These splitting functions are calculable
+    as a power series in $\alpha_{s}$ where they have been computed
+    up to three-loops (cite here). At leading order (cite here) they are
+    \begin{align}\label{eqn:AP_kernels}
+        P^{(0)}_{qq}(z) &= C_{F}\left[\dfrac{1+z^{2}}{(1-z)_{+}} + \dfrac{3}{2}\delta(1-z)\right] \\
+        P^{(0)}_{qg}(z) &= T_{R}\left[z^{2} + (1-z)^{2}\right] \\
+        P^{(0)}_{gq}(z) &= C_{F}\left[\dfrac{1+(1-z)^{2}}{z^{2}}\right] \\
+        P^{(0)}_{gg}(z) &= 2C_{A}\left[\dfrac{z}{(1-z)_{+}}+\dfrac{1-z}{z}+z(1-z)\right] + \left(\dfrac{11C_{A}-4T_{R}n_{f}}{6}\right)\delta(1-z)
+    \end{align}
+    where the `$+$'-prescription has been used to regulate divergences
+    at $z = 1$.
+    \begin{equation}\label{eqn:plus_prescription}
+        \int_{0}^{1} \mathrm{d}z \; [g(z)]_{+}f(z) = \int_{0}^{1}\mathrm{d}z \; g(z)(f(z)-f(1)) \, ,
+    \end{equation}
+    where the function $f(z)$ cancels the divergence if it is
+    sufficiently smooth at $z=1$.
+    At leading order, there is a physical interpretation
+    of the splitting kernels as the probability of finding a parton
+    $a$ in parton $b$ carrying a fraction $x$ of the parent parton.
+    
     The momenta fractions, $x$, also link the
     squared centre-of-mass energies of the hadronic collision,
     denoted as $s$, to the partonic equivalent as
@@ -354,14 +407,14 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
         \hat{s} = x_{a}x_{b}s \, .
     \end{equation}
 
-    $\hat{\sigma}_{ab \rightarrow n}(Q, \mu_{\mathrm{F}}, \mu_{\mathrm{R}})$
-    is the partonic cross-section which describes the interaction of
+    $\hat{\sigma}_{ab \rightarrow n}(Q, \mu_{F}, \mu_{R})$
+    is the partonic cross-section which descibes the interaction of
     partons $a$ and $b$ scattering into $n$ particles,
     where the scattering occurs at energy scale $Q$,
     which is often taken to the $\hat{s}$.
     Notice that the partonic cross-section depends on
-    both the factorisation scale, $\mu_{\mathrm{F}}$ and
-    the renormalisation scale, $\mu_{\mathrm{R}}$
+    both the factorisation scale, $\mu_{F}$ and
+    the renormalisation scale, $\mu_{R}$
     (see \ref{chapter:qcd}).
     {\color{red} Need to mention how these scales
     are unphysical but there is a residual dependence
@@ -522,32 +575,32 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     an infinite number of Feynman diagrams you can
     draw as there is no constraints on how the
     vertices and propagators can be connected.
-    Fortunately because $\alpha_{\mathrm{s}}$
+    Fortunately because $\alpha_{s}$
     is small in high energy collisions, we can expand
     the matrix element as a perturbative series in
-    $\alpha_{\mathrm{s}}$ to write
+    $\alpha_{s}$ to write
     \begin{equation}\label{eqn:matrix_element}
-        |\mathcal{M}|^{2} =  \alpha_{\mathrm{s}}^{m} |\mathcal{M}|^{2}_{\mathrm{LO}} + \alpha_{\mathrm{s}}^{m+1} |\mathcal{M}|^{2}_{\mathrm{NLO}} + \alpha_{\mathrm{s}}^{m+2} |\mathcal{M}|^{2}_{\mathrm{NNLO}} + \mathcal{O}(\alpha_{\mathrm{s}}^{m+3}) \, ,
+        |\mathcal{M}|^{2} =  \alpha_{s}^{m} |\mathcal{M}|^{2}_{\mathrm{LO}} + \alpha_{s}^{m+1} |\mathcal{M}|^{2}_{\mathrm{NLO}} + \alpha_{s}^{m+2} |\mathcal{M}|^{2}_{\mathrm{NNLO}} + \mathcal{O}(\alpha_{s}^{m+3}) \, ,
     \end{equation}
-    where $m$ corresponds to the powers of $\alpha_{\mathrm{s}}$
+    where $m$ corresponds to the powers of $\alpha_{s}$
     in the simplest Feynman diagrams you can draw
     for the process of interest.
     Since each term of this expansion is at a fixed-order
-    in $\alpha_{\mathrm{s}}$, it is possible to systematically
-    compute the diagrams which contribute at the given order of $\alpha_{\mathrm{s}}$.
+    in $\alpha_{s}$, it is possible to systematically
+    compute the diagrams which contribute at the given order of $\alpha_{s}$.
     The set of diagrams that contribute at the lowest
-    order in $\alpha_{\mathrm{s}}$ are $|\mathcal{M}|^{2}_{\mathrm{LO}}$,
+    order in $\alpha_{s}$ are $|\mathcal{M}|^{2}_{\mathrm{LO}}$,
     where LO stands for leading order. The next term
     in the expansion corresponds to the leading order
     diagrams with an additional loop, or external leg,
-    which contributes an extra factor of $\alpha_{\mathrm{s}}$.
+    which contributes an extra factor of $\alpha_{s}$.
     This term is dubbed NLO for next-to-leading order
-    in $\alpha_{\mathrm{s}}$, and the following term
+    in $\alpha_{s}$, and the following term
     next-to-next-to-leading order has again an additional
     loop or leg. In general, we have terms
-    N$^{k}$LO where each additional power of $\alpha_{\mathrm{s}}$
-    increases complexity of the computations, however,
-    because the expansion $\alpha_{\mathrm{s}}$
+    N$^{k}$LO where each additional power of $\alpha_{s}$
+    increases complixity of the computations, however,
+    because the expansion $\alpha_{s}$
     is small, each additional term contribute less.
     This means that the first terms dominate the expansion,
     and it is sufficient to terminate the series after
