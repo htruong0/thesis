@@ -11,7 +11,7 @@
     specifics of the experimental procedure.
     This provides a bridge to compare
     theoretical predictions and experiment.
-    From (\ref{eqn:dsigma}, the partonic cross-section
+    From (\ref{eqn:dsigma}), the partonic cross-section
     is the matrix element integrated over the relevant
     final-state phase-space, normalised by a flux factor.
     The matrix elements are
@@ -51,10 +51,11 @@
 
 \subsection{Ultraviolet divergences}\label{sec:UV}
     During intermediate steps of calculations,
-    such as trying to compute loop diagrams,
+    such as trying to compute loop diagrams seen in
+    the Figure~\ref{fig:bubble_diagram},
     we have to evaluate integrals of the form
     \begin{equation}\label{eqn:loop_integral}
-        \int_{0}^{\Lambda} \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} \sim \log{\Lambda} \, ,
+        I_{\mathrm{UV}} = \int_{0}^{\Lambda} \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} \sim \log{\Lambda} \, ,
     \end{equation}
     where a cutoff scale $\Lambda$ has been introduced to
     capture the divergence as the loop momenta
@@ -71,11 +72,17 @@
     which introduces counterterms in the Lagrangian
     to exactly cancel these divergences.
 
+    \begin{figure}
+        \includegraphics[scale=1.0]{qcd/bubble_diagram.pdf}
+        \caption{Bubble diagram}
+        \label{fig:bubble_diagram}
+    \end{figure}
+
     Before we introduce these counterterms, we
     first consider the procedure of regularisation
     which makes these infinities explicitly manifest.
     The most widely adopted method of regularisation
-    is dimensional regularisation (DR) (cite here) which
+    is dimensional regularisation (DR) \cite{tHooft:1972tcz} which
     is based on the observation that the integral
     (\ref{eqn:loop_integral}), which is carried
     out in $d=4$ space-time dimensions, would be finite
@@ -85,7 +92,8 @@
     after Feynman parametrisation (\ref{eqn:loop_integral})
     becomes
     \begin{equation}\label{eqn:dim_reg}
-        \int \dfrac{\mathrm{d}^{d}\ell}{(2\pi)^{d}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} = \dfrac{(-p^{2})^{-\epsilon}}{(4\pi)^{2-\epsilon}}\dfrac{\Gamma(1-\epsilon)^{2}}{\Gamma(2-2\epsilon)}\Gamma(\epsilon) \, ,
+        % \int \dfrac{\mathrm{d}^{d}\ell}{(2\pi)^{d}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} = \dfrac{\mathrm{i}(-p^{2})^{-\epsilon}}{(4\pi)^{2-\epsilon}}\dfrac{\Gamma(1-\epsilon)^{2}}{\Gamma(2-2\epsilon)}\Gamma(\epsilon) \, ,
+        I_{\mathrm{UV}} = \int \dfrac{\mathrm{d}^{d}\ell}{(2\pi)^{d}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} = \dfrac{\mathrm{i}}{(4\pi)^{2}}\left(\dfrac{-p^{2}}{4\pi}\right)^{-\epsilon}\dfrac{\Gamma(1-\epsilon)^{2}}{\Gamma(2-2\epsilon)}\Gamma(\epsilon) \, ,
     \end{equation}
     where the divergence for $d = 4$, or equivalently
     $\epsilon \rightarrow 0$, is now captured in the
@@ -131,7 +139,7 @@
     thought of as renormalisations of the the bare fields
     and couplings in (\ref{eqn:L_QCD}) to restore predictive
     power to the theory. The renormalised fields and couplings
-    can be given as (cite here)
+    can be given as (see e.g. Ref.~\cite{mangano1999introduction})
     \begin{align}\label{eqn:renormlised_fields}
         \psi_{\mathrm{bare}} &= \sqrt{Z_{2}} \psi_{R} \, , \nonumber \\
         A_{\mathrm{bare}}^{\mu} &= \sqrt{Z_{3}} A_{R}^{\mu} \, ,\\
@@ -232,6 +240,7 @@
     is not an accurate description of nature,
     and the behaviour of hadrons cannot be predicted
     from perturbation theory.
+    
 \subsection{Infrared divergences}
     In Section~\ref{sec:UV} we saw how divergences
     stemming from high energy behaviour would occur
@@ -242,25 +251,33 @@
     are two cases in which these divergences arise:
     in loop integrals (virtual) and when an emission
     of an extra particle (c.f. splitting functions
-    \ref{eqn:AP_kernels}) has vanishing energy (soft),
+    (\ref{eqn:AP_kernels})) has vanishing energy (soft),
     or becomes parallel to an external colourful line (collinear).
 
     Virtual IR divergences can be understood by looking
     at an integral of the form
     \begin{equation}\label{eqn:virtual_IR_integral}
-        \int \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}} \dfrac{1}{\ell^{2}(\ell+p_{1})^{2}(\ell-p_{2})^{2}} \, ,
+        I_{v} = \int \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}} \dfrac{1}{\ell^{2}(\ell+p_{1})^{2}(\ell-p_{2})^{2}} \, ,
     \end{equation}
     which is encountered when calculating the one-loop
-    virtual correction to the gluon-quark-antiquark vertex.
+    virtual correction to the gluon-quark-antiquark vertex
+    as shown in Figure~\ref{fig:vertex_correction}.
     It is clear that the denominator vanishes when $\ell \rightarrow 0$
     or when either $(\ell + p_{1})^{2}$ or $(\ell - p_{2})^{2} \rightarrow 0$.
     These situations correspond to the gluon in the loop propagator
     going soft, or collinear to the external quark or antiquark.
     These divergences are regulated in DR to give
     \begin{equation}\label{eqn:virtual_IR_DR}
+        I_{v} = \dfrac{\mathrm{i}}{(4\pi)^{2}Q^{2}}\left(\dfrac{-Q^{2}}{4\pi}\right)^{-\epsilon}\dfrac{\Gamma(1+\epsilon)\Gamma(1-\epsilon)^{2}}{\Gamma(1-2\epsilon)}\left[\dfrac{1}{\epsilon^{2}}\right] \, ,
     \end{equation}
-    where we see a double $\epsilon$ pole corresponding to the
-    soft and collinear divergence.
+    where $Q = (p_{1} + p_{2})$. There is a double $\epsilon$ pole manifest,
+    corresponding to the soft and collinear divergence.
+
+    \begin{figure}
+        \includegraphics[scale=1.0]{qcd/vertex_correction.pdf}
+        \caption{Vertex correction}
+        \label{fig:vertex_correction}
+    \end{figure}
 
     Real IR divergences are manifest when integrating
     matrix elements over the phase-space of external state momenta.
@@ -281,7 +298,8 @@
     predictions from the theory physical.
     IR divergences, on the other hand, arise even after the theory
     has been renormalised. The resolution to IR divergences is given by the
-    Kinoshita-Lee-Nauenberg (KLN) theorem (cite here) which states
+    Block-Nordsieck \cite{Bloch:1937pw,Yennie:1961ad} and Kinoshita-Lee-Nauenberg
+    (KLN) theorems \cite{Kinoshita:1962ur,Lee:1964is} which states
     that at each order of perturbation theory, the virtual and real
     contributions exactly cancel out, leaving only finite corrections.
     This cancellation occurs because the infrared pole structure is
@@ -297,7 +315,7 @@
     with fixed-order perturbation theory must be insensitive to the
     emissions of soft or collinear partons. Any observable obeying
     this criteria is an infrared and collinear (IRC) safe observable.
-    This leads to the concept of jets (cite here) which are collimated
+    This leads to the concept of jets \cite{Salam:2010nqg} which are collimated
     particles combined according to some jet algorithm.    
 
     In DR, the singularities from soft and collinear divergences
@@ -318,16 +336,113 @@
     through loop diagrams, or implicitly when carrying
     out the phase-space integral over the external state
     momenta. In this section we will discuss how these IR
-    singularities are universal and can be factorised out
+    singularities are universal and how the divergences
+    associated with real emissions can be factorised out
     of the matrix element. This property is exploited
-    extensively in Sections ... where the research of this
-    thesis is presented.
+    extensively in Chapters~\ref{chapter:fame1}, \ref{chapter:fame2},
+    and \ref{chapter:fame3}
+    where the research of this thesis is presented.
 
-    
+    The regions of phase-space in which real emission
+    matrix elements diverge are when the emission is
+    soft and/or collinear. It can be shown that in these
+    regions of phase-space, the matrix element factorises
+    into a process-independent singular factor, multiplied
+    by a matrix element with the unresolved parton
+    being absorbed by an emitting leg (reduced matrix
+    element). This factorisation, however, is not exact
+    in QCD where there are spin and colour correlations.
+
+    Schematically, the $(n+1)$-body matrix element
+    factorises as
+    \begin{equation}\label{eqn:me_factorisation}
+        |\mathcal{M}_{n+1}|^{2} \rightarrow S_{ijk} \otimes |\mathcal{M}_{n}|^{2} \, ,
+    \end{equation}
+    where $S_{ijk}$ is a universal singular factor capturing
+    the IR divergent behaviour and $|\mathcal{M}_{n}|^{2}$
+    is the reduced matrix element. The $\otimes$
+    represents the colour and spin correlations existing
+    between the singular function and the reduced matrix element.
+    This singular factor
+    is not unique and can be represented by different
+    approximations as long as they reproduce the
+    correct IR behaviour. In this thesis we discuss
+    two approximations: Catani-Seymour dipoles \cite{Catani:1996vz}
+    in Section~\ref{sec:CS_dipoles} and antenna functions \cite{Gehrmann-DeRidder:2005btv}
+    in Section~\ref{sec:antenna_functions}. The indices
+    of $S_{ijk}$ already hints at the fact that the singular
+    functions only depends on three partons, and not all
+    of the $n+1$ external states.
+
+    We will inspect the soft and collinear limits separately
+    to see how the matrix element factorises in these respective
+    limits.
+    The following section will follow the conventions
+    of Ref.~\cite{Catani:1996vz}, namely that the matrix
+    element for $n$ partons in the final-state is written as
+    \begin{equation}\label{eqn:CS_matrix_element}
+        |\mathcal{M}_{n}|^{2} = {}_{n}\langle 1, \ldots, n | 1, \ldots, n \rangle_{n}
+    \end{equation}
+    where $| 1, \ldots, n \rangle_{n}$ is a vector
+    in colour + helicity space (see Appendix~\ref{appendix:catani_seymour}
+    for a more thorough explanation on notation).
 
 \subsection{Soft limits}\label{sec:me_soft}
-\subsection{Collinear limits}\label{sec:me_collinear}
+    Consider a tree-level matrix element $|\mathcal{M}_{n+1}|^{2}$
+    with a final-state gluon $j$. Note that reduced matrix
+    elements associated with taking a quark soft have to vanish
+    due to violation of quark number, therefore only gluons
+    are considered.
+    The limit of the soft gluon with momentum
+    $p_{j}$ can be parametrised by
+    \begin{equation}\label{eqn:soft_parametrisation}
+        p_{j}^{\mu} = \lambda q^{\mu} \, , \quad \lambda \rightarrow 0 \, ,
+    \end{equation}
+    where $q^{\mu}$ is an arbitrary four-vector and $\lambda$
+    is a scale parameter. In this limit the matrix element
+    can be written as
+    \begin{equation}\label{eqn:soft_factorisation}
+        |\mathcal{M}_{n+1}|^{2} \rightarrow -\dfrac{1}{\lambda^{2}}8\pi \mu^{2\epsilon}\alpha_{s} \sum_{i}\dfrac{1}{p_{i}q}\sum_{k \neq i} \dfrac{p_{k}p_{i}}{(p_{i} + p_{k})q} {}_{n}\langle 1, \ldots, n+1 | \bm{T}_{k} \cdot \bm{T}_{i} | 1, \ldots, n+1 \rangle_{n} \, ,
+    \end{equation}
+    where terms less singular than $1 / \lambda^{2}$ have been
+    neglected. The indices $i$, $j$, and $k$ label partons involved
+    in the factorsation process: $i$ is the emitter parton,
+    $j$ is the emitted parton, and $k$ is a parton accounting
+    for the colour correlations. The scale $\mu$ can be identified as the
+    renormalisation scale, and $\bm{T_{i}}$ is the colour-charge
+    operator. It acts on the colour vectors to give factors of
+    $C_{A}$ and $C_{F}$, hence this factorisation is not exact.
 
+    The matrix elements in (\ref{eqn:soft_factorisation}) are
+    unambiguously defined only when momentum conservation is
+    fulfilled. This is only true in the strict $\lambda = 0$
+    limit. Away from the limit, care has to be taken to conserve
+    momentum conservation and keep the relevant partons on-shell.
+    This can be done through the use of momentum mappings
+    \cite{Catani:1996vz,Kosower:1997zr}.
+
+\subsection{Collinear limits}\label{sec:me_collinear}
+    For the collinear limit, consider partons $i$ and
+    $j$ in the matrix element $|\mathcal{M}_{n+1}|^{2}$.
+    Their momenta can be decomposed as
+    \begin{align}\label{eqn:collinear_momenta}
+        \begin{split}
+        p_{i}^{\mu} &= z p^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{z} \dfrac{n^{\mu}}{2 p n} \, \\
+        p_{j}^{\mu} &= (1-z) p^{\mu} - k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-z}\dfrac{n^{\mu}}{2 p n} \, , 
+        \end{split}
+    \end{align}
+    where $p^{\mu}$ denotes the collinear direction
+    of the two partons, $k_{\perp}^{\mu}$ specifies
+    the transverse direction perpendicular to the
+    collinear direciton, and $n^{\mu}$ is an auxiliary
+    vector satisfying the conditions $n^{2} = 0$ and $k_{\perp} n = 0$.
+    $z$ is the fraction of momenta carried away from
+    the collinear momentum by parton $i$.
+    
+    The collinear limit can be then be defined as
+    \begin{equation}\label{eqn:collinear limit}
+        2 p_{i} p_{j} = - \dfrac{k_{\perp}^{2}}{z(1-z)} \, , \quad k_{\perp} \rightarrow 0 \, .
+    \end{equation}
 \section{Subtraction}\label{sec:subtraction}
 \subsection{Catani-Seymour dipoles}\label{sec:CS_dipoles}
 \subsection{Antenna}\label{sec:antenna_functions}

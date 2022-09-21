@@ -267,10 +267,14 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     propagator and the third term corresponds to
     a quark propagator.
 
-    {\color{red} Need to write down the Feynman
-    rules and draw diagrams. Best to put it in a
-    figure that we can refer back to.}
 
+    \begin{figure}\label{fig:qcd_feynman_rules}
+        \includegraphics[width=\linewidth]{introduction/qcd_feynman_rules.pdf}
+        \caption{QCD Feynman rules.}
+    \end{figure}
+
+    In Figure~\ref{fig:qcd_feynman_rules} we have
+    collected the QCD Feynman rules.
     Note that we have only written down the vertices,
     propagators, and external lines for the physical gluons and quarks,
     ghosts also have associated Feynman rules but we do
@@ -382,7 +386,8 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     representing parton $b$ emitting a parton $a$ carrying
     a momentum fraction $z$. These splitting functions are calculable
     as a power series in $\alpha_{s}$ where they have been computed
-    up to three-loops (cite here). At leading order (cite here) they are
+    up to three-loops \cite{Moch:2004pa,Vogt:2004mw}.
+    At leading order \cite{Altarelli:1977zs} they are
     \begin{align}\label{eqn:AP_kernels}
         P^{(0)}_{qq}(z) &= C_{F}\left[\dfrac{1+z^{2}}{(1-z)_{+}} + \dfrac{3}{2}\delta(1-z)\right] \\
         P^{(0)}_{qg}(z) &= T_{R}\left[z^{2} + (1-z)^{2}\right] \\
@@ -598,7 +603,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     in $\alpha_{s}$, and the following term
     next-to-next-to-leading order has again an additional
     loop or leg. In general, we have terms
-    N$^{k}$LO where each additional power of $\alpha_{s}$
+    N$^{\mathrm{k}}$LO where each additional power of $\alpha_{s}$
     increases complixity of the computations, however,
     because the expansion $\alpha_{s}$
     is small, each additional term contribute less.
@@ -620,7 +625,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
 
     With the introduction of matrix elements and
     cross-sections complete, we will move the discussion onto
-    Monte Carlo event generators (MCEG). These event
+    Monte Carlo event generators. These event
     generators are multipurpose tools that
     incorporate many aspects of the theory discussed
     so far (and to be discussed) for practical use.
