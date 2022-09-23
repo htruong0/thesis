@@ -2,5 +2,40 @@
 \begin{document}
 \chapter{Catani-Seymour notation}
 \label{appendix:catani_seymour}
+    The notation for matrix elements given in Ref.~\cite{Catani:1996vz}
+    is repeated here for convenience.
+
+    Consider a tree-level matrix element with $n$ partons in
+    the final-state
+    \begin{equation}\label{eqn:CS_ME}
+        \mathcal{M}^{c_{1},\ldots,c_{n};s_{1},\ldots,s_{n}}_{n}(p_{1},\ldots,p_{n}) \, ,
+    \end{equation}
+    where $\{c_{1},\ldots,c_{n}\}$ are colour indices,
+    $\{s_{1},\ldots,s_{n}\}$ are spin indices,
+    and $\{p_{1},\ldots,p_{n}\}$ are momenta.
+
+    Introducing the basis $\{| c_{1},\ldots,c_{n} \rangle \otimes | s_{1},\ldots,s_{n} \rangle \}$
+    in colour + helicity space allows us to write
+    \begin{equation}\label{eqn:CS_hilbert}
+        \mathcal{M}^{c_{1},\ldots,c_{n};s_{1},\ldots,s_{n}}_{n}(p_{1},\ldots,p_{n}) \equiv \left(\langle c_{1},\ldots,c_{n} | \otimes \langle s_{1},\ldots,s_{n} | \right) | 1, \ldots,n \rangle_{n} \, ,
+    \end{equation}
+    where $|1, \ldots, n \rangle_{n}$ is a vector in colour + helicity space.
+    The indices inside the vector denote the spin and colour indices,
+    while the subscript denotes the multiplicity of the vector.
+    The matrix element squared, summed over final-state colours and spins,
+    can therefore be written as
+    \begin{equation}\label{eqn:CS_ME2}
+        |\mathcal{M}_{n}|^{2} = {}_{n} \langle 1,\ldots,n|1,\ldots,n\rangle_{n} \, .
+    \end{equation}
+
+    In the case of partons in the initial-state the colour + helicity vector
+    $|1, \ldots, n \rangle$ has to be normalised by a factor $\sqrt{n_{c}}$ for each
+    initial state parton. For hadron-hadron collisions this amounts to
+    \begin{equation}
+        | 1, \ldots, n \rangle_{n} \rightarrow \dfrac{1}{\sqrt{n_{c}(a)n_{c}(b)}} | 1, \ldots, n \rangle_{n} \, ,
+    \end{equation}
+    where $n_{c}(a)$ denotes the number of colour states of parton $a$.
+    Namely $n_{c}(q) = n_{c}(\bar{q}) = N_{c}$ and $n_{c}(g) = N_{c}^{2}-1$.
+
 
 \end{document}

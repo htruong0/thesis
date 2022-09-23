@@ -222,6 +222,7 @@
     and is justification for treating QCD perturbatively.
     The running of the coupling constant has been
     observed experimentally as illustrated in Figure~\ref{fig:alpha_s_running}.
+
     \begin{figure}
         \includegraphics{qcd/alpha_s_running.pdf}
         \caption{The running of the strong coupling constant $\alpha_{s}$,
@@ -356,9 +357,9 @@
     Schematically, the $(n+1)$-body matrix element
     factorises as
     \begin{equation}\label{eqn:me_factorisation}
-        |\mathcal{M}_{n+1}|^{2} \rightarrow S_{ijk} \otimes |\mathcal{M}_{n}|^{2} \, ,
+        |\mathcal{M}_{n+1}|^{2} \rightarrow \bm{S}_{ijk} \otimes |\mathcal{M}_{n}|^{2} \, ,
     \end{equation}
-    where $S_{ijk}$ is a universal singular factor capturing
+    where $\bm{S}_{ijk}$ is a universal singular factor capturing
     the IR divergent behaviour and $|\mathcal{M}_{n}|^{2}$
     is the reduced matrix element. The $\otimes$
     represents the colour and spin correlations existing
@@ -370,7 +371,7 @@
     two approximations: Catani-Seymour dipoles \cite{Catani:1996vz}
     in Section~\ref{sec:CS_dipoles} and antenna functions \cite{Gehrmann-DeRidder:2005btv}
     in Section~\ref{sec:antenna_functions}. The indices
-    of $S_{ijk}$ already hints at the fact that the singular
+    of $\bm{S}_{ijk}$ already hints at the fact that the singular
     functions only depends on three partons, and not all
     of the $n+1$ external states.
 
@@ -378,8 +379,8 @@
     to see how the matrix element factorises in these respective
     limits.
     The following section will follow the conventions
-    of Ref.~\cite{Catani:1996vz}, namely that the matrix
-    element for $n$ partons in the final-state is written as
+    of Ref.~\cite{Catani:1996vz}, namely that the colour and
+    helicity summed $n$-body matrix element written as
     \begin{equation}\label{eqn:CS_matrix_element}
         |\mathcal{M}_{n}|^{2} = {}_{n}\langle 1, \ldots, n | 1, \ldots, n \rangle_{n}
     \end{equation}
@@ -402,10 +403,11 @@
     is a scale parameter. In this limit the matrix element
     can be written as
     \begin{equation}\label{eqn:soft_factorisation}
-        |\mathcal{M}_{n+1}|^{2} \rightarrow -\dfrac{1}{\lambda^{2}}8\pi \mu^{2\epsilon}\alpha_{s} \sum_{i}\dfrac{1}{p_{i}q}\sum_{k \neq i} \dfrac{p_{k}p_{i}}{(p_{i} + p_{k})q} {}_{n}\langle 1, \ldots, n+1 | \bm{T}_{k} \cdot \bm{T}_{i} | 1, \ldots, n+1 \rangle_{n} \, ,
+        |\mathcal{M}_{n+1}|^{2} \rightarrow -\dfrac{1}{\lambda^{2}}8\pi \mu^{2\epsilon}\alpha_{s} \sum_{i}\dfrac{1}{p_{i}q}\sum_{k \neq i} \dfrac{p_{k}p_{i}}{(p_{i} + p_{k})q} \; {}_{n}\langle 1, \ldots, n+1 | \bm{T}_{k} \cdot \bm{T}_{i} | 1, \ldots, n+1 \rangle_{n} \, ,
     \end{equation}
     where terms less singular than $1 / \lambda^{2}$ have been
-    neglected. The indices $i$, $j$, and $k$ label partons involved
+    neglected. The reduced matrix element is obtained by removing
+    the soft gluon. The indices $i$, $j$, and $k$ label partons involved
     in the factorsation process: $i$ is the emitter parton,
     $j$ is the emitted parton, and $k$ is a parton accounting
     for the colour correlations. The scale $\mu$ can be identified as the
@@ -425,7 +427,7 @@
     For the collinear limit, consider partons $i$ and
     $j$ in the matrix element $|\mathcal{M}_{n+1}|^{2}$.
     Their momenta can be decomposed as
-    \begin{align}\label{eqn:collinear_momenta}
+    \begin{align}\label{eqn:F_collinear_momenta}
         \begin{split}
         p_{i}^{\mu} &= z p^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{z} \dfrac{n^{\mu}}{2 p n} \, \\
         p_{j}^{\mu} &= (1-z) p^{\mu} - k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-z}\dfrac{n^{\mu}}{2 p n} \, , 
@@ -434,15 +436,181 @@
     where $p^{\mu}$ denotes the collinear direction
     of the two partons, $k_{\perp}^{\mu}$ specifies
     the transverse direction perpendicular to the
-    collinear direciton, and $n^{\mu}$ is an auxiliary
+    collinear direciton ($p k_{\perp} = 0$), and $n^{\mu}$ is an auxiliary
     vector satisfying the conditions $n^{2} = 0$ and $k_{\perp} n = 0$.
     $z$ is the fraction of momenta carried away from
     the collinear momentum by parton $i$.
     
     The collinear limit can be then be defined as
-    \begin{equation}\label{eqn:collinear limit}
-        2 p_{i} p_{j} = - \dfrac{k_{\perp}^{2}}{z(1-z)} \, , \quad k_{\perp} \rightarrow 0 \, .
+    \begin{equation}\label{eqn:F_collinear limit}
+        2 p_{i} p_{j} = s_{ij} = - \dfrac{k_{\perp}^{2}}{z(1-z)} \, , \quad k_{\perp} \rightarrow 0 \, .
     \end{equation}
+    In this limit the matrix element can be written as
+    \begin{equation}\label{eqn:F_collinear_factorisation}
+        |\mathcal{M}_{n+1}|^{2} \rightarrow \dfrac{1}{p_{i}p_{j}}4\pi \mu^{2\epsilon}\alpha_{s} \; {}_{n} \langle 1, \ldots, n+1 | \hat{P}_{ij}(z, k_{\perp}) | 1, \ldots, n+1 \rangle_{n} \, ,
+    \end{equation}
+    where terms less singular than $k_{\perp}^{2}$ have been neglected.
+    This reduced matrix element is obtained by replacing the partons
+    $i$ and $j$ with a single parton $ij$ which carries the
+    momentum $p^{\mu}$ and suitable quantum numbers depending
+    on the partons $i$ and $j$. For example, if $i =$ quark and $j=$ gluon,
+    then $ij =$ quark, or if $i=$ quark and $j =$ antiquark, then $ij =$ gluon.
+    $\hat{P}_{ij}$ are the $d$-dimensional Altarelli-Parisi splitting
+    functions that depend on the momentum fraction $z$ for the splitting
+    $ij \rightarrow i + j$ and the transverse momentum $k_{\perp}$.
+    Each splitting function is matrix acting on the spin indices of $ij$.
+    Due to these spin correlations the matrix
+    element does not factorise from the splitting functions exactly.
+
+    $\hat{P}_{ij}$ become the more recognisable Altarelli-Parisi
+    splitting functions (\ref{eqn:AP_kernels}) once spin-averaged
+    and the $\epsilon \rightarrow 0$ limit is taken.
+
+    In general, it is possible for the case in which a final-state
+    parton $i$ becomes collinear with an initial-state parton $a$.
+    This is described by the splitting process $a \rightarrow ai + i$.
+    In this case their momenta can be decomposed as
+    \begin{align}\label{eqn:I_collinear_momenta}
+        \begin{split}
+        p_{i}^{\mu} &= (1-x)p_{a}^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-x}\dfrac{n^{\mu}}{2p_{a} n} \, , \\
+        p_{a}^{\mu} &= x p_{a}^{\mu} \, ,
+        \end{split}
+    \end{align}
+    with the collinear limit defined as
+    \begin{equation}\label{eqn:I_collinear_limit}
+        2p_{i}p_{a} = s_{ia} = -\dfrac{k_{\perp}^{2}}{1-x} \, , \quad k_{\perp} \rightarrow 0 \, .
+    \end{equation}
+
+    The analogous expression of (\ref{eqn:F_collinear_factorisation})
+    for initial-state splitting is
+    \begin{equation}\label{eqn:I_collinear_factorisation}
+        |\mathcal{M}_{n+1}|^{2} \rightarrow \dfrac{1}{x} \dfrac{1}{p_{i}p_{a}} 4\pi \mu^{2\epsilon} \alpha_{s} \; {}_{n} \langle 1,\ldots,n+1;ai, \ldots | \hat{P}_{ai}(x, k_{\perp}) | 1,\ldots,n+1;ai,\ldots \rangle_{n} \, ,
+    \end{equation}
+    where the replacement of partons $a$ and $i$ have been made
+    explicit by the presence of the parton $ai$ in the colour + helicity vector.
+    The specific type of parton $ai$ depends upon the types of $a$ and $i$.
+
+    Similar to (\ref{eqn:soft_factorisation}), (\ref{eqn:F_collinear_factorisation})
+     and (\ref{eqn:I_collinear_factorisation}) are only
+    true in the strict collinear limit. Away from these
+    limits care has to be taken to conserve momenta
+    via the use of momenta mappings.
+
+\subsection{Factorisation of colour-ordered amplitudes}
+    The factorisation expressed in (\ref{eqn:soft_factorisation}),
+    (\ref{eqn:F_collinear_factorisation}), and (\ref{eqn:I_collinear_factorisation})
+    were not exact because of colour and spin correlations.
+
+    It can be shown that the factorisation of matrix
+    elements in the soft and collinear limits becomes
+    exact once the colour structure of the gauge group
+    is separated from the kinematics. 
+
+    For the scope of this thesis it is sufficient
+    to consider colour decomposition of electron-positron
+    annihilation. In general any QCD amplitude can be
+    colour decomposed. Consider the process $e^{+}e^{-} \rightarrow q\bar{q} + n g$,
+    the amplitude can be written as a product of hadronic and
+    leptonic currents \cite{Campbell:1998nn} (on which this discussion is based on)
+    \begin{equation}\label{eqn:epem_amplitude}
+        \mathcal{M}(q_{1}, \bar{q}_{2}; 1, \ldots, n) = \hat{\mathcal{S}}_{\mu}^{n+2}(q_{1}; 1,\ldots,n; \bar{q}_{2})V^{\mu} \, ,
+    \end{equation}
+    where the leptonic current is $V^{\mu}$ and the hadronic
+    current is
+    \begin{equation}\label{eqn:hadronic_current}
+        \hat{\mathcal{S}}_{\mu}^{n+2}(q_{1};1,\ldots,n;\bar{q}_{2}) = \mathrm{i}eg_{s}^{n} \sum_{P(1,\ldots,n)}(T^{a_{1}} \ldots T^{a_{n}})_{c_{1}c_{2}}S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2}) \, .
+    \end{equation}
+    In this expression we have the electromagnetic gauge coupling
+    $e$ and the strong gauge coupling $g_{s}$ appearing. The colour
+    structure has been factored into a product of fundamental group
+    generators where the indices $a_{i} \in {1,\ldots, N_{c}^{2}-1}$
+    and $c_{i} \in {1,\ldots,N_{c}}$. This leaves the colour-ordered
+    partial amplitude $S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})$ depending
+    only on kinematical variables, and where the gluons are emitted in an
+    ordered fashion from the quarks. The sum over $P(1,\ldots,n)$
+    represents a sum over all permutations of gluon emissions
+    which accounts for all Feynman diagrams and colour structures.
+
+    Upon squaring the amplitude (\ref{eqn:epem_amplitude}), we get
+    \begin{equation}\label{eqn:epem_me2}
+        \left|\hat{\mathcal{S}}_{\mu}^{n+2}V^{\mu}\right|^{2} = e^{2}\left(\dfrac{g_{s}^{2}N}{2}\right)^{n}\left(\dfrac{N_{c}^{2}-1}{N_{c}}\right) \sum_{P(1,\ldots,n)} \left(\left|S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} + \mathcal{O}\left(\dfrac{1}{N_{c}^{2}}\right)\right) \, ,
+    \end{equation}
+    where the subleading colour terms have been omitted.
+
+    With the amplitude written in terms of the colour-ordered
+    partial amplitudes, it is now possible to factorise (\ref{eqn:epem_me2})
+    exactly in the soft and collinear limits. In the limit where gluon
+    $j$ is soft, we have
+    \begin{equation}\label{eqn:CO_soft_factorisation}
+        \left|S_{\mu}(q_{1};1,\ldots,i,j,k,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} \rightarrow S_{ijk} \left|S_{\mu}(q_{1};1,\ldots,i,k,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} \, ,
+    \end{equation}
+    where the factor
+    \begin{equation}\label{eqn:eikonal_factor}
+        S_{ijk} = 4\dfrac{s_{ik}}{s_{ij}s_{jk}} \, ,
+    \end{equation}
+    is the well-known eikonal factor. We see that the colour-ordered
+    amplitude on the RHS of (\ref{eqn:eikonal_factor}) has gluon $j$
+    removed but the ordering of all hard partons remain unchanged.
+
+    In the collinear limit where partons $i$ and $j$ become collinear
+    to form parton $k$, the matrix element factorises as
+    \begin{equation}\label{eqn:CO_collinear_factorisation}
+        \left|S_{\mu}(q_{1};1,\ldots,i,j,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} \rightarrow \dfrac{2}{s_{ij}}P_{ij}(z) \left|S_{\mu}(q_{1};1,\ldots,k,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} \, ,
+    \end{equation}
+    where $P_{ij}(z)$ are the spin-averaged Altarelli-Parisi splitting
+    functions (\ref{eqn:AP_kernels}) with the colour factors removed.
+    In this expression it is understood that the indices $i$, $j$, and $k$
+    have to be self-consistent for the different partonic splittings.
+    For partons which are not colour connected (are not neighbouring
+    partons in the colour ordered amplitude), there will be no singular
+    behaviour as $s_{ij} \rightarrow 0$.
+
+    In (\ref{eqn:CO_soft_factorisation}) and (\ref{eqn:CO_collinear_factorisation})
+    the colour-ordered amplitude factorises exactly into a
+    colour-ordered amplitude with one parton removed, multiplied
+    by a universal singular factor. This singular factor depends on the unresolved
+    parton and the two neighbouring hard particles. Interpreting this as
+    the two hard particles forming an antenna which radiates the unresolved
+    parton gives rise to the antenna functions which will be discussed
+    further in Section~\ref{sec:antenna_functions}.
+
+\subsection{One-loop matrix element factorisation}\label{sec:OL_factorisation}
+    The discussion of matrix element factorisation so
+    far has been focused on tree-level matrix elements.
+    It has been shown that one-loop colour-ordered amplitudes
+    also factorise in the soft and collinear limits. At the one-loop level,
+    there are new universal singular functions and the
+    factorisation formula are modified.
+
+    In the soft limit, a one-loop colour-ordered amplitude
+    factorises as (cite here)
+    \begin{equation}\label{eqn:1L_soft_factorisation}
+        M_{n+1}^{(1)}(\ldots, i, j, k, \ldots) \rightarrow S_{ijk}^{(0)} \, M_{n}^{1}(\ldots, i, k, \ldots) + S_{ijk}^{(1)}(\epsilon) \, M_{n}^{0}(\ldots, i, k, \ldots) \, ,
+    \end{equation}
+    where $S_{ijk}^{(0)}$ is the eikonal factor (\ref{eqn:eikonal_factor}),
+    and $S_{ijk}^{(1)}(\epsilon)$ is the one-loop soft radiation function (cite here).
+
+    A similar factorisation formula for the collinear limit is
+    \begin{equation}\label{eqn:1L_collinear_factorisation}
+        M_{n+1}^{(1)}(\ldots, i, j, \ldots) \rightarrow \dfrac{1}{s_{ij}} \left[ P_{ij}^{(0)}(z) \, M_{n}^{(1)}(\ldots, k, \ldots) + P_{ij}^{(1)}(z, \epsilon) \, M_{n}^{(0)}(\ldots, k, \ldots) \right] \, ,
+    \end{equation}
+    where $P_{ij}^{(0)}$ are the tree-level splitting functions
+    (\ref{eqn:AP_kernels}) and $P_{ij}^{(1)}$
+    are the one-loop splitting functions (cite here).
+
+    In both these formulae the structure is of the form:
+    tree-level splitting function multipled by a one-loop
+    amplitude, plus a one-loop splitting function multiplied
+    by a tree-level amplitude as diagrammatically shown
+    in Fig ...
+
+    In Section~\ref{sec:antenna_functions} we will give
+    a brief overview of antenna functions where these one-loop
+    factorisation formulae were used to obtain universal singular functions
+    at the one-loop level for squared matrix elements. These
+    antenna functions are then applied in the context of NLO
+    k-factor emulation in Chapter~\ref{chapter:fame2}.
+
 \section{Subtraction}\label{sec:subtraction}
 \subsection{Catani-Seymour dipoles}\label{sec:CS_dipoles}
 \subsection{Antenna}\label{sec:antenna_functions}
