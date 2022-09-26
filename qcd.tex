@@ -242,7 +242,7 @@
     and the behaviour of hadrons cannot be predicted
     from perturbation theory.
     
-\subsection{Infrared divergences}
+\subsection{Infrared divergences}\label{sec:IR_divergences}
     In Section~\ref{sec:UV} we saw how divergences
     stemming from high energy behaviour would occur
     in loop diagrams. On the other end of the energy
@@ -594,8 +594,8 @@
     \begin{equation}\label{eqn:1L_collinear_factorisation}
         M_{n+1}^{(1)}(\ldots, i, j, \ldots) \rightarrow \dfrac{1}{s_{ij}} \left[ P_{ij}^{(0)}(z) \, M_{n}^{(1)}(\ldots, k, \ldots) + P_{ij}^{(1)}(z, \epsilon) \, M_{n}^{(0)}(\ldots, k, \ldots) \right] \, ,
     \end{equation}
-    where $P_{ij}^{(0)}$ are the tree-level splitting functions
-    (\ref{eqn:AP_kernels}) and $P_{ij}^{(1)}$
+    where $P_{ij}^{(0)}(z)$ are the tree-level splitting functions
+    (\ref{eqn:AP_kernels}) and $P_{ij}^{(1)}(z, \epsilon)$
     are the one-loop splitting functions (cite here).
 
     In both these formulae the structure is of the form:
@@ -612,6 +612,100 @@
     k-factor emulation in Chapter~\ref{chapter:fame2}.
 
 \section{Subtraction}\label{sec:subtraction}
+    In Section~\ref{sec:IR_divergences} we discussed the
+    structure of IR divergences and how the KLN theorem
+    necessitated the cancellation of IR divergences 
+    arising from the virtual corrections and real-emission
+    matrix elements once integrated over soft and collinear
+    regions of phase-space, at each order in perturbation
+    theory.
+
+    Over the past few decades there has been a vast
+    amount of research into devising methods to systematically
+    isolate these singularities such that it is possible
+    to numerically achieve predictions of physical
+    quantities that are finite. To tackle this task, three
+    main mathods have been proposed: phase-space slicing (cite here),
+    sector decomposition (cite here), and subtraction (cite here).
+    
+    By now the method of choice at NLO QCD is subtraction,
+    and is the method we will focus on in this section. The main
+    idea behind subtraction methods is to define local counterterms
+    that exactly replicate the IR divergent behaviour of matrix
+    elements. While there is not one single subtraction scheme
+    that is universally used, the general form of a subtraction term
+    must fulfill the requirements of replicating the matrix element
+    behaviour in all IR singular limits, and be analytically integrable
+    over the regions of phase-space corresponding to these IR limits.
+
+    To illustrate the idea behind the subtraction method,
+    first consider the calculation of a LO partonic cross-section
+    \begin{equation}\label{eqn:LO_cs}
+        \sigma^{\mathrm{LO}} = \int \mathrm{d}\Phi_{n} \; \mathcal{B}_{n} \, ,
+    \end{equation}
+    where $\mathcal{B}_{n}$ is the Born (tree-level) matrix
+    element and $\Phi_{n}$ is the $n$-body phase-space.
+    At the next order in perturbation theory, we have the NLO
+    cross-section which recieves contributions from the real and virtual
+    corrections
+    \begin{equation}\label{eqn:NLO_cs}
+        \sigma^{\mathrm{NLO}} = \int \mathrm{d}\Phi_{n} \; \left[\mathcal{B}_{n} + \mathcal{V}_{n}\right] + \int \mathrm{d}\Phi_{n+1} \; \mathcal{R}_{n+1} \, ,
+    \end{equation}
+    where $\mathcal{V}_{n}$ is the virtual matrix element (renormalised
+    to remove UV divergences as described in Section~\ref{sec:UV})
+    which lives in the same $n$-body phase-space as the Born
+    matrix element. The real-emission matrix element, $\mathcal{R}_{n+1}$,
+    lives in the $(n+1)$-body phase-space, $\Phi_{n+1}$, due to the emission
+    of an additional external particle. The integrals over $\Phi_{n}$ and
+    $\Phi_{n+1}$ are separately divergent but their sum is finite. To
+    carry out a numerical calculation, it is therefore necessary
+    to regulate these divergences. In dimensional regularisation these
+    divergences are mapped to poles in $\epsilon$.
+
+    The motivation behind the subtraction method is that the
+    divergences in (\ref{eqn:NLO_cs}) can be cancelled upon the insertion
+    of a counterterm evaluated in $\Phi_{n+1}$ and an integrated counterterm
+    evaluated in $\Phi_{n}$ such that the condition
+    \begin{equation}\label{eqn:subtraction_term_condition}
+        \int \mathrm{d}\Phi_{n} \; \mathcal{I}_{n} - \int \mathrm{d}\Phi_{n+1} \; \mathcal{C}_{n+1} = 0 \, ,
+    \end{equation}
+    holds. Here we have made use of the fact that
+    $\Phi_{n+1} \rightarrow \Phi_{n}\Phi_{1}$ when using
+    an appropriate $3 \rightarrow 2$ momentum mapping such that
+    \begin{equation}\label{eqn:integrated_counterterm}
+        \mathcal{I}_{n} = \int \Phi_{1} \; \mathcal{C}_{n+1}
+    \end{equation}
+    where $\Phi_{1}$ is the one-parton phase-space leading
+    to $\epsilon$ poles once $\mathcal{C}_{n+1}$ is integrated over.
+    The counterterm $\mathcal{C}_{n+1}$ should be a proper
+    pointwise approximation of $\mathcal{R}_{n+1}$ to cancel all IR
+    divergences such that $\mathcal{R}_{n+1} - \mathcal{C}_{n+1}$ is finite.
+    Additionally, since the pole structure in $\mathcal{V}_{n}$ is identical
+    to $\mathcal{R}_{n+1}$, $\mathcal{V}_{n} + \mathcal{I}_{n}$ will be finite
+    by construction.
+    Inserting this into (\ref{eqn:NLO_cs}) we get
+    \begin{equation}\label{eqn:NLO_subtraction}
+        \sigma^{\mathrm{NLO}} = \int \mathrm{d}\Phi_{n} \left[\mathcal{B}_{n} + \mathcal{V}_{n} + \mathcal{I}_{n}\right] + \int \mathrm{d}\Phi_{n+1} \left[\mathcal{R}_{n+1} - \mathcal{C}_{n+1}\right] \, ,
+    \end{equation}
+    where each integral can now be carried out numerically
+    in integer dimensions by taking the $\epsilon \rightarrow 0$
+    limit. This is possible as the integrals are all separately
+    finite now.
+
+    The counterterm $\mathcal{C}_{n+1}$ has been kept general
+    but specific exmples of subtractions schemes include
+    Catani-Seymour (CS) (cite here), Frixione-Kunszt-Signer (FKS) (cite here),
+    and antenna subtraction (cite here).
+
+    In the next sections we will describe in detail two sets of functions
+    that are used to build subtraction terms: Catani-Seymour dipoles,
+    antenna functions. However, we will not construct the counterterms explicitly.
+    In other words, we are interested in the approximations of the matrix elements
+    in the soft and collinear limits as these are universal and can
+    be applied to any process. These functions will become instrumental
+    during our construction of matrix element emulators in Chapters
+    \ref{chapter:fame1}, \ref{chapter:fame2}, and \ref{chapter:fame3}.
+
 \subsection{Catani-Seymour dipoles}\label{sec:CS_dipoles}
 \subsection{Antenna}\label{sec:antenna_functions}
 \end{document}
