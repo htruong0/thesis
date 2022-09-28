@@ -625,8 +625,8 @@
     isolate these singularities such that it is possible
     to numerically achieve predictions of physical
     quantities that are finite. To tackle this task, three
-    main mathods have been proposed: phase-space slicing (cite here),
-    sector decomposition (cite here), and subtraction (cite here).
+    main mathods have been proposed: phase-space slicing \cite{Fabricius:1981sx,Kramer:1986mc,Giele:1991vf},
+    sector decomposition \cite{Binoth:2000ps,Binoth:2003ak}, and subtraction \cite{Ellis:1980nc}.
     
     By now the method of choice at NLO QCD is subtraction,
     and is the method we will focus on in this section. The main
@@ -693,9 +693,16 @@
     finite now.
 
     The counterterm $\mathcal{C}_{n+1}$ has been kept general
-    but specific exmples of subtractions schemes include
-    Catani-Seymour (CS) (cite here), Frixione-Kunszt-Signer (FKS) (cite here),
-    and antenna subtraction (cite here).
+    but specific exmples of automated subtractions schemes include
+    Catani-Seymour (CS) \cite{Catani:1996vz,Catani:2002hc},
+    Frixione-Kunszt-Signer (FKS) \cite{Frixione:1995ms,Frixione:1997np},
+    and antenna subtraction \cite{Campbell:1998nn,Kosower:1997zr,Kosower:2003bh}.
+
+    Beyond NLO QCD, the algorithms available have
+    not reached the maturity of the automated methods widely use
+    at NLO. However, this is an active area of
+    research. See (cite black book) for a review of methods
+    that have been applied successfuly in NNLO QCD and beyond.
 
     In the next sections we will describe in detail two sets of functions
     that are used to build subtraction terms: Catani-Seymour dipoles,
@@ -707,5 +714,294 @@
     \ref{chapter:fame1}, \ref{chapter:fame2}, and \ref{chapter:fame3}.
 
 \subsection{Catani-Seymour dipoles}\label{sec:CS_dipoles}
-\subsection{Antenna}\label{sec:antenna_functions}
+    Catani-Seymour dipoles introduced in Ref.~\cite{Catani:1996vz}
+    are process independent functions that reproduce the IR
+    singular behaviour of matrix elements. They depend on the
+    momenta and quantum numbers of three partons in the real-emission
+    phase-space. These three partons are identified by indices
+    $i$, $j$, and $k$ where $i$ is the emitting parton, $j$ is
+    the unresolved emitted parton, and $k$ is a spectator parton.
+    Since the dipoles only depend on three partons, to map out
+    all the singular limits, it will be required to construct all
+    permutations of dipole functions.
+
+    Dipole functions can be separated into four categories
+    depending on whether the emitter and spectator are in the
+    initial-state or the final-state, as illustrated in Figure~\ref{fig:CS_dipoles}.
+    Namely, there are final-final (FF) dipoles, final-initial dipoles (FI),
+    initial-final (IF) dipoles and initial-initial (II) dipoles where
+    the nomenclature is emitter-spectator dipole.
+    For electron-positron annihilations only FF dipoles are required,
+    but for any hadronic collision the inclusion of the remaining
+    dipoles are required to capture all IR singular behaviour.
+
+    In the following we will describe in detail the FF dipoles
+    but only give a brief description of the remaining dipoles as
+    the structure of the factorisation formula is essentially identical.
+
+    \begin{figure}
+        \includegraphics[width=\linewidth]{qcd/CS_dipoles.pdf}
+        \caption{Schematic diagrams of the four classes of Catani-Seymour
+        dipoles, $\mathcal{D}$. Each dipole consists of a composite particle
+        that decays into two partons, and a spectator that recoils
+        to conserve momentum. $\boldsymbol{V}$ represents the splitting
+        function within the dipole function which contains the divergent
+        behaviour. The solid black blob represents the hard scattering process,
+        with incoming and outgoing lines representing initial and final-state
+        partons, respectively.}
+        \label{fig:CS_dipoles}
+    \end{figure}
+
+    \subsubsection{Final-final dipoles}
+        The utilisation of dipoles is encapsulated in the
+        dipole factorisation formula where matrix elements in the limit
+        $p_{i}p_{j} \rightarrow 0$ can be written as
+        \begin{equation}\label{eqn:FF_factorisation}
+            {}_{n+1} \langle 1, \ldots, n+1 | | 1, \ldots, n+1 \rangle_{n+1} = \sum_{k\neq i,j}\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) + \ldots \, ,
+        \end{equation}
+        where terms not singular in the limit $p_{i}p_{j} \rightarrow 0$
+        are omitted, and the dipole is
+        \begin{equation}\label{eqn:D_ijk}
+            \begin{split}
+                \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) &= -\dfrac{1}{2p_{i}p_{j}} \\
+                {}_{n}\langle 1, &\ldots, \widetilde{ij}, \ldots, \tilde{k}, \ldots, n+1 | \dfrac{\boldsymbol{T}_{k} \cdot \boldsymbol{T}_{ij}}{\boldsymbol{T}_{ij}^{2}} \boldsymbol{V}_{ij,k} | 1, \ldots, \widetilde{ij}, \ldots, \tilde{k}, \ldots, n+1 \rangle_{n} \, ,
+            \end{split}
+        \end{equation}
+        where $\boldsymbol{T}_{i}$ are colour charges and $\boldsymbol{V}_{ij,k}$
+        is a matrix in the helicity space of the emitter embedding the
+        IR divergent behaviour.
+        The sum can be understood as summing over all possible
+        3 leg permutations to capture all the soft and collinear limits.
+        The reduced matrix element on the RHS of (\ref{eqn:D_ijk})
+        is obtained by replacing the partons $i$ and $j$ with
+        a single parton $\widetilde{ij}$, and replacing parton
+        $k$ with a parton $\tilde{k}$. $\tilde{k}$ has all the
+        same quantum numbers as $k$, where as the
+        partonic nature of $\widetilde{ij}$ depends on
+        the specific splitting process (c.f. Section~\ref{sec:me_collinear}).
+        The momenta of these particles are modified in the following way
+        \begin{equation}\label{eqn:FF_mapping}
+            \tilde{p}_{ij}^{\mu} = p_{i}^{\mu} + p_{j}^{\mu} - \dfrac{y_{ij,k}}{1-y_{ij,k}} p_{k}^{\mu} \, , \quad \tilde{p}_{k}^{\mu} = \dfrac{1}{1-y_{ij,k}}p_{k}^{\mu} \, ,
+        \end{equation}
+        where $y_{ij,k}$, the recoil parameter, is a dimensionless variable given as
+        \begin{equation}\label{eqn:y_ijk}
+            y_{ij,k} = \dfrac{p_{i}p_{j}}{p_{i}p_{j} + p_{i}p_{k} + p_{j}p_{k}} \, .
+        \end{equation}
+        Equations (\ref{eqn:FF_mapping}) and (\ref{eqn:y_ijk})
+        are a $2\rightarrow 3$ momenta mapping that maps
+        $p_{i} + p_{j} + p_{k} \rightarrow \tilde{p}_{ij} + \tilde{p}_{k}$.
+        The mapping ensures momentum conservation is maintained across all of phase-space and
+        all particles are kept on-shell:
+        \begin{align}\label{eqn:mapping_conditions}
+            \begin{split}
+                &p_{i}^{\mu} + p_{j}^{\mu} + p_{k}^{\mu} = \tilde{p}_{ij}^{\mu} + \tilde{p}_{k}^{\mu} \, , \\
+                &\tilde{p}_{ij}^{2} = \tilde{p}_{k}^{2} = 0 \, .
+            \end{split}
+        \end{align}
+
+        The matrices $\boldsymbol{V}_{ij,k}$ are functions of
+        $y_{ij,k}$ and the splitting variables $\tilde{z}$
+        \begin{equation}\label{eqn:zi}
+            \tilde{z}_{i} = \dfrac{p_{i}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} = 1 - \tilde{z}_{i} \, ,
+        \end{equation}
+        which are analogous to the $z$ from Altarelli-Parisi splitting functions.
+        $\boldsymbol{V}_{ij,k}$ acts on the spin indices of the emitter and emitted
+        parton, but is independent of the type of the spectator. Making the dependence
+        on partons $i$ and $j$ explicit we list all the kernels here
+        \begin{align}\label{eqn:FF_V_ijk}
+            &\langle s | \boldsymbol{V}_{q_{i}g_{j},k} | s' \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-\tilde{z}_{i}(1-y_{ij,k})} - (1+\tilde{z}_{i}) - \epsilon(1-\tilde{z}_{i})\right] \delta_{ss'} \, , \nonumber \\
+            &\langle \mu | \boldsymbol{V}_{q_{i},\bar{q}_{j},k} | \nu \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} T_{R} \left[-g^{\mu\nu} - \dfrac{2}{p_{i}p_{j}}(\tilde{z}_{i}p_{i}^{\mu}-\tilde{z}_{j}p_{j}^{\mu})(\tilde{z}_{i}p_{i}^{\nu}-\tilde{z}_{j}p_{j}^{\nu})\right] \, , \nonumber \\
+            \begin{split}
+                &\langle \mu | \boldsymbol{V}_{g_{i}g_{j},k} | \nu \rangle = 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[-g^{\mu\nu}\left(\dfrac{1}{1-\tilde{z}_{i}(1-y_{ij,k})} + \dfrac{1}{1-\tilde{z}_{j}(1-y_{ij,k})} - 2\right) \right. \\
+                &\hspace{5cm} \left. + \dfrac{(1-\epsilon)}{p_{i}p_{j}}(\tilde{z}_{i}p_{i}^{\mu}-\tilde{z}_{j}p_{j}^{\mu})(\tilde{z}_{i}p_{i}^{\nu}-\tilde{z}_{j}p_{j}^{\nu})\right] \, .
+            \end{split}
+        \end{align}
+
+        A key feature of these kernels and are that they smoothly interpolate
+        between the soft and collinear limits, meaning they do not double count
+        any limit. Additionally, they only contain divergences in the
+        $p_{i}p_{j} \rightarrow 0$ limit and not for any other pair of
+        momenta. In the soft and collinear limits, the dipole function
+        $\mathcal{D}_{ij,k}$ correctly reproduces the matrix element factorisation
+        behaviour seen in (\ref{eqn:soft_factorisation}) and (\ref{eqn:F_collinear_factorisation}),
+        repsectively. In particular, $\boldsymbol{V}_{ij,k}$ becomes
+        proportional to the eikonal factor and Altarelli-Parisi splitting
+        functions in these respective limits.
+
+        In this thesis we will be focussing on the emulation of
+        colour and spin-averaged matrix elements. Therefore the spin-indices
+        are not explicitly available. It is possible to average over the spin indices in (\ref{eqn:FF_V_ijk})
+        to obtain the spin-averaged splitting functions
+        \begin{align}\label{eqn:FF_avg_V_ijk}
+            &\langle \boldsymbol{V}_{q_{i}g_{j},k} \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-\tilde{z}_{i}(1-y_{ij,k})} - (1+\tilde{z}_{i}) - \epsilon(1-\tilde{z}_{i})\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{q_{i}\bar{q}_{j},k} \rangle = \, 8\pi \mu^{2\epsilon} \alpha_{s} T_{R} \left[1-\dfrac{2\tilde{z}_{i}\tilde{z}_{j}}{1-\epsilon}\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{g_{i}g_{j},k} \rangle = 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{1}{1-\tilde{z}_{i}(1-y_{ij,k})}+\dfrac{1}{1-\tilde{z}_{j}(1-y_{ij,k})}-2+\tilde{z}_{i}\tilde{z}_{j}\right] \, .
+        \end{align}
+        These spin-averaged functions will form the set of basis functions
+        that map out all the IR singular limits in matrix elements
+        in Chapter~\ref{chapter:fame1}.
+
+        \subsubsection{Final-initial dipoles}
+        For the case of final-state emitter and initial-state
+        spectator we have the dipole factorisation formula
+        \begin{equation}\label{eqn:FI_factorisation}
+            \begin{split}
+                {}_{n+1}\langle 1, \ldots, n+1; a, \ldots || 1, \ldots, n+1; a, \ldots \rangle_{n+1} = \sum_{k\neq i,j} &\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},\ldots) \\
+                + &\mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},\ldots) + \ldots \, ,
+            \end{split}
+        \end{equation}
+        where the new dipole contribution appears on the second line. $a$ represents an initial-state parton.
+        The dipole term $\mathcal{D}_{ij}^{a}$ is given by
+        \begin{equation}\label{eqn:D_aij}
+            \begin{split}
+                \mathcal{D}_{ij}^{a}(p_{1}, \ldots, p_{n+1}; p_{a}, \ldots) &= -\dfrac{1}{2p_{i}p_{j}} \dfrac{1}{x_{ij,a}} \\
+                {}_{n} \langle 1, \ldots, \widetilde{ij}, &\ldots, n+1; \tilde{a}, \ldots | \dfrac{\boldsymbol{T}_{a} \cdot \boldsymbol{T}_{ij}}{\boldsymbol{T}_{ij}^{2}} \boldsymbol{V}_{ij}^{a} | 1, \ldots, \widetilde{ij}, \ldots, n+1; \tilde{a} , \ldots \rangle_{n} \, .
+            \end{split}
+        \end{equation}
+        where $\widetilde{ij}$ is the composite emitter in the
+        final-state, and the spectator $\tilde{a}$ is in the initial-state.
+        The momentum mapping for $p_{i} + p_{j} + p_{a} \rightarrow \tilde{p}_{ij} + \tilde{p}_{a}$ is given as
+        \begin{equation}\label{eqn:FI_mapping}
+            \tilde{p}_{ij}^{\mu} = p_{i}^{\mu} + p_{j}^{\mu} - (1-x_{ij,a})p_{a}^{\mu} \, , \quad \tilde{p}_{a}^{\mu} = x_{ij,a} \, p_{a}^{\mu} \, , \\
+        \end{equation}
+        such that the following momentum conservation and on-shell conditions are met
+        \begin{equation}\label{eqn:FI_mapping_conditions}
+            \begin{split}
+                &p_{i}^{\mu} + p_{j}^{\mu} - p_{a}^{\mu} = \tilde{p}_{ij}^{\mu} - \tilde{p}_{a}^{\mu} \, , \\
+                &\tilde{p}_{ij}^{2} = \tilde{p}_{a}^{2} = 0 \, .
+            \end{split}
+        \end{equation}
+        The recoil parameter $x_{ij,a}$ and splitting variables $\tilde{z}$ are given by
+        \begin{align}\label{eqn:x_ija}
+            &x_{ij,a} = \dfrac{p_{i}p_{a} + p_{j}p_{a} - p_{i}p_{j}}{(p_{i}p_{a} + p_{j}p_{a}} \, , \\
+            &\tilde{z}_{i} = \dfrac{p_{i}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} = 1 - \tilde{z}_{1} \, .
+        \end{align}
+        The spin-averaged splitting functions are given as
+        \begin{align}\label{eqn:FI_V_aij}
+            &\langle \boldsymbol{V}_{q_{i}g_{j},a} \rangle = 8\pi \mu^{2\epsilon}\alpha_{s} C_{F} \left[\dfrac{2}{1 - \tilde{z}_{i} + (1-x_{ij,a})} - (1+\tilde{z}_{i}) - \epsilon(1-\tilde{z}_{i})\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{q_{i}\bar{q}_{j},a} \rangle = 8\pi \mu^{2\epsilon}\alpha_{s} T_{R} \, \left[1-\dfrac{2\tilde{z}_{i}\tilde{z}_{j}}{1-\epsilon}\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{g_{i}g_{j},a} \rangle = 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{1}{\tilde{z}_{j} + (1-x_{ij,a})} + \dfrac{1}{\tilde{z}_{i} + (1-x_{ij,a})} - 2 + \tilde{z}_{i}\tilde{z}_{j}\right] \, .
+        \end{align}
+
+        \subsubsection{Initial-final dipoles}
+        For the case of initial-state emitter and final-state spectator,
+        the dipole factorisation formula is given as
+        \begin{equation}\label{eqn:IF_factorisation}
+            {}_{n+1} \langle 1, \ldots, n+1; a || 1, \ldots, n+1; a \rangle_{n+1} = \sum_{k \neq i}\mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a}) + \ldots \, ,
+        \end{equation}
+        where there is only one initial-state parton. The dipole is given by
+        \begin{equation}\label{eqn:D_aik}
+            \begin{split}
+            \mathcal{D}_{k}^{ai}(p_{1}, \ldots, p_{n+1};p_{a}) &= -\dfrac{1}{2p_{a}p_{i}}\dfrac{1}{x_{ik,a}} \\
+            {}_{n}\langle 1, \ldots, \tilde{k}, &\ldots, n+1 ; \widetilde{ai} | \dfrac{\boldsymbol{T}_{k} \cdot \boldsymbol{T}_{ai}}{\boldsymbol{T}_{ai}^{2}} \boldsymbol{V}_{k}^{ai} | 1, \ldots, \tilde{k}, \ldots, n+1; \widetilde{ai} \rangle_{n} \, .
+            \end{split}
+        \end{equation}
+        where the emitter is the initial-state parton $\widetilde{ai}$
+        and the spectator is the final-state parton $\tilde{k}$.
+        The momenta mapping for $p_{a} + p_{i} + p_{k} \rightarrow \tilde{p}_{ai} + \tilde{p}_{k}$ is
+        \begin{equation}\label{eqn:IF_mapping}
+            \tilde{p}_{ai}^{\mu} = x_{ik,a} \, p_{a}^{\mu} \, , \quad \tilde{p}_{k}^{\mu} = p_{k}^{\mu} + p_{i}^{\mu} - (1-x_{ik,a})p_{a}^{\mu} 
+        \end{equation}
+        such that
+        \begin{equation}\label{eqn:IF_mapping_conditions}
+            \begin{split}
+            &p_{i}^{\mu} + p_{k}^{\mu} - p_{a}^{\mu} = \tilde{p}_{k}^{\mu} - \tilde{p}_{ai}^{\mu} \, , \\
+            &\tilde{p}_{ai}^{2} = \tilde{p}_{k}^{2} = 0 \, .
+            \end{split}
+        \end{equation}
+        Note that the momentum $\tilde{p}_{ai}$ is parallel
+        to $p_{a}$, therefore the modified spectator momentum $\tilde{p}_{k}$
+        has to recoil the transverse momentum. This leads to $x_{ik,a}$
+        acting as a splitting variable.
+
+        With $x_{ik,a}$ taking the role of $\tilde{z}$, there is another
+        parameter, $u_{i}$, appearing in the splitting functions.
+        These are given as
+        \begin{equation}\label{eqn:x_ika}
+            x_{ik,a} = \dfrac{p_{k}p_{a}+p_{i}p_{a}-p_{i}p_{k}}{p_{i}p_{a} + p_{k}p_{a}} \, , \quad u_{i} = \dfrac{p_{i}p_{a}}{p_{i}p_{a} + p_{k}p_{a}} \, .
+        \end{equation}
+
+        The spin-averaged splitting functions are
+        \begin{align}\label{eqn:V_aik}
+            &\langle \boldsymbol{V}_{k}^{q_{a}g_{i}} \rangle = \dfrac{n_{s}(\tilde{q})}{n_{s}(q)} \; 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-x_{ik,a} + u_{i}} + (1+x_{ik,a}) - \epsilon(1-x_{ik,a})\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{k}^{g_{a}\bar{q}_{i}} \rangle = \dfrac{n_{s}(g)}{n_{s}(\tilde{q})} \; 8\pi \mu^{2\epsilon} \alpha_{s} T_{R} \left[1 - \dfrac{2x_{ik,a}(1-x_{ik,a})}{1-\epsilon}\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{k}^{g_{a}g_{i}} \rangle = \dfrac{n_{s}(g)}{n_{s}(\tilde{g})} \; 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{1}{1-x_{ik,a} + u_{i}} + \dfrac{1-x_{ik,a}}{x_{ik,a}} - 1 + x_{ik,a}(1-x_{ik,a}) \right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{k}^{q_{a}q_{i}} \rangle = \dfrac{n_{s}(q)}{n_{s}(\tilde{g})} \; 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[(1-\epsilon)x_{ik,a} + 2\dfrac{1-x_{ik,a}}{x_{ik,a}} \right] \, ,
+        \end{align}
+        where $n_{s}(a)$ is the number of polarisations of particle a.
+        For fermions $n_{s}(q) = n_{s}(\bar{q}) = 2$
+        and for gluons $n_{s}(g) = d-2$. In the limit $\epsilon \rightarrow 0$
+        all ratios of $n_{s}$ cancel to give unity.
+
+        \subsubsection{Initial-initial dipoles}
+        In the case of two initial-state partons, $a$ and $b$, there
+        is an additional dipole contribution. The dipole factorisation
+        in this case is  given by
+        \begin{equation}\label{eqn:II_factorisation}
+            \begin{split}
+                {}_{n+1} \langle 1, \ldots, n+1; a,b| | 1, \ldots, n+1;a,b \rangle_{n+1} = \sum_{k \neq i} &\mathcal{D}_{k}^{ai}(p_{1}, \ldots, p_{n+1};p_{a},p_{b}) \\
+                + &\mathcal{D}^{ai,b}(p_{1}, \ldots, p_{n+1};p_{a},p_{b}) + \ldots \, ,
+            \end{split}
+        \end{equation}
+        where the new contribution is the dipole $\mathcal{D}^{ai,b}$ given by
+        \begin{equation}\label{eqn:D_aib}
+            \begin{split}
+                \mathcal{D}^{ai,b}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) &= -\dfrac{1}{2p_{a}p_{i}} \dfrac{1}{x_{i,ab}} \\
+                &{}_{n}\langle \tilde{1}, \ldots, \widetilde{n+1}; \widetilde{ai}, b | \dfrac{\boldsymbol{T}_{b}\cdot\boldsymbol{T}_{ai}}{\boldsymbol{T}^{2}_{ai}}\boldsymbol{V}^{ai,b} | \tilde{1}, \ldots, \widetilde{n+1}; \widetilde{ai}, b \rangle_{n} \, .
+            \end{split}
+        \end{equation}
+        The initial-state parton $\widetilde{ai}$ is the emitter and the
+        other initial-state parton $b$ is the spectator. Notice that even the
+        momenta not involved in the dipole term have been modified with only
+        parton $b$ remaining unchanged. The momentum mapping for this case
+        has $\tilde{p}_{ai}$ parallel with $p_{a}$ and also
+        modifies the momenta for all other final-state momenta (even non-QCD particles) $k_{j}$:
+        \begin{align}\label{eqn:II_mapping}
+            \tilde{p}_{ai}^{\mu} &= x_{i,ab} \, p_{a}^{\mu} \, , \nonumber \\
+            \tilde{k}_{j}^{\mu} &= k_{j}^{\mu} - \dfrac{2k_{j}(K+\widetilde{K})}{(K+\widetilde{K})^{2}}(K+\widetilde{K})^{\mu} + \dfrac{2k_{j}K}{K^{2}}\widetilde{K}^{\mu} \, , \\
+            x_{i,ab} &= \dfrac{p_{a}p_{b} - p_{i}p_{a}-p_{i}p_{b}}{p_{a}p_{b}} \, . \nonumber
+        \end{align}
+        where $K$ and $\widetilde{K}$ are the total momenta
+        of the dipole before and after the mapping. They are given by
+        \begin{align}\label{eqn:II_mapping2}
+            \begin{split}
+            K^{\mu} &= p_{a}^{\mu} + p_{b}^{\mu} - p_{i}^{\mu} \, ,\\
+            \widetilde{K}^{\mu} &= \tilde{p}_{ai}^{\mu} + p_{b}^{\mu} \, . \\
+            \end{split}
+        \end{align}
+        This mapping conserves momentum and keeps mapped momenta on-shell
+        \begin{align}\label{eqn:II_mapping_conditions}
+            \begin{split}
+            &p_{a}^{\mu} + p_{b}^{\mu} - p_{i}^{\mu} - \sum_{j} k_{j}^{\mu} = \tilde{p}_{ai}^{\mu} + p_{b}^{\mu} - \sum_{j} \tilde{k}_{j}^{\mu} = 0\, , \\
+            &\tilde{p}_{ai}^{2} = \tilde{k}_{j}^{2} = 0 \, .
+            \end{split}
+        \end{align}
+        The spin-averaged splitting functions are proportional
+        to the Altarelli-Parisi splitting functions which we
+        quote here for completeness
+        \begin{align}\label{V_aib}
+            \begin{split}
+            &\langle \boldsymbol{V}^{q_{a}q_{i},b} \rangle = \dfrac{n_{s}(q)}{n_{s}(\tilde{g})} \; 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{1 + (1-x_{i,ab})^{2}}{x_{i,ab}}\right] \, , \\
+            &\langle \boldsymbol{V}^{q_{a}g_{i},b} \rangle = \dfrac{n_{s}(q)}{n_{s}(\tilde{q})} \; 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{1 + x_{i,ab}^{2}}{1 - x_{i,ab}}\right] \, , \\
+            &\langle \boldsymbol{V}^{g_{a}\bar{q}_{i},b} \rangle = \dfrac{n_{s}(g)}{n_{s}(\tilde{q})} \; 8\pi \mu^{2\epsilon} \alpha_{s} T_{R} \left[x_{i,ab}^{2} + (1-x_{i,ab})^{2}\right] \, , \\
+            &\langle \boldsymbol{V}^{g_{a}g_{i},b} \rangle = \dfrac{n_{s}(g)}{n_{s}(\tilde{g})} \; 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{x_{i,ab}}{1-x_{i,ab}} + \dfrac{1-x_{i,ab}}{x_{i,ab}} + x_{i,ab}(1-x_{i,ab})\right] \, .
+            \end{split}
+        \end{align}
+
+        \subsubsection{Final formula}
+        Now that we have described each of the dipole contributions,
+        we can collect them all into a master dipole factorisation
+        formula
+        \begin{equation}\label{eqn:dipole_factorisation_master}
+            \begin{split}
+            {}_{n+1} \langle 1, \ldots, n+1 | &| 1, \ldots, n+1 \rangle_{n+1} = \\
+            &\sum_{k \neq i, j} \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) \\
+            &\sum_{k \neq i} \mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \mathcal{D}^{ai,b}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \ldots \, ,
+            \end{split}
+        \end{equation}
+        where it is understood that for a given partonic process,
+        the matrix element in the soft and collinear limits will be
+        reproduced by summing over all the possible dipoles that are
+        relevant.
+\subsection{Antenna functions}\label{sec:antenna_functions}
 \end{document}
