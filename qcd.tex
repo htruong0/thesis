@@ -757,7 +757,7 @@
         dipole factorisation formula where matrix elements in the limit
         $p_{i}p_{j} \rightarrow 0$ can be written as
         \begin{equation}\label{eqn:FF_factorisation}
-            {}_{n+1} \langle 1, \ldots, n+1 | | 1, \ldots, n+1 \rangle_{n+1} = \sum_{k\neq i,j}\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) + \ldots \, ,
+            {}_{n+1} \langle 1, \ldots, n+1 | | 1, \ldots, n+1 \rangle_{n+1} = \sum_{i,j}\sum_{k\neq i,j}\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) + \ldots \, ,
         \end{equation}
         where terms not singular in the limit $p_{i}p_{j} \rightarrow 0$
         are omitted, and the dipole is
@@ -846,8 +846,9 @@
         spectator we have the dipole factorisation formula
         \begin{equation}\label{eqn:FI_factorisation}
             \begin{split}
-                {}_{n+1}\langle 1, \ldots, n+1; a, \ldots || 1, \ldots, n+1; a, \ldots \rangle_{n+1} = \sum_{k\neq i,j} &\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},\ldots) \\
-                + &\mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},\ldots) + \ldots \, ,
+                {}_{n+1}\langle 1, \ldots, n+1; a, \ldots |&| 1, \ldots, n+1; a, \ldots \rangle_{n+1} = \\
+                &\sum_{i,j}\sum_{k\neq i,j} \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},\ldots) \\
+                &\sum_{i,j}\sum_{a} \mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},\ldots) + \ldots \, ,
             \end{split}
         \end{equation}
         where the new dipole contribution appears on the second line. $a$ represents an initial-state parton.
@@ -887,7 +888,7 @@
         For the case of initial-state emitter and final-state spectator,
         the dipole factorisation formula is given as
         \begin{equation}\label{eqn:IF_factorisation}
-            {}_{n+1} \langle 1, \ldots, n+1; a || 1, \ldots, n+1; a \rangle_{n+1} = \sum_{k \neq i}\mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a}) + \ldots \, ,
+            {}_{n+1} \langle 1, \ldots, n+1; a || 1, \ldots, n+1; a \rangle_{n+1} = \sum_{a,i}\sum_{k \neq i}\mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a}) + \ldots \, ,
         \end{equation}
         where there is only one initial-state parton. The dipole is given by
         \begin{equation}\label{eqn:D_aik}
@@ -939,8 +940,9 @@
         in this case is  given by
         \begin{equation}\label{eqn:II_factorisation}
             \begin{split}
-                {}_{n+1} \langle 1, \ldots, n+1; a,b| | 1, \ldots, n+1;a,b \rangle_{n+1} = \sum_{k \neq i} &\mathcal{D}_{k}^{ai}(p_{1}, \ldots, p_{n+1};p_{a},p_{b}) \\
-                + &\mathcal{D}^{ai,b}(p_{1}, \ldots, p_{n+1};p_{a},p_{b}) + \ldots \, ,
+                {}_{n+1} \langle 1, \ldots, n+1; a,b|&| 1, \ldots, n+1;a,b \rangle_{n+1} = \\
+                &\sum_{a,i}\sum_{k \neq i} \mathcal{D}_{k}^{ai}(p_{1}, \ldots, p_{n+1};p_{a},p_{b}) \\
+                &\sum_{a,i}\sum_{b \neq a} \mathcal{D}^{ai,b}(p_{1}, \ldots, p_{n+1};p_{a},p_{b}) + \ldots \, ,
             \end{split}
         \end{equation}
         where the new contribution is the dipole $\mathcal{D}^{ai,b}$ given by
@@ -994,14 +996,42 @@
         formula
         \begin{equation}\label{eqn:dipole_factorisation_master}
             \begin{split}
-            {}_{n+1} \langle 1, \ldots, n+1 | &| 1, \ldots, n+1 \rangle_{n+1} = \\
-            &\sum_{k \neq i, j} \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) \\
-            &\sum_{k \neq i} \mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \mathcal{D}^{ai,b}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \ldots \, ,
+            {}_{n+1} \langle 1, &\ldots, n+1 || 1, \ldots, n+1 \rangle_{n+1} = \\
+            &\sum_{i,j}\sum_{k \neq i, j} \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \sum_{i,j}\sum_{a} \mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) \\
+            &\sum_{a,i}\sum_{k \neq i} \mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \sum_{a,i}\sum_{b \neq a} \mathcal{D}^{ai,b}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \ldots \, ,
             \end{split}
         \end{equation}
         where it is understood that for a given partonic process,
-        the matrix element in the soft and collinear limits will be
+        the matrix element in the different soft and collinear limits will be
         reproduced by summing over all the possible dipoles that are
-        relevant.
+        relevant. The omitted  terms are non-divergent.
+
+        \subsubsection{Treatment of massive partons}
+        The dipoles described in this section so far have
+        treated all partons to be massless. Since quarks are massive
+        particles it is not possible in general to treat them
+        as massless. This is especially true for the top
+        quark which has a mass of approximately 175 GeV, the
+        most massive SM particle. In the case of partonic
+        processes involving top quarks, it is therefore
+        necessary to include mass effects into the dipole
+        functions.
+
+        The universality of infrared divergent structure
+        extends to massive quarks \cite{Catani:2000ef}.
+        Massive partons are treated in detail in Reference\cite{Catani:2002hc}
+        where the authors derive dipole
+        functions for massive partons. The expressions derived therein
+        are utilised in Chapter~\ref{chapter:fame3}, but will
+        not be written here as the philosophy of constructing
+        the dipole functions is similar to those already described.
+
+        The extension to massive quarks necessitates the straightforward
+        modification of the master dipole factorisation formula
+        (\ref{eqn:dipole_factorisation_master}) to replace
+        any massless dipole with its massive counterpart whenever
+        there is a massive parton in the dipole.
+
 \subsection{Antenna functions}\label{sec:antenna_functions}
+
 \end{document}
