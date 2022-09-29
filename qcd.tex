@@ -496,7 +496,7 @@
     limits care has to be taken to conserve momenta
     via the use of momenta mappings.
 
-\subsection{Factorisation of colour-ordered amplitudes}
+\subsection{Factorisation of colour-ordered amplitudes}\label{sec:CO_factorisation}
     The factorisation expressed in (\ref{eqn:soft_factorisation}),
     (\ref{eqn:F_collinear_factorisation}), and (\ref{eqn:I_collinear_factorisation})
     were not exact because of colour and spin correlations.
@@ -515,7 +515,7 @@
     \begin{equation}\label{eqn:epem_amplitude}
         \mathcal{M}(q_{1}, \bar{q}_{2}; 1, \ldots, n) = \hat{\mathcal{S}}_{\mu}^{n+2}(q_{1}; 1,\ldots,n; \bar{q}_{2})V^{\mu} \, ,
     \end{equation}
-    where the leptonic current is $V^{\mu}$ and the hadronic
+    where $V^{\mu}$ is the leptonic current and the hadronic
     current is
     \begin{equation}\label{eqn:hadronic_current}
         \hat{\mathcal{S}}_{\mu}^{n+2}(q_{1};1,\ldots,n;\bar{q}_{2}) = \mathrm{i}eg_{s}^{n} \sum_{P(1,\ldots,n)}(T^{a_{1}} \ldots T^{a_{n}})_{c_{1}c_{2}}S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2}) \, .
@@ -523,13 +523,13 @@
     In this expression we have the electromagnetic gauge coupling
     $e$ and the strong gauge coupling $g_{s}$ appearing. The colour
     structure has been factored into a product of fundamental group
-    generators where the indices $a_{i} \in {1,\ldots, N_{c}^{2}-1}$
-    and $c_{i} \in {1,\ldots,N_{c}}$. This leaves the colour-ordered
+    generators where the indices $a_{i} \in \{1,\ldots, N_{c}^{2}-1\}$
+    and $c_{i} \in \{1,\ldots,N_{c}\}$. This leaves the colour-ordered
     partial amplitude $S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})$ depending
-    only on kinematical variables, and where the gluons are emitted in an
-    ordered fashion from the quarks. The sum over $P(1,\ldots,n)$
-    represents a sum over all permutations of gluon emissions
-    which accounts for all Feynman diagrams and colour structures.
+    only on kinematical variables. In this parton amplitude, the gluons
+    are emitted in an ordered fashion from the quarks.
+    The sum over $P(1,\ldots,n)$ represents a sum over all permutations
+    of gluon emissions which accounts for all Feynman diagrams and colour structures.
 
     Upon squaring the amplitude (\ref{eqn:epem_amplitude}), we get
     \begin{equation}\label{eqn:epem_me2}
@@ -562,7 +562,7 @@
     In this expression it is understood that the indices $i$, $j$, and $k$
     have to be self-consistent for the different partonic splittings.
     For partons which are not colour connected (are not neighbouring
-    partons in the colour ordered amplitude), there will be no singular
+    partons in the colour-ordered amplitude), there will be no singular
     behaviour as $s_{ij} \rightarrow 0$.
 
     In (\ref{eqn:CO_soft_factorisation}) and (\ref{eqn:CO_collinear_factorisation})
@@ -578,17 +578,17 @@
     The discussion of matrix element factorisation so
     far has been focused on tree-level matrix elements.
     It has been shown that one-loop colour-ordered amplitudes
-    also factorise in the soft and collinear limits. At the one-loop level,
-    there are new universal singular functions and the
-    factorisation formula are modified.
+    also factorise in the soft and collinear limits \cite{Bern:1994zx,Bern:1998sc,Kosower:1999xi}.
+    At the one-loop level, there are new universal singular
+    functions and the factorisation formulae are modified.
 
     In the soft limit, a one-loop colour-ordered amplitude
-    factorises as (cite here)
+    factorises as
     \begin{equation}\label{eqn:1L_soft_factorisation}
         M_{n+1}^{(1)}(\ldots, i, j, k, \ldots) \rightarrow S_{ijk}^{(0)} \, M_{n}^{1}(\ldots, i, k, \ldots) + S_{ijk}^{(1)}(\epsilon) \, M_{n}^{0}(\ldots, i, k, \ldots) \, ,
     \end{equation}
     where $S_{ijk}^{(0)}$ is the eikonal factor (\ref{eqn:eikonal_factor}),
-    and $S_{ijk}^{(1)}(\epsilon)$ is the one-loop soft radiation function (cite here).
+    and $S_{ijk}^{(1)}(\epsilon)$ is the one-loop soft radiation function \cite{Bern:1999ry}.
 
     A similar factorisation formula for the collinear limit is
     \begin{equation}\label{eqn:1L_collinear_factorisation}
@@ -596,13 +596,12 @@
     \end{equation}
     where $P_{ij}^{(0)}(z)$ are the tree-level splitting functions
     (\ref{eqn:AP_kernels}) and $P_{ij}^{(1)}(z, \epsilon)$
-    are the one-loop splitting functions (cite here).
+    are the one-loop splitting functions \cite{Bern:1999ry}.
 
     In both these formulae the structure is of the form:
     tree-level splitting function multipled by a one-loop
     amplitude, plus a one-loop splitting function multiplied
-    by a tree-level amplitude as diagrammatically shown
-    in Fig ...
+    by a tree-level amplitude as illustrated in in Fig ...
 
     In Section~\ref{sec:antenna_functions} we will give
     a brief overview of antenna functions where these one-loop
@@ -701,8 +700,8 @@
     Beyond NLO QCD, the algorithms available have
     not reached the maturity of the automated methods widely use
     at NLO. However, this is an active area of
-    research. See (cite black book) for a review of methods
-    that have been applied successfuly in NNLO QCD and beyond.
+    research. See Reference \cite{TorresBobadilla:2020ekr} for a review of methods
+    that have been applied to NNLO QCD.
 
     In the next sections we will describe in detail two sets of functions
     that are used to build subtraction terms: Catani-Seymour dipoles,
@@ -713,7 +712,7 @@
     during our construction of matrix element emulators in Chapters
     \ref{chapter:fame1}, \ref{chapter:fame2}, and \ref{chapter:fame3}.
 
-\subsection{Catani-Seymour dipoles}\label{sec:CS_dipoles}
+\section{Catani-Seymour dipoles}\label{sec:CS_dipoles}
     Catani-Seymour dipoles introduced in Ref.~\cite{Catani:1996vz}
     are process independent functions that reproduce the IR
     singular behaviour of matrix elements. They depend on the
@@ -752,7 +751,7 @@
         \label{fig:CS_dipoles}
     \end{figure}
 
-    \subsubsection{Final-final dipoles}
+    \subsection{Final-final dipoles}
         The utilisation of dipoles is encapsulated in the
         dipole factorisation formula where matrix elements in the limit
         $p_{i}p_{j} \rightarrow 0$ can be written as
@@ -841,7 +840,7 @@
         that map out all the IR singular limits in matrix elements
         in Chapter~\ref{chapter:fame1}.
 
-        \subsubsection{Final-initial dipoles}
+    \subsection{Final-initial dipoles}
         For the case of final-state emitter and initial-state
         spectator we have the dipole factorisation formula
         \begin{equation}\label{eqn:FI_factorisation}
@@ -884,7 +883,7 @@
             &\langle \boldsymbol{V}_{g_{i}g_{j},a} \rangle = 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{1}{\tilde{z}_{j} + (1-x_{ij,a})} + \dfrac{1}{\tilde{z}_{i} + (1-x_{ij,a})} - 2 + \tilde{z}_{i}\tilde{z}_{j}\right] \, .
         \end{align}
 
-        \subsubsection{Initial-final dipoles}
+    \subsection{Initial-final dipoles}
         For the case of initial-state emitter and final-state spectator,
         the dipole factorisation formula is given as
         \begin{equation}\label{eqn:IF_factorisation}
@@ -934,7 +933,7 @@
         and for gluons $n_{s}(g) = d-2$. In the limit $\epsilon \rightarrow 0$
         all ratios of $n_{s}$ cancel to give unity.
 
-        \subsubsection{Initial-initial dipoles}
+    \subsection{Initial-initial dipoles}
         In the case of two initial-state partons, $a$ and $b$, there
         is an additional dipole contribution. The dipole factorisation
         in this case is  given by
@@ -990,7 +989,7 @@
             \end{split}
         \end{align}
 
-        \subsubsection{Final formula}
+    \subsection{Master factorisation formula}
         Now that we have described each of the dipole contributions,
         we can collect them all into a master dipole factorisation
         formula
@@ -1006,7 +1005,7 @@
         reproduced by summing over all the possible dipoles that are
         relevant. The omitted  terms are non-divergent.
 
-        \subsubsection{Treatment of massive partons}
+    \subsection{Treatment of massive partons}
         The dipoles described in this section so far have
         treated all partons to be massless. Since quarks are massive
         particles it is not possible in general to treat them
@@ -1032,6 +1031,150 @@
         any massless dipole with its massive counterpart whenever
         there is a massive parton in the dipole.
 
-\subsection{Antenna functions}\label{sec:antenna_functions}
+\section{Antenna functions}\label{sec:antenna_functions}
+    Another set of functions that can be used to construct
+    subtractions terms in NLO \cite{Kosower:1997zr,Campbell:1998nn}
+    and NNLO QCD \cite{Gehrmann-DeRidder:2004ttg,Gehrmann-DeRidder:2005btv}
+    are the antenna functions. They are derived from physical
+    matrix elements and so by construction contain the correct
+    IR behaviour in the soft and collinear limits. More specifically,
+    they are derived from colour-ordered matrix elements so they
+    follow the colour-ordered factorisation properties outlined
+    in Section~\ref{sec:CO_factorisation}. In the factorisation
+    formulae, the colour-ordered matrix elements factorised
+    exactly into a colour-ordered matrix element with one parton
+    removed multiplied by a singular factor. Since this factorisation
+    is exact, and the IR behaviour is universal, it is possible
+    to extract these singular factors once and for all.
+
+    In contrast to the dipole functions, where there is an identified
+    emitter, antenna functions can have the unresolved parton
+    radiate from either of the two hard partons. In this sense,
+    an antenna is a linear combination of two dipoles.
+
+    The discussion in this section will be limited to the
+    situation of a massive colour-neutral boson decaying
+    to massless QCD partons, suitable for multijet production
+    in electron-positron annihilation. Additionally, we
+    assume that there will only ever be at most one unresolved
+    parton in the final-state. The antenna formalism has been
+    extended to more general cases than this \cite{Daleo:2006xa,Daleo:2009yj,Boughezal:2010mc,Gehrmann:2011wi,Gehrmann-DeRidder:2012too}.
+
+    Antenna functions are constructed from a ratio of
+    colour-ordered matrix elements.
+    For the case of one unresolved parton, the three-parton
+    tree-level antenna function is given by
+    \begin{equation}\label{eqn:X30}
+        X_{3}^{0}(i, j, k) = S_{ijk,IK} \dfrac{|M_{n+1}^{(0)}(i,j,k)|^{2}}{|M_{n}^{(0)}(I,K)|^{2}}
+    \end{equation}
+    where $|M_{n}^{(\ell)}|^{2}$ is the $n$-body colour-ordered matrix
+    element at loop-level $\ell$. $S_{ijk,IK}$ is a symmetry factor
+    accounting for identical particles in the final-state
+    and for the presence of multiple antennae in the two-
+    parton process. $I$ and $K$ are hard partons forming a colour
+    connected antenna that radiates particle $j$. The identities
+    of $i/I$ and $k/K$ defines the specific class of the
+    antenna function. There are three classes corresponding
+    to the three underlying two-parton processes: quark-antiquark,
+    quark-gluon and gluon-gluon. Therefore, there will
+    be an antenna for every radiative correction to these
+    two-parton processes. The physical matrix elements used
+    to the derive the antenna functions for each class are as follows:
+    \begin{itemize}
+        \item Quark-antiquark: $\gamma^{*} \rightarrow q\bar{q}$ + (partons),
+        the decay of a virtual photon into a quark-antiquark pair with QCD radiation from the quark pair \cite{Gehrmann-DeRidder:2004ttg}.
+        \item Quark-gluon: $\tilde{\chi} \rightarrow \tilde{g}g$ + (partons),
+        the decay of a heavy neutralino into a gluino and gluon with QCD radiation from the gluon-gluino pair \cite{Gehrmann-DeRidder:2005svg}.
+        \item Gluon-gluon: $H \rightarrow gg$ + (partons),
+        the decay of a Higgs boson into a pair of gluons with QCD from the gluon pair \cite{Gehrmann-DeRidder:2005alt}.
+    \end{itemize}
+    Along with the tree-level antenna, there are also the
+    one-loop antennae. For the three-parton case these are given by
+    \begin{equation}\label{eqn:X31}
+        X_{3}^{1}(i,j,k) = S_{ijk,IK} \dfrac{|M_{n+1}^{(1)}(i,j,k)|^{2}}{|M_{n}^{(0)}(I,K)|^{2}} - X_{3}^{0}(i,j,k) \dfrac{|M_{n}^{(1)}(I,K)|^{2}}{|M_{n}^{(0)}(I,K)|^{2}} \, ,
+    \end{equation}
+    where $X_{3}^{1}$ are defined such that they are proportional
+    to the one-loop singular functions. Since the one-loop
+    factorisation formulae (\ref{eqn:1L_soft_factorisation})
+    and (\ref{eqn:1L_collinear_factorisation}) are of the form
+    $|M^{(1)}_{n+1}|^{2}\rightarrow S^{(0)}|M^{(1)}_{n}|^{2} + S^{(1)}|M^{(0)}_{n}|^{2}$,
+    the term proportional to $X_{3}^{0}$ has to be removed
+    to fulfill this requirement.
+    The antenna functions are summarised in Table~\ref{table:antenna_functions}, where
+    antenna functions are categorised by their class and radiative
+    processes. A pictorial representation is also given in Figure ...
+
+    \begin{table}[ht]
+        \begin{tabular}{ cccc } 
+            \toprule
+            \multirow{2}[3]{*}{Class} & \multirow{2}[3]{*}{Radiation} & \multicolumn{2}{c}{Antenna functions} \\
+            \cmidrule(lr){3-4}
+             & & Tree-level & One-loop \\
+            \midrule
+            Quark-antiquark & $q \bar{q} \rightarrow q g \bar{q}$& $A_{3}^{0}$ & $A_{3}^{1}$, $\tilde{A}_{3}^{1}$, $\hat{A}_{3}^{1}$ \\
+            \midrule
+            \multirow{2}{*}{Quark-gluon} & $q g \rightarrow q g g$ & $D_{3}^{0}$ & $D_{3}^{1}$, $\hat{D}_{3}^{1}$ \\
+            \cmidrule(lr){2-4}
+             & $qg \rightarrow q Q \bar{Q}$ & $E_{3}^{0}$ & $E_{3}^{1}$, $\tilde{E}_{3}^{1}$, $\hat{E}_{3}^{1}$ \\
+            \midrule
+            \multirow{2}{*}{Gluon-gluon} & $g g \rightarrow g g g$ & $F_{3}^{0}$ & $F_{3}^{1}$, $\hat{F}_{3}^{1}$ \\
+            \cmidrule(lr){2-4}
+            & $g g \rightarrow g q \bar{q}$ & $G_{3}^{0}$ & $G_{3}^{1}$, $\tilde{G}_{3}^{1}$, $\hat{G}_{3}^{1}$ \\
+            \bottomrule
+        \end{tabular}
+        \caption{Three-parton antenna functions at tree-level, $X_{3}^{0}$,
+        and one-loop level, $X_{3}^{1}$. The different antenna functions at
+        one-loop level correspond to the leading colour ($X_{3}^{1}$),
+        sub-leading colour ($\tilde{X}_{3}^{1}$), and closed quark loop
+        ($\hat{X}_{3}^{1}$) contributions.}
+        \label{table:antenna_functions}
+    \end{table}
+
+    \begin{figure}
+        \includegraphics[width=\linewidth]{qcd/antenna.pdf}
+        \caption{Three-parton antenna functions with the grey
+        blob representing all diagrams that give rise to the given
+        external states. The hard radiators are depicted in red,
+        where as the unresolved parton is coloured in blue.}
+        \label{fig:antenna}
+    \end{figure}
+
+    Another requirement in constructing a subtraction term
+    is that the functions have to be analytically integrable
+    over the unresolved phase-space.
+    For one unresolved parton, this requirement is met with a
+    suitable $3 \rightarrow 2$ momentum mapping that allows
+    the $(n+1)$-body phase-space to factorise into a product of
+    the mapped $n$-body phase-space and the antenna phase-space.
+    The antenna phase-space is independent of the $n$-body phase-space
+    and depends only on the momenta of partons $i, j, k$ appearing
+    in the antenna.
+    In the case of antenna functions, the mapping of choice is
+    the Kosower mapping \cite{Kosower:2002su} which maps
+    $p_{i} + p_{j} + p_{k} \rightarrow p_{I} + p_{K}$. It reads
+    \begin{align}\label{eqn:kosower_mapping}
+        \begin{split}
+        p_{I} &= x p_{i} + r p_{j} + y p_{k} \, \\
+        p_{K} &= (1-x) p_{i} + (1-r) p_{j} + (1-y) p_{k} \, ,
+        \end{split}
+    \end{align}
+    where the mapping variables are given as
+    \begin{align}\label{eqn:kosower_variables}
+        \begin{split}
+        s_{ijk} &= s_{ij} + s_{ik} + s_{jk} \, , \\
+        r &= \dfrac{s_{jk}}{s_{ij}s_{jk}} \, , \\
+        \rho &= \sqrt{1 + 4r(1-r)\dfrac{s_{ij}s_{jk}}{s_{ijk}{s_{ik}}}} \, , \\
+        x &= \dfrac{(1+\rho)s_{ijk}-2r s_{jk}}{2(s_{ij}+s_{ik})} \, , \\
+        y &= \dfrac{(1-\rho)s_{ijk}-2r s_{ij}}{2(s_{jk}+s_{ik})} \, . \\
+        \end{split}
+    \end{align}
+    This momentum mapping maintains momentum conservation
+    and keeps the mapped partons on-shell
+    \begin{equation}\label{eqn:kosower_conditions}
+        \begin{split}
+        &p_{i} + p_{j} + p_{k} = p_{I} + p_{K} \, , \\
+        &p_{I}^{2} = p_{K}^{2} = 0 \, .
+        \end{split}
+    \end{equation}
 
 \end{document}
