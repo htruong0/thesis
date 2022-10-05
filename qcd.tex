@@ -1177,6 +1177,7 @@
         \end{split}
     \end{equation}
 
+
     Below we list the antenna functions relevant
     for multijet production in electron-positron
     annihiliation with a single quark flavour,
@@ -1206,6 +1207,25 @@
     but we do not require this level of accuracy for
     our applications.
 
+    The antenna functions have some functions in common,
+    namely the singularity operators (cite here)
+    \begin{align}\label{eqn:singularity_operators}
+        \begin{split}
+        \mathbf{I}_{q\bar{q}}^{(1)}(\epsilon, s_{q\bar{q}}) &= -\dfrac{e^{\epsilon\gamma}}{2\Gamma(1-\epsilon)} \bigg[\dfrac{1}{\epsilon^{2}} + \dfrac{3}{2\epsilon}\bigg] \mathrm{Re}(-s_{q\bar{q}})^{-\epsilon} \, , \\
+        \mathbf{I}_{qg}^{(1)}(\epsilon, s_{qg}) &= -\dfrac{e^{\epsilon\gamma}}{2\Gamma(1-\epsilon)} \bigg[\dfrac{1}{\epsilon^{2}} + \dfrac{5}{3\epsilon}\bigg] \mathrm{Re}(-s_{qg})^{-\epsilon} \, , \\
+        \mathbf{I}_{gg}^{(1)}(\epsilon, s_{gg}) &= -\dfrac{e^{\epsilon\gamma}}{2\Gamma(1-\epsilon)} \bigg[\dfrac{1}{\epsilon^{2}} + \dfrac{11}{6\epsilon}\bigg] \mathrm{Re}(-s_{gg})^{-\epsilon} \, , \\
+        \mathbf{I}^{(1)}_{g\bar{q}}(\epsilon, s_{g\bar{q}}) &= \mathbf{I}_{qg}^{(1)}(\epsilon,s_{g\bar{q}}) \, ,
+        \end{split}
+    \end{align}
+    and dilogarithms which are embedded in the function
+    \begin{equation}\label{eqn:R}
+        \begin{split}
+        R(y, z) = &\log{(y)}\log{(z)} - \log{(y)}\log{(1-y)} - \log{(z)}\log{(1-z)} \\
+        &+ \dfrac{\pi^{2}}{6} - \mathrm{Li}_{2}(y) - \mathrm{Li}_{2}(z) \, .
+        \end{split}
+    \end{equation}
+    It will also be useful to introduce the variables $y_{ij} = s_{ij}/s_{ijk}$.
+
     \subsection{Quark-antiquark antenna functions}
     The quark-antiquark antenna functions are derived by normalising
     the colour-ordered QCD radiative corrections to $\gamma^{*} \rightarrow q \bar{q}$
@@ -1233,6 +1253,36 @@
         &+\dfrac{\log{y_{23}}}{s_{123}}\left(2-\dfrac{1}{2}\dfrac{s_{13}s_{23}}{(s_{12}+s_{13})^{2}} + 2\dfrac{s_{23}-s_{13}}{s_{12}+s_{13}}\right) \, , 
     \end{align}
 
+    \subsection{Quark-gluon antenna functions}
+    \subsubsection{Three-parton tree-level antenna function}
+    \begin{equation}\label{eqn:D30}
+        \begin{split}
+        D_{3}^{0}(1_{q},3_{g},4_{g}) = \dfrac{1}{s_{134}^{2}}&\left(\dfrac{2s_{134}^{2}s_{14}}{s_{13}s_{34}} + \dfrac{2s_{134}^{2}s_{13}}{s_{14}s_{34}} + \dfrac{s_{14}s_{34}+s_{34}^{2}}{s_{13}}\right. \\
+        & \left. + \dfrac{s_{13}s_{34}+s_{34}^{2}}{s_{14}} + \dfrac{2s_{13}s_{14}}{s_{34}} + 5s_{134} + s_{34}\right) + \mathcal{O}(\epsilon) \, .
+        \end{split}
+    \end{equation}
+    \subsubsection{Three-parton one-loop antenna functions}
+    \begin{align}\label{eqn:D31}
+        \mathcal{P}oles\left(D_{3}^{1}(1_{q},3_{g},4_{g})\right) =& \; 2\left(\mathbf{I}_{qg}^{(1)}(\epsilon, s_{13}) + \mathbf{I}_{qg}^{(1)}(\epsilon, s_{14}) + \mathbf{I}_{gg}^{(1)}(\epsilon, s_{34}) \right. \nonumber \\
+        &\left. \quad -2\mathbf{I}_{qg}^{(1)}(\epsilon, s_{134}) \vphantom{\mathbf{I}_{gg}^{(1)}} \right) D_{3}^{0}(1_{q},3_{g},4_{g}) \, , \\
+        \mathcal{F}inite\left(D_{3}^{1}(1_{q},3_{g},4_{g})\right) =& \; -\left(R(y_{13},y_{34})+R(y_{14},y_{34})+R(y_{13},y_{14}) + \dfrac{5}{3}\log{y_{13}}\nonumber \right. \\
+        &\left. \vphantom{\dfrac{1}{1}} \quad + \dfrac{5}{3}\log{y_{14}} + \dfrac{11}{6}\log{y_{34}}\right) D_{3}^{0}(1_{q},3_{g},4_{g}) + \dfrac{1}{3s_{34}} \, .
+    \end{align}
 
+    \subsection{Gluon-gluon antenna functions}
+    \subsubsection{Three-parton tree-level antenna function}
+    \begin{align}\label{eqn:F30}
+        F_{3}^{0}(3_{g},4_{g},5_{g}) =& \; \dfrac{2}{s_{345}^{2}}\left(\dfrac{s_{345}^{2}s_{34}}{s_{35}s_{45}} + \dfrac{s_{345}^{2}s_{35}}{s_{34}s_{45}} + \dfrac{s_{345}^{2}s_{45}}{s_{34}s_{35}} \right. \nonumber \\
+        &\left. \vphantom{\dfrac{s_{345}^{2}s_{34}}{s_{35}s_{45}}} \quad \quad +\dfrac{s_{34}s_{35}}{s_{45}} + \dfrac{s_{34}s_{45}}{s_{35}} + \dfrac{s_{35}s_{45}}{s_{34}} + 4s_{345} + \mathcal{O}(\epsilon) \right) \, .
+    \end{align}
+    \subsubsection{Three-parton one-loop antenna functions}
+    \begin{align}\label{eqn:F31}
+        \mathcal{P}oles\left(F_{3}^{1}(3_{g},4_{g},5_{g})\right) =& \; 2\left(\mathbf{I}_{gg}^{(1)}(\epsilon,s_{34}) + \mathbf{I}_{gg}^{(1)}(\epsilon,s_{35}) + \mathbf{I}_{gg}^{(1)}(\epsilon,s_{45}) \right. \nonumber \\
+        &\left. \quad -2\mathbf{I}_{gg}^{(1)}(\epsilon,s_{345})
+        \right) F_{3}^{0}(3_{g},4_{g},5_{g}) \, , \\
+        \mathcal{F}inite\left(F_{3}^{1}(3_{g},4_{g},5_{g})\right) =& -\left(R(y_{34},y_{35}) + R(y_{35},y_{45}) + R(y_{34},y_{45}) \vphantom{\dfrac{1}{1}} \right. \nonumber \\
+        &\left. \quad + \, \dfrac{11}{6}\log{y_{34}} + \dfrac{11}{6}\log{y_{35}} + \dfrac{11}{6}\log{y_{45}} \right) F_{3}^{0}(3_{g},4_{g},5_{g}) \nonumber \\
+        & \quad + \dfrac{1}{3s_{34}} + \dfrac{1}{3s_{35}} + \dfrac{1}{3s_{45}} + \dfrac{1}{3s_{345}} \, .
+    \end{align}
 
 \end{document}
