@@ -1102,7 +1102,7 @@
     to fulfill this requirement.
     The antenna functions are summarised in Table~\ref{table:antenna_functions}, where
     antenna functions are categorised by their class and radiative
-    processes. A pictorial representation is also given in Figure ...
+    processes. A pictorial representation is also given in Figure~\ref{fig:antenna}.
 
     \begin{table}[ht]
         \begin{tabular}{ cccc } 
@@ -1176,5 +1176,63 @@
         &p_{I}^{2} = p_{K}^{2} = 0 \, .
         \end{split}
     \end{equation}
+
+    Below we list the antenna functions relevant
+    for multijet production in electron-positron
+    annihiliation with a single quark flavour,
+    namely the partonic channel $e^{-}e^{+} \rightarrow
+    d \bar{d}$ + $ng$.
+    For this we require the $A$, $D$, and $F$ antenna functions,
+    see Table~\ref{table:antenna_functions}.
+    The $i,j,k$ indices will be fixed such that $d = 1$, $\bar{d} = 2$,
+    and $g \in \{3, 4, 5\}$.
+
+    It will be useful to define the $\mathcal{P}oles$
+    and $\mathcal{F}inite$ operators to extract the
+    singular and finite contributions from an antenna
+    function. However, there are still finite terms
+    from the $\mathcal{P}oles$ operator coming from
+    the IR singularity operators (cite here). Therefore,
+    care has to be taken to extract all the finite
+    remainders from the antenna functions.
+
+    For the one-loop antenna functions, there are three
+    different functions corresponding to the: leading colour,
+    subleading colour, and closed quark look contributions.
+    It is sufficient to consider the leading colour
+    structure in this thesis as the remaining contributions
+    are subleading. They become important when
+    building subtraction terms to exactly cancel divergences
+    but we do not require this level of accuracy for
+    our applications.
+
+    \subsection{Quark-antiquark antenna functions}
+    The quark-antiquark antenna functions are derived by normalising
+    the colour-ordered QCD radiative corrections to $\gamma^{*} \rightarrow q \bar{q}$
+    at NNLO.
+
+    \subsubsection{Three-parton tree-level antenna function}
+    The tree-level three-parton antenna function is given by
+    \begin{equation}\label{eqn:A30}
+        A_{3}^{0}(1_{q}, 3_{g}, 2_{\bar{q}}) = \dfrac{1}{s_{123}}\left(\dfrac{s_{13}}{s_{23}} + \dfrac{s_{23}}{s_{13}} + 2\dfrac{s_{12}s_{123}}{s_{13}s_{23}}\right) + \mathcal{O}(\epsilon)
+    \end{equation}
+    where the IR structure is apparent. The first two terms
+    correspond to the gluon going collinear with the quark
+    and antiquark, where as the final term accounts for the soft
+    limit.
+
+    \subsubsection{Three-parton one-loop antenna function}
+    The leading colour one-loop antenna functions are
+    given by
+    \begin{align}\label{eqn:A31}
+        \mathcal{P}oles\left(A_{3}^{1}(1_{q}, 3_{g}, 2_{\bar{q}})\right) =& \; 2\left(\mathbf{I}_{qg}^{(1)}(\epsilon, s_{13}) + \mathbf{I}_{qg}^{(1)}(\epsilon, s_{23}) - \mathbf{I}_{q\bar{q}}^{(1)}(\epsilon,s_{123})\right)A_{3}^{0}(1_{q},3_{g},2_{\bar{q}}) \, , \\
+        \mathcal{F}inite\left(A_{3}^{1}(1_{q}, 3_{g}, 2_{\bar{q}})\right) =& -\left(R(y_{13}, y_{23}) + \dfrac{5}{3}\log{y_{13}}+\dfrac{5}{3}\log{y_{23}}\right)A_{3}^{0}(1_{q}, 3_{g}, 2_{\bar{q}}) \nonumber\\
+        &+\dfrac{1}{s_{123}} + \dfrac{s_{12}+s_{23}}{2s_{123}s_{13}} + \dfrac{s_{12}+s_{13}}{2s_{123}s_{23}} \nonumber \\
+        &-\dfrac{s_{13}}{2s_{123}(s_{12}+s_{13})}-\dfrac{s_{23}}{2s_{123}(s_{12}+s_{23})} \nonumber \\
+        &+\dfrac{\log{y_{13}}}{s_{123}}\left(2-\dfrac{1}{2}\dfrac{s_{13}s_{23}}{(s_{12}+s_{23})^{2}} + 2\dfrac{s_{13}-s_{23}}{s_{12}+s_{23}}\right) \nonumber  \\
+        &+\dfrac{\log{y_{23}}}{s_{123}}\left(2-\dfrac{1}{2}\dfrac{s_{13}s_{23}}{(s_{12}+s_{13})^{2}} + 2\dfrac{s_{23}-s_{13}}{s_{12}+s_{13}}\right) \, , 
+    \end{align}
+
+
 
 \end{document}
