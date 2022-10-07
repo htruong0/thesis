@@ -420,14 +420,9 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     Notice that the partonic cross-section depends on
     both the factorisation scale, $\mu_{F}$ and
     the renormalisation scale, $\mu_{R}$
-    (see \ref{chapter:qcd}).
-    {\color{red} Need to mention how these scales
-    are unphysical but there is a residual dependence
-    on them at fixed-order calculations. Scale
-    variations are a conventional way to determine
-    the effects of higher order terms.
-    Renormalisation will be discussed in Chapter 2
-    when divergences are introduced.}
+    (see Section~\ref{sec:renormalisation}). This will
+    be discussed in Section~\ref{sec:scale_variations}
+    in the context of theoretical uncertainties.
 
     The discussion so far has been focused hadron-hadron
     initiated scattering, however, a similar argument
@@ -625,33 +620,10 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
 
     With the introduction of matrix elements and
     cross-sections complete, we will move the discussion onto
-    Monte Carlo event generators. These event
-    generators are multipurpose tools that
-    incorporate many aspects of the theory discussed
-    so far (and to be discussed) for practical use.
-    Most importantly, they are
-    used to compare theoretical predictions to
-    experimental measurements.
+    more practical aspects of computations within the
+    QCD framework. More specifically, we will discuss
+    the divergent structure of matrix elements
+    and the machinery developed to tackle these
+    unphysical singularities.
 
-\section{Monte Carlo event generator overview}
-\subsection{Event unweighting}
-\begin{itemize}
-    \item MC generators are the main tools that
-    people use to compare with experimental data.
-    There are many groups that have their own tool.
-    \item The usage of MC tools came about because
-    the multi-dimensional phase-space integrals
-    are too complex to do analytically.
-    \item This doesn't mean that they only do
-    the integrals, the event generators basically
-    contain all the tools from phase-space generation
-    to matrix element evaluation, to parton showers
-    to hadronisation.
-    \item Have a look at Katherina thesis to see
-    how much I can skip because only really want to
-    introduce unweighting. Probably along the lines
-    of event weight is statistically sampled vs
-    what they measure in real life. Therefore we need
-    to unweight events.
-\end{itemize}
 \end{document}

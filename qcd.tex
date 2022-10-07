@@ -1182,11 +1182,14 @@
     for multijet production in electron-positron
     annihiliation with a single quark flavour,
     namely the partonic channel $e^{-}e^{+} \rightarrow
-    d \bar{d}$ + $ng$.
+    q \bar{q}$ + $ng$.
     For this we require the $A$, $D$, and $F$ antenna functions,
     see Table~\ref{table:antenna_functions}.
-    The $i,j,k$ indices will be fixed such that $d = 1$, $\bar{d} = 2$,
-    and $g \in \{3, 4, 5\}$.
+    The $i,j,k$ indices will be fixed such that $q = 1$, $\bar{q} = 2$,
+    and $g \in \{3, 4, 5\}$ in view of using the
+    antenna functions in a calculation where the momenta
+    of partons will have fixed indices in a phase-space
+    point.
 
     It will be useful to define the $\mathcal{P}oles$
     and $\mathcal{F}inite$ operators to extract the
@@ -1202,10 +1205,11 @@
     subleading colour, and closed quark look contributions.
     It is sufficient to consider the leading colour
     structure in this thesis as the remaining contributions
-    are subleading. They become important when
-    building subtraction terms to exactly cancel divergences
-    but we do not require this level of accuracy for
-    our applications.
+    are subleading. Ignoring subleading terms in
+    colour is equivalent to taking the large $N_{c}$
+    limit. For QCD where $N_{c} = 3$, neglecting
+    subleading colour terms amounts to an
+    approximately 10\% effect.
 
     The antenna functions have some functions in common,
     namely the singularity operators (cite here)
@@ -1230,30 +1234,25 @@
     The quark-antiquark antenna functions are derived by normalising
     the colour-ordered QCD radiative corrections to $\gamma^{*} \rightarrow q \bar{q}$
     at NNLO.
-
     \subsubsection{Three-parton tree-level antenna function}
-    The tree-level three-parton antenna function is given by
     \begin{equation}\label{eqn:A30}
         A_{3}^{0}(1_{q}, 3_{g}, 2_{\bar{q}}) = \dfrac{1}{s_{123}}\left(\dfrac{s_{13}}{s_{23}} + \dfrac{s_{23}}{s_{13}} + 2\dfrac{s_{12}s_{123}}{s_{13}s_{23}}\right) + \mathcal{O}(\epsilon)
     \end{equation}
-    where the IR structure is apparent. The first two terms
-    correspond to the gluon going collinear with the quark
-    and antiquark, where as the final term accounts for the soft
-    limit.
 
     \subsubsection{Three-parton one-loop antenna function}
-    The leading colour one-loop antenna functions are
-    given by
     \begin{align}\label{eqn:A31}
-        \mathcal{P}oles\left(A_{3}^{1}(1_{q}, 3_{g}, 2_{\bar{q}})\right) =& \; 2\left(\mathbf{I}_{qg}^{(1)}(\epsilon, s_{13}) + \mathbf{I}_{qg}^{(1)}(\epsilon, s_{23}) - \mathbf{I}_{q\bar{q}}^{(1)}(\epsilon,s_{123})\right)A_{3}^{0}(1_{q},3_{g},2_{\bar{q}}) \, , \\
+        \mathcal{P}oles\left(A_{3}^{1}(1_{q}, 3_{g}, 2_{\bar{q}})\right) =& \; 2\left(\mathbf{I}_{qg}^{(1)}(\epsilon, s_{13}) + \mathbf{I}_{qg}^{(1)}(\epsilon, s_{23}) \right. \nonumber \\
+        &\quad \left. -\mathbf{I}_{q\bar{q}}^{(1)}(\epsilon,s_{123})\right)A_{3}^{0}(1_{q},3_{g},2_{\bar{q}}) \, , \\
         \mathcal{F}inite\left(A_{3}^{1}(1_{q}, 3_{g}, 2_{\bar{q}})\right) =& -\left(R(y_{13}, y_{23}) + \dfrac{5}{3}\log{y_{13}}+\dfrac{5}{3}\log{y_{23}}\right)A_{3}^{0}(1_{q}, 3_{g}, 2_{\bar{q}}) \nonumber\\
-        &+\dfrac{1}{s_{123}} + \dfrac{s_{12}+s_{23}}{2s_{123}s_{13}} + \dfrac{s_{12}+s_{13}}{2s_{123}s_{23}} \nonumber \\
-        &-\dfrac{s_{13}}{2s_{123}(s_{12}+s_{13})}-\dfrac{s_{23}}{2s_{123}(s_{12}+s_{23})} \nonumber \\
-        &+\dfrac{\log{y_{13}}}{s_{123}}\left(2-\dfrac{1}{2}\dfrac{s_{13}s_{23}}{(s_{12}+s_{23})^{2}} + 2\dfrac{s_{13}-s_{23}}{s_{12}+s_{23}}\right) \nonumber  \\
-        &+\dfrac{\log{y_{23}}}{s_{123}}\left(2-\dfrac{1}{2}\dfrac{s_{13}s_{23}}{(s_{12}+s_{13})^{2}} + 2\dfrac{s_{23}-s_{13}}{s_{12}+s_{13}}\right) \, , 
+        &\quad +\dfrac{1}{s_{123}} + \dfrac{s_{12}+s_{23}}{2s_{123}s_{13}} + \dfrac{s_{12}+s_{13}}{2s_{123}s_{23}} \nonumber \\
+        &\quad -\dfrac{s_{13}}{2s_{123}(s_{12}+s_{13})}-\dfrac{s_{23}}{2s_{123}(s_{12}+s_{23})} \nonumber \\
+        &\quad +\dfrac{\log{y_{13}}}{s_{123}}\left(2-\dfrac{1}{2}\dfrac{s_{13}s_{23}}{(s_{12}+s_{23})^{2}} + 2\dfrac{s_{13}-s_{23}}{s_{12}+s_{23}}\right) \nonumber  \\
+        &\quad +\dfrac{\log{y_{23}}}{s_{123}}\left(2-\dfrac{1}{2}\dfrac{s_{13}s_{23}}{(s_{12}+s_{13})^{2}} + 2\dfrac{s_{23}-s_{13}}{s_{12}+s_{13}}\right) \, .
     \end{align}
 
     \subsection{Quark-gluon antenna functions}
+    The quark-gluon antenna functions are obtained by considering
+    the QCD real radiation corrections in the process $\tilde{\chi} \rightarrow \tilde{g} g$.
     \subsubsection{Three-parton tree-level antenna function}
     \begin{equation}\label{eqn:D30}
         \begin{split}
@@ -1270,6 +1269,8 @@
     \end{align}
 
     \subsection{Gluon-gluon antenna functions}
+    The gluon-gluon antenna functions are obtained from the
+    QCD real radiation corrections in the process $H \rightarrow g g$.
     \subsubsection{Three-parton tree-level antenna function}
     \begin{align}\label{eqn:F30}
         F_{3}^{0}(3_{g},4_{g},5_{g}) =& \; \dfrac{2}{s_{345}^{2}}\left(\dfrac{s_{345}^{2}s_{34}}{s_{35}s_{45}} + \dfrac{s_{345}^{2}s_{35}}{s_{34}s_{45}} + \dfrac{s_{345}^{2}s_{45}}{s_{34}s_{35}} \right. \nonumber \\
@@ -1284,5 +1285,15 @@
         &\left. \quad + \, \dfrac{11}{6}\log{y_{34}} + \dfrac{11}{6}\log{y_{35}} + \dfrac{11}{6}\log{y_{45}} \right) F_{3}^{0}(3_{g},4_{g},5_{g}) \nonumber \\
         & \quad + \dfrac{1}{3s_{34}} + \dfrac{1}{3s_{35}} + \dfrac{1}{3s_{45}} + \dfrac{1}{3s_{345}} \, .
     \end{align}
+    \subsection{Limiting behaviour of antenna functions}
+    Examining (\ref{eqn:A30}) more closely, it becomes clear
+    that the correct IR behaviour is exhibited by the antenna
+    function. The first two terms correspond to the gluon
+    going collinear with the quark and antiquark. The final
+    term encapsulates singularity in the limit of the gluon
+    going soft.
 
+    The other antenna functions have similar limiting behaviour,
+    collapsing to the single collinear and soft splitting functions
+    in the relevant regions of phase-space.
 \end{document}
