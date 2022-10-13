@@ -1,12 +1,86 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
-\chapter{Machine learning}
+\chapter{Modern machine learning algorithms and their uses}
 \label{chapter:ml}
-\section{Introduction to machine learning}
-\subsection{Supervised and unsupervised learning}
+\section{Rise of machine learning in HEP}
+    In high energy physics where analyses
+    depend on making use of large computing clusters
+    and international grid efforts, advancements
+    in technology and more efficient methods are
+    required to keep up with the needs of the
+    experimental and theoretical community.
+    However, the computational resources needed
+    are at risk of outpacing the growth in these research
+    areas \cite{Bothmann:2022thx}. Therefore new techniques and
+    algorithms from the machine learning community
+    have been adopted to augment the ongoing efforts
+    in the high energy physics community. Machine
+    learning is a category of artificial intelligence
+    concerned with the design of algorithms that
+    automates learning from data.
+    By now machine learning is utilised throughout
+    every stage of particle physics analysis, from collection
+    of data from experiments all the way to novel
+    applications on the theory side.
+
+    Around the turn of the last decade the culmination
+    in advancement in hardware and techniques led to an
+    explosion in image classification research in the
+    machine learning community, specifically in the
+    utilisation of very large neural networks. The accuracy
+    of these deep neural networks greatly outperformed the
+    previous state-of-the-art \cite{NIPS2012_c399862d,https://doi.org/10.48550/arxiv.1409.0575} and
+    lead to the widespread use of neural networks for a
+    wide array of tasks \cite{Schmidhuber_2015}.
+    This led to the rise of programming
+    frameworks such as scikit-learn \cite{scikit-learn},
+    TensorFlow \cite{https://doi.org/10.48550/arxiv.1603.04467},
+    PyTorch \cite{https://doi.org/10.48550/arxiv.1912.01703},
+    and XGBoost \cite{Chen:2016:XST:2939672.2939785}
+    to name a few which implement neural networks, alongside
+    other mainstay algorithms such as decisions trees
+    and support vector machines.
+    These algorithms are now extremely commonplace
+    in many domains, including in particle physics. 
+
+    Collisions at the LHC can produce hundreds of
+    particles with complex final-state configurations
+    leading to the design of the ATLAS and CMS experiments
+    to contain of the order 100 million detection elements
+    in an attempt to disentangle these events. With these
+    large arrays of detection elements there is an enormouse
+    amount of data harvested from each collision, terabytes
+    per second, which presents a challenge in the form of
+    data collection.
+    Already at this stage, boosted decision trees
+    have been used to enhance triggers \cite{CMS:2020cmk} to accept or
+    reject data from being saved to disk. At the LHCb
+    experiment 70\% of all data retained have had
+    some involvement with machine learning algorithms \cite{LHCb:2014set}.
+
+    On the theory side of things, there have been numerous
+    triumphs in the application of machine learning.
+    Perhaps the most well-known is the fitting
+    of PDFs performed by the NNPDF collaboration \cite{NNPDF:2021njg}.
+    This area is rapidly growing with many new
+    ideas being explored at each stage of the event
+    generation process.
+    A living review that is actively being updated
+    archiving advancements in the field is available
+    at \cite{Feickert:2021ajf}.
+    For more traditional reviews, see for instance
+    \cite{Guest:2018yhq,Radovic:2018dip,Butter:2022rso}.
+
+    In this chapter we give an overview of neural
+    networks: how they are constructed, how
+    they are trained, and how they are deployed.
+    We will then proceed to discuss their
+    applicability as surrogate models for matrix
+    elements.
+
 \section{Neural networks}
 \subsection{Perceptron}
 \subsection{Densely connected neural networks}
 \subsection{Optimisation of weights}
-\subsection{ML applications in HEP}
+\section{Neural networks as matrix element surrogate models}
 \end{document}
