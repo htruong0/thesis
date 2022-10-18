@@ -1,0 +1,21 @@
+\begin{tikzpicture}
+	\begin{pgfonlayer}{nodelayer}
+		\node [style={green_dot}] (0) at (-3, 2) {$x_{1}$};
+		\node [style={green_dot}] (1) at (-3, 0) {$x_{2}$};
+		\node [style={green_dot}] (2) at (-3, -2) {$x_{3}$};
+		\node [style={white_dot}] (3) at (0, 0) {$\Sigma$};
+		\node [style={white_square}] (4) at (2.5, 0) {$\phi$};
+		\node [style={red_dot}] (5) at (5, 0) {$y$};
+		\node [style=none] (7) at (-3, 3.5) {$\bf{Inputs}$};
+		\node [style=none] (8) at (5, 1.5) {$\bf{Output}$};
+		\node [style={grey_dot}] (12) at (0, 2) {$b$};
+	\end{pgfonlayer}
+	\begin{pgfonlayer}{edgelayer}
+		\draw [->] (0) -- (3) node[midway, above, rotate=-30, text depth=-0.2ex] {$w_{1}$};
+		\draw [->] (1) -- (3) node[midway, above, text depth=-0.2ex] {$w_{2}$};
+		\draw [->] (2) -- (3) node[midway, below, rotate=30] {$w_{3}$};
+		\draw [->] (3) to (4);
+		\draw [->] (4) to (5);
+		\draw [->] (12) to (3);
+	\end{pgfonlayer}
+\end{tikzpicture}
