@@ -74,9 +74,9 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
         \mathrm{SU}(3)_{c} \times \mathrm{SU}(2)_{L} \times \mathrm{U}(1)_{Y}\, ,
     \end{equation}
     where subscripts denote the charges of the gauge groups. The first gauge
-    group with colour charge $C$ describes the interactions of the
+    group with colour charge $c$ describes the interactions of the
     strong force within the theory of quantum chromodynamics (QCD), which we
-    will elaborate more on in the next section. The second
+    will elaborate more on in Section~\ref{sec:qcd}. The second
     and third gauge groups represent the electroweak sector of the SM with
     charges $L$ for left and $Y$ for hypercharge. Under electroweak
     spontaneous symmetry breaking (EWSB), this product becomes
@@ -145,10 +145,10 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
 
 \section{Introduction to quantum chromodynamics}\label{sec:qcd}
     \subsection{The QCD Lagrangian}\label{sec:L_qcd}
-    Quantum chromodynamics (QCD) is the sector of the SM that
+    Quantum chromodynamics is the sector of the SM that
     describes the strong interaction. 
     QCD is a non-Abelian gauge theory with gauge group
-    $\mathrm{SU}(3)_{c}$ where the charge is named colour.
+    $\mathrm{SU}(N_{c} = 3)_{c}$ where the charge is named colour.
     The gauge and fermion part of the QCD Lagrangian is
     \begin{equation}\label{eqn:L_QCD}
         \mathcal{L}_{\mathrm{QCD}} = -\dfrac{1}{4}F^{a}_{\mu\nu}F^{a, \, \mu\nu}
@@ -191,7 +191,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     of the group as
     \begin{align}\label{eqn:casimirs}
         \begin{split}
-            T^{a}_{ij}T^{a}_{jk} &= \delta{ik}C_{F} \, , \quad C_{F} = \dfrac{N_{c}^2-1}{2N_{c}} \, , \\
+            T^{a}_{ij}T^{a}_{jk} &= \delta_{ik}C_{F} \, , \quad C_{F} = \dfrac{N_{c}^2-1}{2N_{c}} \, , \\
             f^{abc}f^{abd} &= \delta^{cd}C_{A} \, , \quad C_{A} = N_{c} \, ,
         \end{split}
     \end{align}
@@ -208,9 +208,9 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     The strong coupling constant, is in fact not constant, but
     is dependent on the energy scale of the process. This
     is due to the process of renormalisation which will be discussed
-    in section ...
-    The implications of this is that at collider
-    experiments where collisions are extremely high energy,
+    in Section~\ref{sec:renormalisation}.
+    The implication of this is that at collider
+    experiments where collisions occur at extremely high energy,
     the strong coupling constant becomes small, a
     property known as asymptotic freedom. A consequence
     of this is that predictions made in QCD can be expressed
@@ -237,13 +237,13 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     \subsection{QCD Feynman rules}\label{sec:qcd_feynman}
     Now that we have written down the QCD Lagrangian,
     we can examine the terms to write down how the
-    gauge bosons interact with the fermions. A convenient
-    way to do this is with Feynman rules, which can be
+    gauge bosons interact with the fermions, and especially
+    important for QCD, the gauge boson self interactions. A convenient
+    way to do this is by deriving the Feynman rules of the theory, which can be
     pieced together to form Feynman diagrams. We will see
-    that Feynman diagrams are a simple, but powerful, tool
-    to systematically build all the possible ways a process
-    can occur. This will be discussed further in the
-    scattering amplitude section.
+    that Feynman diagrams are a simple but powerful tool
+    to systematically build up all the possible ways a process
+    can occur.
 
     Expanding (\ref{eqn:L_QCD}) and extracting the terms
     that mix the gauge and fermions fields, we get an interaction Lagrangian
@@ -253,9 +253,9 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     which we can interpret as follows: the first term
     is an interaction between a gluon, a quark, and an
     anti-quark, the second term is a triple gluon
-    self-interaction and the third term is a four gluon
+    self-interaction, and the third term is a four gluon
     self-interaction. These mixing terms can be recast
-    as Feynman rules as interaction vertices.
+    into Feynman rules representing interaction vertices.
 
     To connect vertices we require propagators, which
     we can read off from the kinetic Lagrangian where
@@ -269,21 +269,21 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
 
     \begin{figure}
         \includegraphics[width=\linewidth]{introduction/qcd_feynman_rules.pdf}
-        \caption{QCD Feynman rules.}
+        \caption{QCD Feynman rules with the Minkowski metric signature $g^{\mu\nu} = \mathrm{diag}(1, -1, -1, -1)$.}
         \label{fig:qcd_feynman_rules}
     \end{figure}
 
-    In Figure~\ref{fig:qcd_feynman_rules} we have
-    collected the QCD Feynman rules.
-    Note that we have only written down the vertices,
-    propagators, and external lines for the physical gluons and quarks,
+    From these Lagrangians, we can read off the QCD Feynman rules
+    which we have collected in Figure~\ref{fig:qcd_feynman_rules}.
+    Note that we have only written down the vertices and propagators
+    for the physical gluons and quarks,
     ghosts also have associated Feynman rules but we do
     not collect those here. A full list of Feynman rules
     in the SM can be found at Ref. \cite{Romao:2012pq}.
 
     From these Feynman rules, we identify that each
     quark-antiquark-gluon and triple gluon vertices
-    are associated with one power of $\alpha_{s}$,
+    are associated with one power of $\alpha_{s}$ (due to squaring $g_{s}$),
     and the four gluon vertex is associated with
     two powers of $\alpha_{s}$. This relationship
     between vertices and $\alpha_{s}$ allows
@@ -294,17 +294,17 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     and how they are related to Feynman diagrams.
 
 \section{Factorisation theorem}\label{sec:factorisation}
-    At the LHC, collisions occur between two protons,
+    At the LHC collisions occur between two protons,
     which have constituent quarks and gluons, collectively
     named partons.
     The application of QCD to describe phenomenon
     in these proton-proton collisions rests on the use of
     the factorisation theorem which enables the
-    separation of soft and hard energy scales.
-    Within the proton, there are composite quarks
+    separation of low and high energy scales (so-called soft and hard).
+    Within the proton, there are quarks
     and gluons that are constantly absorbed and
     emitted on a timescale inversely proportional
-    to the mass of the proton (or hadron in general).
+    to the mass of the proton.
     The timescale of this fluctuation is much longer
     than the timescale of the interaction between
     a parton and a highly energetic probing parton
@@ -359,7 +359,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     instead of calculated in perturbation theory.
     
     For a review of PDFs and how they are determined
-    see Ref. \cite{Ethier:2020way,Jimenez-Delgado:2013sma}.
+    see Refs. \cite{Ethier:2020way,Jimenez-Delgado:2013sma}.
     In practice, these PDF fits are accessed through the
     LHAPDF interface \cite{Buckley:2014ana} which provides
     PDF sets from multiple working groups \cite{PDF4LHCWorkingGroup:2022cjn,Hou:2019efy,Bailey:2020ooq,NNPDF:2021njg}.
@@ -384,7 +384,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     \end{equation}
     where $P_{ba}(\frac{x}{z})$ are splitting functions
     representing parton $b$ emitting a parton $a$ carrying
-    a momentum fraction $z$. These splitting functions are calculable
+    a momentum fraction $x$. These splitting functions are calculable
     as a power series in $\alpha_{s}$ where they have been computed
     up to three-loops \cite{Moch:2004pa,Vogt:2004mw}.
     At leading order \cite{Altarelli:1977zs} they are
@@ -411,12 +411,11 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     \begin{equation}\label{eqn:E_cm_partonic}
         \hat{s} = x_{a}x_{b}s \, .
     \end{equation}
-
     $\hat{\sigma}_{ab \rightarrow n}(Q, \mu_{F}, \mu_{R})$
     is the partonic cross-section which descibes the interaction of
     partons $a$ and $b$ scattering into $n$ particles,
     where the scattering occurs at energy scale $Q$,
-    which is often taken to the $\hat{s}$.
+    which is often taken to be $\hat{s}$.
     Notice that the partonic cross-section depends on
     both the factorisation scale, $\mu_{F}$ and
     the renormalisation scale, $\mu_{R}$
@@ -536,11 +535,12 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     It is common to use the massless limit because
     the centre-of-mass energy of a collider
     experiment is much greater than the mass
-    of the colliding particles.
+    of the colliding particles, and so they can
+    be neglected.
 
     $\mathrm{d}\Phi_{n}$ is the Lorentz-invariant
     phase-space which contains all the possible
-    configurations of the $n$-particle final state.
+    configurations of the $n$-particle final-state.
     Absorbing the momentum conserving $\delta$-function
     from (\ref{eqn:matrix_element}),
     we can write it as
@@ -551,15 +551,16 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
         \mathrm{d}\Phi_{n} = (2\pi)^{4}\delta^{4}\left(p_{a} + p_{b} - \sum_{f=1}^{n} p_{f}^{\mu}\right) \prod_{f=1}^{n} \dfrac{\mathrm{d}^{4}p_{f}}{(2\pi)^{3}}\delta(p_{f}^{2} - m_{f}^{2})\theta(E_{f}) \, ,
     \end{equation}
     where the second $\delta$-function restricts
-    the final state particles to be on mass-shell
+    the final-state particles to be on mass-shell
     (on-shell). The step function selects only
-    the positive energy solution for this constraint.
+    the positive energy solution.
     This gives an intuitive picture of the partonic
     cross-section as the probability of a $2\rightarrow n$
     process occurring, summed over all the possible
     valid final-state configurations.
 
-    From (\ref{eqn:S_prob}), it becomes clear
+    From the definition of the transition probability
+    (\ref{eqn:S_prob}), it becomes clear
     that the matrix element is the object which
     relates back to the Lagrangian of the theory
     as it encodes the interactions of the particles.
@@ -568,13 +569,15 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     rules which are pieced together to construct
     Feynman diagrams. In this picture, matrix elements
     are exactly the sum over all Feynman diagrams
-    \footnote{technically the interference of
-    Feynman diagrams as we are working on the level
-    of $|\mathcal{M}|^{2}$}
+    \footnote{Since we are working on the level
+    of $|\mathcal{M}|^{2}$, it would technically
+    be the sum of all interference of Feynman diagrams.}
     for a particular process. However, there are
     an infinite number of Feynman diagrams you can
     draw as there is no constraints on how the
-    vertices and propagators can be connected.
+    vertices and propagators can be connected, as
+    long as the diagram contains the desired initial
+    and final-states.
     Fortunately because $\alpha_{s}$
     is small in high energy collisions, we can expand
     the matrix element as a perturbative series in
@@ -601,7 +604,8 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     N$^{\mathrm{k}}$LO where each additional power of $\alpha_{s}$
     increases complixity of the computations, however,
     because the expansion $\alpha_{s}$
-    is small, each additional term contribute less.
+    is small, each additional term should contribute
+    less and less.
     This means that the first terms dominate the expansion,
     and it is sufficient to terminate the series after
     a few terms to reach an acceptable level of accuracy.
@@ -611,7 +615,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
 
     In summary, the partonic cross-section of a collision
     reduces to the computation of the matrix elements
-    up to a fixed-order in the coupling expansion,
+    up to a fixed-order in the coupling parameter,
     which is then integrated over the valid phase-space of
     final-state particle configurations. For hadronic
     collisions the partonic cross-section also needs to
