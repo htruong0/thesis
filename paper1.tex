@@ -112,7 +112,7 @@ The generated phase-space points are fed to the {\NJet} package \cite{Badger:201
 All external legs have been considered to be massless. 
 The strong coupling constant has been set to $\alpha_{s} = 0.118$, and the electromagnetic coupling constant has been set to $\alpha_{e} = 1.0 / 132.5070$.
 The mass of the $Z$-boson is taken to be $m_{Z} = 91.188$ GeV.
-These parameters and those not listed, are consistent with those in the Standard Model mode of \aNLO \cite{Alwall_2014}.
+These parameters and those not listed, are consistent with those in the Standard Model mode of \aNLO \cite{Alwall:2014hca}.
 
 The phase-space points generated form the basis of our inputs to the neural network with the matrix elements as our fitting targets.
 As with most machine learning applications, we need to demonstrate that our neural network emulator has managed to generalise outside of the training dataset.
@@ -459,9 +459,10 @@ We see that this is the case as accuracy is acceptable in the $y_{\mathrm{cut}} 
 
 \begin{table}
     \centering
+    \small
     \begin{tabular}{|c|c|c|c|c|c|}
         \hline
-        Region & $y_{\mathrm{cut}}$ & Fraction of pts & Pts outside $0.1\%$ & Pts outside $1\%$ & Pts outside $5\%$ \\
+        Region & $y_{\mathrm{cut}}$ & Frac. of pts & Pts outside $0.1\%$ & Pts outside $1\%$ & Pts outside $5\%$ \\
         \hline
         \multirow{3}{*}{White} & 0.01   & 36.5\% & 1.9\% & 0.0\% & 0.0\% \\
         \cline{2-6}
