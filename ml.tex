@@ -6,13 +6,14 @@
 \section{Rise of machine learning in HEP}
     In high energy physics where analyses
     depend on making use of large computing clusters
-    and international grid efforts, advancements
+    and international grid efforts \cite{WLCG}, advancements
     in technology and more efficient methods are
     required to keep up with the needs of the
     experimental and theoretical community.
     However, the computational resources needed
     are at risk of outpacing the growth in these research
-    areas \cite{Bothmann:2022thx}. Therefore new techniques and
+    areas \cite{Bothmann:2022thx}, especially with
+    HL-LHC over the horizon. Therefore new techniques and
     algorithms from the machine learning community
     have been adopted to augment the ongoing efforts
     in the high energy physics community. Machine
@@ -39,8 +40,7 @@
     PyTorch \cite{paszke2019pytorch},
     and XGBoost \cite{Chen:2016:XST:2939672.2939785}
     to name a few which implement neural networks, alongside
-    other mainstay algorithms such as decisions trees
-    and support vector machines.
+    other mainstay algorithms such as decisions trees.
     These algorithms are now extremely commonplace
     in many domains, including in particle physics. 
 
@@ -49,7 +49,7 @@
     leading to the design of the ATLAS and CMS experiments
     to contain of the order 100 million detection elements
     in an attempt to disentangle these events. With these
-    large arrays of detection elements there is an enormouse
+    large arrays of detection elements there is an enormous
     amount of data harvested from each collision, terabytes
     per second, which presents a challenge in the form of
     data collection.
@@ -59,13 +59,16 @@
     experiment 70\% of all data retained have had
     some involvement with machine learning algorithms \cite{LHCb:2014set}.
 
-    On the theory side of things, there have been numerous
-    triumphs in the application of machine learning.
-    Perhaps the most well-known is the fitting
-    of PDFs performed by the NNPDF collaboration \cite{NNPDF:2021njg}.
-    This area is rapidly growing with many new
-    ideas being explored at each stage of the event
+    On the theory side of things, machine learning
+    has been applied to many stages of the event
     generation process.
+    To name a few examples of active research areas:
+    phase-space sampling, matrix element modelling, hadronisation modelling,
+    and anomaly searches for new physics.
+    The research carried out in these areas have shown
+    promising results but a challenge that remains
+    is to interface these novel machine learning methods
+    to existing event generators.
     A living review that is actively being updated
     archiving advancements in the field is available
     at \cite{Feickert:2021ajf}.
@@ -74,10 +77,11 @@
 
     In this chapter we give an overview of neural
     networks: how they are constructed, how
-    they are trained, and how they are deployed.
+    they are trained, and how their parameters are optimised.
     We will then proceed to discuss their
-    applicability as surrogate models for matrix
-    elements.
+    application to modelling matrix
+    elements with a review of the current
+    state-of-the-art methods.
 
 \section{Neural networks}
     Neural networks are a machine learning algorithm
@@ -98,7 +102,7 @@
     \end{equation}
     where the model inputs $\mathbf{x}$ are multiplied
     by the model weights $\mathbf{w}$ before being summed
-    with a bias term $b$. Collectively t he model weights
+    with a bias term $b$. Collectively the model weights
     and biases are the model parameters $\theta$.
     This combination of terms is then modified
     by an activation function $\phi$ which is carefully
@@ -117,19 +121,20 @@
     
     Some of the more well-known activation functions are
     the sigmoid function, hyperbolic tangent, rectified linear unit (ReLU).
-    Less familiar activation functions are the class of
-    sigmoid linear units (SiLU) of which the swish function
-    is a specific case. The functional forms of these
+    A less familiar class of activation functions are the
+    sigmoid linear units (SiLU) of which swish is an example,
+    which have been shown to outperform ReLU is some cases
+    \cite{DBLP:journals/corr/abs-1710-05941}. The functional forms of these
     functions are summarised in Table~\ref{table:activation_functions}.
     There is no single activation function that is the best
-    for any given task, it is common practice to choose activation
+    for any given task, and it is common practice to choose activation
     functions on a case-by-case basis.
 
     \begin{table}
         \centering
         \begin{tabular}{lll}
             \toprule
-            Activation functions & Functional form & Gradient \\
+            Activation & Functional form & Gradient \\
             \midrule
             Linear & $f(x) = x$ & $f'(x) = 1$ \\
             \midrule
@@ -142,7 +147,7 @@
             swish & $f(x) = \dfrac{x}{1+e^{-x}}$ & $f'(x) = \dfrac{1}{x}f(x) \left[(1+x) - f(x)\right]$ \\
             \bottomrule
         \end{tabular}
-        \caption{Summary of activation functions and their gradients.}
+        \caption{Functional forms of common activation functions and their gradients.}
         \label{table:activation_functions}
     \end{table}
 
@@ -151,7 +156,7 @@
     have to be connected in some fashion. Perhaps
     the most straightforward method is to create
     layers of neurons, and then connect every neuron
-    is a layer with every neuron in neighbouring layers.
+    in a layer with every neuron in neighbouring layers.
     This is illustrated in Figure~\ref{fig:nn_example}.
     Such a configuration is called a fully-connected,
     or densely-connected neural network. The constituents
@@ -165,7 +170,7 @@
     between inputs and outputs are so-called hidden.
     The neural network is free to change the parameters
     in these layers to best approximate the target function
-    $g$.
+    $g(\mathbf{x})$.
     Output layers are functionally the same as hidden
     layers, except that their outputs are taken as the
     model prediction and so can be compared with the truth
@@ -184,11 +189,11 @@
     The depth of a neural network
     is generally denoted by the number of hidden layers,
     or alternatively, the number of activation functions
-    between the input and output layers. On the other hand,
+    between the input and output layers. Similarly,
     the width of a neural network is generally referring
     to the number of nodes in the hidden layers.
 
-    The output of the densely-connected neural network can
+    The output of a densely-connected neural network can
     be formulated by repeatedly applying (\ref{eqn:neuron})
     to give
     \begin{equation}\label{eqn:nn_output}
@@ -246,7 +251,7 @@
     Since neural networks are generally aimed at
     learning non-linear functions, the loss surface
     corresponding to (\ref{eqn:MSE}) is
-    a function of many variables, and is highly
+    a function of many variables, and is likely highly
     non-convex with many local minima.
     The methods of choice for traversing these loss surfaces
     are all iterative gradient-based methods with modifications
@@ -257,9 +262,10 @@
     \begin{equation}\label{eqn:gradient_descent}
         \theta = \theta - \eta \cdot \nabla_{\theta} L(\mathbf{x}_{\mathrm{batch}}; \theta) \, ,
     \end{equation}
-    where $\nabla_{\theta}L(\mathbf{x}_{\mathrm{batch}})$ is the
+    where $\nabla_{\theta}L(\mathbf{x}_{\mathrm{batch}}; \theta)$ is the
     gradient of the loss with respect to the parameters of the
-    model averaged. The initial state of the parameters
+    model, averaged over the batch of inputs $\mathbf{x}_{\mathrm{batch}}$.
+    The initial state of the parameters
     are usually distributed according to normal
     or uniform distributions \cite{pmlr-v9-glorot10a,he_initialiser}.
     This variation of gradient descent is referred to
@@ -277,7 +283,9 @@
     highly efficient on graphics-processing units (GPUs),
     and the gradients are computed numerically with the aid
     of automatic differentiation tools. For these reasons, deep
-    neural networks have become much more widespread.
+    neural networks have become much more widespread due
+    to the ease of constructing and training them, as well
+    as their good predictive performance for general problems.
 
     The basic gradient descent algorithm described above
     is the basis upon which many of the most widely
@@ -286,10 +294,12 @@
     Reference \cite{Ruder:2016lil}.
 
     \subsection{Optimisation of hyperparameters}
+    Another set of parameters that need to be optimised
+    are the model hyperparameters.
     Hyperparameters are parameters that are
     not explicitly parameters of the model, instead they control
     the speed and quality of the training process.
-    The learning rate in {\ref{eqn:gradient_descent}} is
+    For instance, the learning rate in ({\ref{eqn:gradient_descent}}) is
     an important hyperparameter whose initial value has
     to be chosen carefully to observe a good rate of convergence.
     Some other examples would be
@@ -301,8 +311,8 @@
     of hyperparameters can perform significantly worse
     than a more carefully chosen set. The process of tuning
     hyperparameters is often computationally expensive for two
-    reason. Firstly the parameter space to choose from is vast,
-    and the curse of dimensionality kicks in rapidly.
+    reason. Firstly the dimensionality of parameter space to choose from is high,
+    and so the curse of dimensionality kicks in rapidly.
     Secondly there is no exact a priori way to evaluate the
     final performance of the neural network given a set of
     hyperparameters meaning training has to take place for
@@ -318,6 +328,9 @@
     be very large. Methods which aim to reduce the number
     of trials have been proposed in the literature, see for example
     Reference \cite{Yu2020HyperParameterOA} for a review.
+    Below we discuss two paradigms of hyperparameter optimisation
+    that aim to reduce number of trials before landing
+    on a set of decent hyperparameters.
 
     Bayesian optimisation methods have been explored
     to carry out hyperparameter optimisation \cite{bergstra2013making,bergstra2015hyperopt}.
@@ -364,7 +377,8 @@
     by predicting on many more phase-space points. This point
     requires the accumulated error in the surrogate model
     predictions to be lower than the statistical error in the
-    integration of matrix elements.
+    integration of matrix elements, which is a key motivation
+    for building an accurate emulator.
 
     The task of building a surrogate
     model for matrix elements is in principle straightforward.
@@ -382,12 +396,14 @@
     element generators, and sufficiently accurate. Neural
     network predictions are fast by virtue of them being
     simple matrix multiplications, and because they are predicted
-    in batches vectorisation is automatic. Therefore the difficulty
-    in building a good surrogate model is in making it accurate.
+    in batches, vectorisation is automatic. Therefore the difficulty
+    in building a good surrogate model is in controlling
+    the accuracy.
 
     The complication in accurately emulating matrix elements
     on a per-point basis arises due to the infrared divergent behaviour
-    as discussed in Section~\ref{sec:IR_divergences}
+    as discussed in Section~\ref{sec:IR_divergences} which occurs
+    in corners of the phase-space.
     (UV divergences have been removed via renormalisation).
     Outside of these soft and collinear limits, the matrix element
     is a well-behaved function that varies smoothly with phase-space.
@@ -438,13 +454,13 @@
 
     This FKS partitioning method was applied in Reference \cite{Aylett-Bullock:2021hmo}
     for diphoton plus jet production, where the authors presented a
-    use case of the emulator with a novel interface to the event
-    generator Sherpa. This work was revisited in \cite{Butter:2022rso},
+    use case of the emulator with a novel interface to the Sherpa event generator.
+    This work was revisited in \cite{Badger:2022hwf},
     where particular attention was paid to quantifying the uncertainty associated
     with the neural network prediction. This uncertainty was
     modelled with a Bayesian neural network which enabled
     the boosted training on regions of phase-space that were
-    lacking accuracy. Additionally, the authors showed
+    lacking in accuracy. Additionally, the authors showed
     that accuracy was improved with a more careful
     preprocessing of the training data compared to
     the previous treatment.
@@ -467,22 +483,29 @@
     In Chapter~\ref{chapter:fame1}, we show that by using
     Catani-Seymour dipoles as a set of basis functions, tree-level
     matrix elements for $e^{+}e^{-} \rightarrow q \bar{q}$ + up to 3 gluons
-    can be emulated accurately to well below a 1\% accuracy,
+    can be emulated accurately to well below 1\% accuracy,
     even for the highest multiplicity. Extending this study
     to the one-loop level is done in Chapter~\ref{chapter:fame2}
     where antenna functions replace Catani-Seymour dipoles as
     the basis functions.
 
     The question of uncertainty of the neural network
-    prediction is important in quantifying the theoretical
-    uncertainty. In Reference \cite{Danziger:2021eeg},
-    it was shown that with a surrogate model of the event
+    prediction is important as it contributes to the total
+    theoretical uncertainty. An alternative to quantifying
+    the uncertainty of the neural network prediction, is to
+    bypass the usage of the neural network prediction itself
+    in production.
+    Instead it can be used as a proxy for the exact matrix
+    element in event unweighting. This was explored in
+    Reference \cite{Danziger:2021eeg},
+    where it was shown that with a surrogate model of the event
     weight it was possible to use a double unweighting
     algorithm to increase the rate of event unweighting.
     In Chapter~\ref{chapter:fame3} we examine replacing
     the original emulator in said work with a factorisation-aware
     model to study the potential gain factors with a more
-    accuracte model. A consequence of this two-stage unweighting
+    accuracte model. As previously mentioned, a consequence of
+    this two-stage unweighting
     algorithm is that the exact event weight has to be evaluated
     at some point, meaning the uncertainty of the surrogate
     model is practically irrelevant.

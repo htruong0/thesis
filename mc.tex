@@ -1,7 +1,7 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
 \chapter{Monte Carlo Event Generators}\label{chap:MC}
-    At a particle collider experiment,
+    At particle collider experiments,
     the collisions between incoming particles can lead
     to highly complex final-states with a large number
     of particles. In a hadron collider, such as the LHC,
@@ -16,22 +16,24 @@
     split up the process into stages characterised by
     their kinematic regime. The standard tool used
     to simulate these stages of an event are general-purpose
-    Monte Carlo event generators (event genrators), see
-    Reference \cite{Buckley:2011ms} for a review.
+    Monte Carlo event generators (event generators), see
+    for example Reference \cite{Buckley:2011ms} for a review.
     They are indispensable tools that help
     bridge the gap between theoretical predictions
     and experimental measurements with nearly all
     analyses made at the ATLAS and CMS experiments
-    involving some form of event generator usage.
-
+    involve some form of event generator usage.
     General-purpose event generators available
     such as Herwig \cite{Bahr:2008pv,Bellm:2015jjp},
     Pythia \cite{Sjostrand:2006za,Bierlich:2022pfr},
     and Sherpa \cite{Gleisberg:2008ta,Sherpa:2019gpd} all broadly share 
-    the same features at a high-level overview.
+    the same features at a high-level and it is common
+    to utilise many different event generators
+    in one analysis to get an estimate of the uncertainty
+    due to the different approaches from each collaboration.
 
-    In the following we will motivate the necessity
-    for Monte Carlo methods and give a brief overview
+    In the following we will motivate the usage of
+    Monte Carlo methods and give a brief overview
     of the main stages involved in simulating an event.
     We will give particular attention to the concept of event
     unweighting which is required to compare probabilistically
@@ -55,7 +57,7 @@
     so can be used for arbitrarily high multiplicity final-states.
     The purpose of this chapter is to give a brief overview
     of event generators, a more indepth treatment of the
-    specifics of Monte Carlo methods is given in Reference
+    specifics of Monte Carlo methods can be found in, for example, Reference
     \cite{James:1980yn}.
 
     The basic idea of Monte Carlo integration is to approximate
@@ -116,7 +118,7 @@
     volume into sub-volumes, or bins. The overall integral
     and variances are the sums of the partial results
     in each bin. The overall variance is minimised when
-    the the contributions from each bin are equal. This
+    the contributions from each bin are equal. This
     is achieved by sampling more from bins where the integral
     is rapidly fluctuating (and not necesarily large),
     and less from bins where the integral has less fluctuations.
@@ -139,7 +141,7 @@
     the more sophisticated sampling methods employed in event generators
     there will be additional weights involved.}
     \begin{equation}\label{eqn:event_weight}
-        w_{i} = |\mathcal{M}_{i}|^{2} J_{i} \, .
+        w_{i} = |\mathcal{M}|_{i}^{2} J_{i} \, .
     \end{equation}
     The event weight can be interpreted as the probability
     of this particular event occurring at an experiment \cite{Plehn:2009nd}.
@@ -148,8 +150,7 @@
     
     At experiments, measured events are either recorded
     or they are not, i.e. events come with unit-weight,
-    not a variable weight as they are currently being
-    generated with. In order to generate events that
+    not a variable weight in weighted events. In order to generate events that
     compare to reality, it has become customary to translate
     weighted events into unit-weight events.
     This process is known as unweighting and is typically
@@ -184,11 +185,11 @@
     of methods to improve the efficiency have been
     explored \cite{Jadach:1999sf,Jadach:2002kn}.
     These low efficiencies lead to most of the
-    yearly CPU budgets of LHC experiments to be spent on
+    yearly event generator CPU budgets of LHC experiments to be spent on
     unweighting events \cite{HSFPhysicsEventGeneratorWG:2020gxw}.
 
     An alternative to improving the unweighting efficiency
-    itself is to accelerate the process of unweighting. This
+    itself is to accelerate the process of unweighting itself. This
     was explored in Reference \cite{Danziger:2021eeg} where a
     novel two-stage unweighting procedure employing a surrogate
     model of the exact event weight was used to decrease the amount of
@@ -204,6 +205,7 @@
     This is motivated by the factorisation theorem
     which separates the high energy regimes from the low
     energy regimes.
+
     \subsection*{Hard scattering}\label{sec:me_generators}
     The first stage of an event simulation begins with
     the computation of the matrix element. The partonic
@@ -213,7 +215,9 @@
 
     As seen in (\ref{eqn:matrix_element}),
     the exact matrix element is approximated by a perturbative
-    series in a coupling constant. The calculations of
+    series in a coupling constant. By now it is standard to
+    have at least the LO and NLO contributions in this expansion.
+    The calculations of
     tree-level \cite{Mangano:2002ea,Krauss:2001iv,Gleisberg:2008fv,Cafarella:2007pc,Alwall:2011uj,Kilian:2007gr}
     and one-loop \cite{Berger:2008sj,Cullen:2011ac,Cullen:2014yla,Bevilacqua:2011xh,Hirschi:2011pa,Alwall:2014hca,Frederix:2018nkq,Campbell:1999ah,Campbell:2021vlt,Badger:2012pg,Cascioli:2011va,Buccioni:2019sur,Actis:2016mpe,Denner:2017wsf}
     matrix elements are now largely fully automated
@@ -243,8 +247,9 @@
     \subsection*{Parton shower}\label{sec:parton_showers}
     Fixed-order calculations of matrix elements are limited
     to relatively few final-state particles due to the complexity
-    of analytical expressions and are only accurate in the
-    high energy limit. To evolve from the fixed-order
+    of analytical expressions and their phase-space integrals.
+    They are also only accurate in the high energy limit.
+    To evolve from the fixed-order
     calculation to the non-perturbative regime where hadrons
     are formed, parton showers are employed in event generators.
 
@@ -294,15 +299,14 @@
     $\mu = \mu_{F} = \mu_{R}$ where $\mu$ depends on the specifics
     of the process of interest. Taking the value of the
     partonic cross-section at this scale as the central value,
-    the seven variations correspond to multiplying $\mu_{F}$
-    and $\mu_{R}$ by the factors 
+    the seven variations correspond to multiplying ($\mu_{F}, \, \mu_{R}$) by the factors 
     \begin{equation}\label{eqn:scale_variations}
-        \dfrac{\mu_{i}}{\mu} = \left\{(1, 1), (2,2),(0.5,0.5),(2,1),(1,2),(1,0.5),(0.5,1)\right\} \, ,
+        S \in \left\{(1, 1), (\sfrac{1}{2}, \sfrac{1}{2}), (2, 2), (\sfrac{1}{2}, 1), (1, \sfrac{1}{2}), (2, 1), (1, 2) \right\} \, ,
     \end{equation}
     and re-evaluating the
     cross-section at these scales.
     The estimate of the uncertainty is then taken
-    to be the half-width of the maximum interval.
+    to be half the width of the maximum interval.
 
 
 \end{document}

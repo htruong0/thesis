@@ -10,13 +10,14 @@
     being collided, rather than depending on the
     specifics of the experimental procedure.
     This provides a bridge to compare
-    theoretical predictions and experiment.
-    From (\ref{eqn:dsigma}), the partonic cross-section
+    theoretical predictions and experimental measurements.
+    The relevant quantity calculated in perturbation theory
+    is the partonic cross-section which
     is the matrix element integrated over the relevant
     final-state phase-space, normalised by a flux factor.
     The matrix elements are
     calculated order-by-order in the strong coupling
-    $\alpha_{s}$, (\ref{eqn:matrix_element}),
+    $\alpha_{s}$ (c.f. \ref{eqn:matrix_element}),
     where each order corresponds to a set of Feynman diagrams
     that have the appropriate number of vertices,
     as each QCD vertex brings along a factor of $\alpha_{s}$.
@@ -24,23 +25,25 @@
     In this chapter we will discuss the problems that
     arise when evaluating these Feynman diagrams and outline
     some solutions that have been widely adopted to circumvent
-    these issues to provide real-world applicable predictions.
-    This chapter forms the theoretical foundations on which
-    the work of this thesis is built upon.
+    these issues in order to provide real-world applicable predictions.
+    This chapter forms the theoretical foundations upon which
+    this thesis is built on.
 
     We will consider the divergent nature of matrix
     elements and introduce the most widely used techniques
     to tame these singularities.
 
 \section{Divergent structures}\label{sec:divergences}
-    We have seen that matrix element computations
-    result in evaluating Feynman diagrams. From
-    the QCD Feynman rules (ref here), it becomes
-    clear that integrating over all momentum modes
-    will give rise to singularities. The divergences
+    The computation of matrix elements essentially reduces down
+    to evaluating Feynman diagrams which are analytical expressions
+    built up from the Feynman rules of a theory (c.f. QCD Feynman rules
+    \ref{fig:qcd_feynman_rules}). In evaluating certain
+    topologies of Feynman diagrams, integral expressions
+    containing unconstrained momenta will give rise to
+    singularities. The divergences
     associated with high energy modes are ultraviolet
-    (UV) divergences. On the opposite end of the energy
-    spectrum, low energy modes also give rise to 
+    (UV) divergences and on the opposite end of the energy
+    spectrum, low energy modes give rise to 
     infrared (IR) divergences.
 
     The de-facto methods to alleviate these
@@ -51,15 +54,15 @@
 
 \subsection{Ultraviolet divergences}\label{sec:UV}
     During intermediate steps of calculations,
-    such as trying to compute loop diagrams seen in
-    the Figure~\ref{fig:bubble_diagram},
+    such as the compututation of loop diagrams seen in
+    Figure~\ref{fig:bubble_diagram},
     we have to evaluate integrals of the form
     \begin{equation}\label{eqn:loop_integral}
         I_{\mathrm{UV}} = \int_{0}^{\Lambda} \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} \sim \log{\Lambda} \, ,
     \end{equation}
     where a cutoff scale $\Lambda$ has been introduced to
     capture the divergence as the loop momenta
-    $k \rightarrow \infty$. It is clear that the
+    $\ell \rightarrow \infty$. It is clear that the
     integral diverges in this high energy limit,
     hence the name ultraviolet divergence.
     This UV divergence cannot influence the
@@ -74,7 +77,8 @@
 
     \begin{figure}
         \includegraphics[scale=1.2]{qcd/bubble_diagram.pdf}
-        \caption{Bubble diagram}
+        \caption{Massless bubble diagram which is an example of where unconstrained
+        loop momenta can lead to UV divergences.}
         \label{fig:bubble_diagram}
     \end{figure}
 
@@ -92,8 +96,7 @@
     after Feynman parametrisation (\ref{eqn:loop_integral})
     becomes
     \begin{equation}\label{eqn:dim_reg}
-        % \int \dfrac{\mathrm{d}^{d}\ell}{(2\pi)^{d}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} = \dfrac{\mathrm{i}(-p^{2})^{-\epsilon}}{(4\pi)^{2-\epsilon}}\dfrac{\Gamma(1-\epsilon)^{2}}{\Gamma(2-2\epsilon)}\Gamma(\epsilon) \, ,
-        I_{\mathrm{UV}} = \int \dfrac{\mathrm{d}^{d}\ell}{(2\pi)^{d}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} = \dfrac{\mathrm{i}}{(4\pi)^{2}}\left(\dfrac{-p^{2}}{4\pi}\right)^{-\epsilon}\dfrac{\Gamma(1-\epsilon)^{2}}{\Gamma(2-2\epsilon)}\Gamma(\epsilon) \, ,
+        I_{\mathrm{UV}} = \int \dfrac{\mathrm{d}^{d}\ell}{(2\pi)^{d}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} = \dfrac{\mathrm{i}}{(4\pi)^{2}}\left(\dfrac{-p^{2}}{4\pi}\right)^{-\epsilon}\dfrac{\Gamma(1-\epsilon)^{2}}{\Gamma(2-2\epsilon)} \, \Gamma(\epsilon) \, ,
     \end{equation}
     where the divergence for $d = 4$, or equivalently
     $\epsilon \rightarrow 0$, is now captured in the
@@ -108,38 +111,38 @@
 
 \subsection{Renormalisation}\label{sec:renormalisation}
     With the UV divergence regularised by dimensional
-    regularisation, it is now possible to construct the forms
-    of the counterterms order-by-order in $\alpha_{s}$ to
-    explicitly cancel them.
+    regularisation, it is now possible to construct the
+    counterterms order-by-order in $\alpha_{s}$ to
+    explicitly cancel the divergences.
 
     A subtlety with adjusting the dimension of the theory
     from $d=4$ to arbitrary dimensions is that the mass dimension
     of the Lagrangian has to change accordingly to retain a
-    dimensionless action. We can account for this by
-    introducing an arbitrary scale $\mu_{R}$, the renormalisation
+    dimensionless action in natural units. We can account for this by
+    introducing an arbitrary energy scale $\mu_{R}$, the renormalisation
     scale, into the gauge coupling
     constant to modify the mass dimension of the Lagrangian.
     For QCD this is done via the modification
     \begin{equation}\label{eqn:dimensionful_coupling}
         g_{s} \rightarrow g_{s}\mu_{R}^{\epsilon} \, .
     \end{equation}
-    where it is understood the original gauge coupling is
+    where it is understood that the original gauge coupling is
     dimensionless. The order of $\mu_{R}$ is determined by examining
     the dimensions of the gauge and fermion fields
     in the Lagrangian (\ref{eqn:L_QCD}).
     We see that this introduces a scale dependence
     on the coupling constant $\alpha_{s}$, a point we will return
-    to in \ref{sec:alpha_running}.
+    to in Section~\ref{sec:alpha_running}.
     % In a calculation,
     % intermediate steps will have a dependence on $\mu$,
     % however, once the $\epsilon \rightarrow 0$ limit
     % is taken the scale dependence drops out.
 
     The inclusion of counterterms into the theory can be
-    thought of as renormalisations of the the bare fields
-    and couplings in (\ref{eqn:L_QCD}) to restore predictive
+    thought of as renormalisations of the bare fields
+    and couplings in the QCD Lagrangian (\ref{eqn:L_QCD}) to restore predictive
     power to the theory. The renormalised fields and couplings
-    can be given as (see e.g. Ref.~\cite{mangano1999introduction})
+    can be given as (see for instance Ref.~\cite{mangano1999introduction})
     \begin{align}\label{eqn:renormlised_fields}
         \psi_{\mathrm{bare}} &= \sqrt{Z_{2}} \psi_{R} \, , \nonumber \\
         A_{\mathrm{bare}}^{\mu} &= \sqrt{Z_{3}} A_{R}^{\mu} \, ,\\
@@ -149,14 +152,14 @@
     such that we can set $Z_{n} = 1 + \delta_{n}$ for $n \in \{1, 2, 3\}$.
     In this way we can write the Lagrangian as
     \begin{equation}
-        \mathcal{L}_{\mathrm{renorm}} = \mathcal{L}_{\mathrm{bare}} + \mathcal{L}_{\mathrm{c.t.}} \, ,
+        \mathcal{L}_{R} = \mathcal{L}_{\mathrm{bare}} + \mathcal{L}_{\mathrm{c.t.}} \, ,
     \end{equation}
     where the counterterms appearing in $\mathcal{L}_{\mathrm{c.t.}}$
     are determined by calculating $\delta_{n}$. There is freedom
     in the choice of $\delta_{n}$ which gives rise to
     different regularisation schemes. The minimal subtraction
     (MS) scheme subtracts only the epsilon pole appearing
-    in loop integrals (\ref{eqn:gamma_laurent}). However, the most
+    in loop integrals. However, the most
     commonly used regularisation scheme is the modified minimal
     subtraction ($\overline{\mathrm{MS}}$) scheme which subtracts the
     epsilon pole plus a universal constant appearing in all
@@ -171,28 +174,26 @@
     the missing higher order terms. The conventional way
     that the community estimates the uncertainty associated
     with this residual dependence is by carrying out
-    a scale variation. This involves evaluating the
-    relevant quantities at the nominal renormalisation
-    scale and again with the scale varied by a factor of
-    two above and below.
-
+    a scale variation (see Section~\ref{sec:sec:scale_variations}). 
 
 \subsection{Running of the coupling constant}\label{sec:alpha_running}
-    The bare coupling should not depend on the actual
-    value of the renormalisation scale,
+    The renormalisation scale introduced during regularisation
+    is a mathematical artifact and should not impact any measurable
+    quantities. Therefore, the bare coupling should not depend on
+    the renormalisation scale,
     \begin{equation}\label{eqn:d_g_bare_d_mu}
-        \dfrac{\mathrm{d}g_{\mathrm{bare}}}{\mathrm{d}\mu_{R}} = 0 \, ,
+        \dfrac{\mathrm{d}g_{s,\mathrm{bare}}}{\mathrm{d}\mu_{R}} = 0 \, ,
     \end{equation}
     or said another way, the renormalisation process
-    is independent of the renormalisation scale. The
-    consequence of this is that $\alpha_{s}$ has to
-    depends on the renormalisation scale.
+    is independent of the actual value of the renormalisation scale.
+    The consequence of this is that the renormalised coupling, $\alpha_{s}(\mu_{R})$, has to
+    depend on the renormalisation scale instead.
 
-    The behaviour of $\alpha_{s}$
+    The renormalisation scale dependence of $\alpha_{s}$
     is governed by the Callan-Symanzik \cite{Callan:1970yg,Symanzik:1970rt}
     $\beta$-function
     \begin{equation}\label{eqn:beta_fn}
-        \mu^{2} \dfrac{\partial \alpha_{s}(\mu^{2})}{\partial \mu^{2}} = \beta(\alpha_{s}) \, ,
+        \mu_{R}^{2} \dfrac{\partial \alpha_{s}(\mu_{R}^{2})}{\partial \mu_{R}^{2}} = \beta(\alpha_{s}) \, ,
     \end{equation}
     where the $\beta$-function can be written as a perturbative
     expansion in $\alpha_{s}$
@@ -204,22 +205,22 @@
     The solution to (\ref{eqn:beta_fn}) to first order
     is
     \begin{equation}\label{eqn:1l_alpha}
-        \alpha_{s}(\mu^{2}) = \dfrac{1}{\frac{\beta_{0}}{4\pi}\log\left(\frac{\mu^{2}}{\Lambda_{\mathrm{QCD}}^{2}}\right)} \, ,
+        \alpha_{s}(\mu_{R}^{2}) = \dfrac{1}{\frac{\beta_{0}}{4\pi}\log\left(\frac{\mu_{R}^{2}}{\Lambda_{\mathrm{QCD}}^{2}}\right)} \, ,
     \end{equation}
     where $\Lambda_{\mathrm{QCD}}$ is the QCD scale,
     the scale at which $\alpha_{s}$ becomes
     large enough that perturbation theory breaks down,
     and $\beta_{0} = (11C_{A} - 4T_{R}n_{f})/3$.
     In QCD, $C_{A}=3$ and $T_{R}=\frac{1}{2}$, meaning for
-    $n_{f} < \frac{33}{2}$ the sign of $\beta_{0}$ is positive,
-    which is what we have observed in nature with six
-    flavours of quarks. This behaviour of positive
-    $\beta_{n}$ is also the case in all coefficients
-    computed to date, meaning that $\alpha_{s}$
+    $n_{f} < \frac{33}{2}$ the sign of $\beta_{0}$ is positive.
+    In nature we have observed six flavours of quarks, so
+    $\beta_{0} > 0$. In fact all $\beta$-coefficients
+    computed to date are positive, meaning that $\alpha_{s}$
     decreases with increasing energy due to the minus sign
     in (\ref{eqn:beta_series}). This property is known as
     asymptotic freedom \cite{Gross:1973id,Politzer:1973fx},
-    and is justification for treating QCD perturbatively.
+    and is justification for treating QCD perturbatively
+    when the energy scale is high, such as at collider experiments.
     The running of the coupling constant has been
     observed experimentally as illustrated in Figure~\ref{fig:alpha_s_running}.
 
@@ -240,7 +241,8 @@
     that at low energies, perturbative QCD
     is not an accurate description of nature,
     and the behaviour of hadrons cannot be predicted
-    from perturbation theory.
+    from perturbation theory. Instead phenomenological
+    models have to be used to describe these processes.
     
 \subsection{Infrared divergences}\label{sec:IR_divergences}
     In Section~\ref{sec:UV} we saw how divergences
@@ -250,15 +252,17 @@
     modes. Since these divergences emerge from low energy
     behaviour they are called infrared (IR) divergences. There
     are two cases in which these divergences arise:
-    in loop integrals (virtual) and when an emission
-    of an extra particle (c.f. splitting functions
-    (\ref{eqn:AP_kernels})) has vanishing energy (soft),
-    or becomes parallel to an external colourful line (collinear).
+    \begin{itemize}
+        \item virtual divergences in loop integrals,
+        \item real emission divergences when an emission
+    of an extra particle has vanishing energy (soft),
+    or becomes parallel to an external leg (collinear).
+    \end{itemize}
 
     Virtual IR divergences can be understood by looking
     at an integral of the form
     \begin{equation}\label{eqn:virtual_IR_integral}
-        I_{v} = \int \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}} \dfrac{1}{\ell^{2}(\ell+p_{1})^{2}(\ell-p_{2})^{2}} \, ,
+        I_{\mathrm{V}} = \int \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}} \dfrac{1}{\ell^{2}(\ell+p_{1})^{2}(\ell-p_{2})^{2}} \, ,
     \end{equation}
     which is encountered when calculating the one-loop
     virtual correction to the gluon-quark-antiquark vertex
@@ -269,14 +273,15 @@
     going soft, or collinear to the external quark or antiquark.
     These divergences are regulated in DR to give
     \begin{equation}\label{eqn:virtual_IR_DR}
-        I_{v} = \dfrac{\mathrm{i}}{(4\pi)^{2}Q^{2}}\left(\dfrac{-Q^{2}}{4\pi}\right)^{-\epsilon}\dfrac{\Gamma(1+\epsilon)\Gamma(1-\epsilon)^{2}}{\Gamma(1-2\epsilon)}\left[\dfrac{1}{\epsilon^{2}}\right] \, ,
+        I_{\mathrm{V}} = \dfrac{\mathrm{i}}{(4\pi)^{2}Q^{2}}\left(\dfrac{-Q^{2}}{4\pi}\right)^{-\epsilon}\dfrac{\Gamma(1+\epsilon)\Gamma(1-\epsilon)^{2}}{\Gamma(1-2\epsilon)}\left[\dfrac{1}{\epsilon^{2}}\right] \, ,
     \end{equation}
     where $Q = (p_{1} + p_{2})$. There is a double $\epsilon$ pole manifest,
     corresponding to the soft and collinear divergence.
 
     \begin{figure}
         \includegraphics[scale=1.2]{qcd/vertex_correction.pdf}
-        \caption{Vertex correction}
+        \caption{One-loop vertex correction for the gluon-quark-antiquark vertex which diverges
+        for $\ell \rightarrow 0$.}
         \label{fig:vertex_correction}
     \end{figure}
 
@@ -323,9 +328,11 @@
     are manifest as $\epsilon$ poles which makes the cancellation
     simple between the real and virtual parts. However, in practice, 
     the phase-space integrals of the matrix elements are rarely carried
-    out analytically due to the high dimensionality of the integral.
-    Instead they are done numerically with the use
-    of Monte Carlo methods, which requires the integral to be in
+    out analytically due to the high dimensionality of the integral,
+    rendering them intractable.
+    Instead they are done numerically through the use
+    of Monte Carlo methods (see Chapter~\ref{chap:MC}),
+    which requires the integral to be in
     integer dimensions. Therefore, numerical techniques
     have been developed to deal with these IR divergences as well. The
     most common technique, subtraction, will be discussed in
@@ -350,8 +357,8 @@
     regions of phase-space, the matrix element factorises
     into a process-independent singular factor, multiplied
     by a matrix element with the unresolved parton
-    being absorbed by an emitting leg (reduced matrix
-    element). This factorisation, however, is not exact
+    being absorbed by an emitting leg -- we call this the reduced matrix
+    element. This factorisation, however, is not exact
     in QCD where there are spin and colour correlations.
 
     Schematically, the $(n+1)$-body matrix element
@@ -373,7 +380,7 @@
     in Section~\ref{sec:antenna_functions}. The indices
     of $\bm{S}_{ijk}$ already hints at the fact that the singular
     functions only depends on three partons, and not all
-    of the $n+1$ external states.
+    of the external states.
 
     We will inspect the soft and collinear limits separately
     to see how the matrix element factorises in these respective
@@ -406,14 +413,16 @@
         |\mathcal{M}_{n+1}|^{2} \rightarrow -\dfrac{1}{\lambda^{2}}8\pi \mu^{2\epsilon}\alpha_{s} \sum_{i}\dfrac{1}{p_{i}q}\sum_{k \neq i} \dfrac{p_{k}p_{i}}{(p_{i} + p_{k})q} \; {}_{n}\langle 1, \ldots, n+1 | \bm{T}_{k} \cdot \bm{T}_{i} | 1, \ldots, n+1 \rangle_{n} \, ,
     \end{equation}
     where terms less singular than $1 / \lambda^{2}$ have been
-    neglected. The reduced matrix element is obtained by removing
-    the soft gluon. The indices $i$, $j$, and $k$ label partons involved
+    neglected. The reduced matrix element represented by the
+    colour + helicity vector inner product is obtained by removing
+    the soft gluon from the $(n+1)$-body matrix element.
+    The indices $i$, $j$, and $k$ label partons involved
     in the factorsation process: $i$ is the emitter parton,
     $j$ is the emitted parton, and $k$ is a parton accounting
     for the colour correlations. The scale $\mu$ can be identified as the
     renormalisation scale, and $\bm{T_{i}}$ is the colour-charge
-    operator. It acts on the colour vectors to give factors of
-    $C_{A}$ and $C_{F}$, hence this factorisation is not exact.
+    operator. It acts on the colour vectors in the reduced matrix element
+    to give factors of $C_{A}$ and $C_{F}$, hence this factorisation is not exact.
 
     The matrix elements in (\ref{eqn:soft_factorisation}) are
     unambiguously defined only when momentum conservation is
@@ -429,15 +438,15 @@
     Their momenta can be decomposed as
     \begin{align}\label{eqn:F_collinear_momenta}
         \begin{split}
-        p_{i}^{\mu} &= z p^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{z} \dfrac{n^{\mu}}{2 p n} \, \\
-        p_{j}^{\mu} &= (1-z) p^{\mu} - k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-z}\dfrac{n^{\mu}}{2 p n} \, , 
+        p_{i}^{\mu} &= z p^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{z} \dfrac{n^{\mu}}{2 p \cdot n} \, \\
+        p_{j}^{\mu} &= (1-z) p^{\mu} - k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-z}\dfrac{n^{\mu}}{2 p \cdot n} \, , 
         \end{split}
     \end{align}
     where $p^{\mu}$ denotes the collinear direction
     of the two partons, $k_{\perp}^{\mu}$ specifies
     the transverse direction perpendicular to the
-    collinear direciton ($p k_{\perp} = 0$), and $n^{\mu}$ is an auxiliary
-    vector satisfying the conditions $n^{2} = 0$ and $k_{\perp} n = 0$.
+    collinear direciton ($p \cdot k_{\perp} = 0$), and $n^{\mu}$ is an auxiliary
+    vector satisfying the conditions $n^{2} = 0$ and $k_{\perp} \cdot n = 0$.
     $z$ is the fraction of momenta carried away from
     the collinear momentum by parton $i$.
     
@@ -458,21 +467,21 @@
     $\hat{P}_{ij}$ are the $d$-dimensional Altarelli-Parisi splitting
     functions that depend on the momentum fraction $z$ for the splitting
     $ij \rightarrow i + j$ and the transverse momentum $k_{\perp}$.
-    Each splitting function is matrix acting on the spin indices of $ij$.
-    Due to these spin correlations the matrix
+    Each splitting function is a matrix acting on the spin indices of $ij$.
+    Due to these spin correlations the reduced matrix
     element does not factorise from the splitting functions exactly.
 
     $\hat{P}_{ij}$ become the more recognisable Altarelli-Parisi
     splitting functions (\ref{eqn:AP_kernels}) once spin-averaged
     and the $\epsilon \rightarrow 0$ limit is taken.
 
-    In general, it is possible for the case in which a final-state
-    parton $i$ becomes collinear with an initial-state parton $a$.
+    In general, it is possible for a final-state
+    parton $i$ to become collinear with an initial-state parton $a$.
     This is described by the splitting process $a \rightarrow ai + i$.
     In this case their momenta can be decomposed as
     \begin{align}\label{eqn:I_collinear_momenta}
         \begin{split}
-        p_{i}^{\mu} &= (1-x)p_{a}^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-x}\dfrac{n^{\mu}}{2p_{a} n} \, , \\
+        p_{i}^{\mu} &= (1-x)p_{a}^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-x}\dfrac{n^{\mu}}{2p_{a} \cdot n} \, , \\
         p_{a}^{\mu} &= x p_{a}^{\mu} \, ,
         \end{split}
     \end{align}
@@ -490,28 +499,32 @@
     explicit by the presence of the parton $ai$ in the colour + helicity vector.
     The specific type of parton $ai$ depends upon the types of $a$ and $i$.
 
-    Similar to (\ref{eqn:soft_factorisation}), (\ref{eqn:F_collinear_factorisation})
-     and (\ref{eqn:I_collinear_factorisation}) are only
+    Similar to (\ref{eqn:soft_factorisation}) where the factorisation was
+    only true in the strict soft limit, (\ref{eqn:F_collinear_factorisation})
+    and (\ref{eqn:I_collinear_factorisation}) are only
     true in the strict collinear limit. Away from these
     limits care has to be taken to conserve momenta
     via the use of momenta mappings.
 
 \subsection{Factorisation of colour-ordered amplitudes}\label{sec:CO_factorisation}
-    The factorisation expressed in (\ref{eqn:soft_factorisation}),
+    The factorisation formulae expressed in (\ref{eqn:soft_factorisation}),
     (\ref{eqn:F_collinear_factorisation}), and (\ref{eqn:I_collinear_factorisation})
     were not exact because of colour and spin correlations.
-
     It can be shown that the factorisation of matrix
     elements in the soft and collinear limits becomes
     exact once the colour structure of the gauge group
     is separated from the kinematics. 
 
-    For the scope of this thesis it is sufficient
+    In general any QCD amplitude can be
+    colour decomposed, that is the colour structure is
+    separated from the kinematics. Consider the process $e^{+}e^{-} \rightarrow q\bar{q} + n \; g$
+    \footnote{For the scope of this thesis it is sufficient
     to consider colour decomposition of electron-positron
-    annihilation. In general any QCD amplitude can be
-    colour decomposed. Consider the process $e^{+}e^{-} \rightarrow q\bar{q} + n g$,
+    annihilation into a single quark pair plus gluons,
+    and not the more general case of multiple quark
+    flavours in the final-state.},
     the amplitude can be written as a product of hadronic and
-    leptonic currents \cite{Campbell:1998nn} (on which this discussion is based on)
+    leptonic currents \cite{Campbell:1998nn}
     \begin{equation}\label{eqn:epem_amplitude}
         \mathcal{M}(q_{1}, \bar{q}_{2}; 1, \ldots, n) = \hat{\mathcal{S}}_{\mu}^{n+2}(q_{1}; 1,\ldots,n; \bar{q}_{2})V^{\mu} \, ,
     \end{equation}
@@ -526,21 +539,24 @@
     generators where the indices $a_{i} \in \{1,\ldots, N_{c}^{2}-1\}$
     and $c_{i} \in \{1,\ldots,N_{c}\}$. This leaves the colour-ordered
     partial amplitude $S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})$ depending
-    only on kinematical variables. In this parton amplitude, the gluons
-    are emitted in an ordered fashion from the quarks.
-    The sum over $P(1,\ldots,n)$ represents a sum over all permutations
+    only on kinematical variables. In this partial amplitude, the gluons
+    are emitted in an ordered fashion from the quarks, meaning the quarks
+    have a fixed position in the partial amplitude.
+    The sum over $P(1,\ldots,n)$ represents the sum over all permutations
     of gluon emissions which accounts for all Feynman diagrams and colour structures.
 
     Upon squaring the amplitude (\ref{eqn:epem_amplitude}), we get
     \begin{equation}\label{eqn:epem_me2}
-        \left|\hat{\mathcal{S}}_{\mu}^{n+2}V^{\mu}\right|^{2} = e^{2}\left(\dfrac{g_{s}^{2}N}{2}\right)^{n}\left(\dfrac{N_{c}^{2}-1}{N_{c}}\right) \sum_{P(1,\ldots,n)} \left(\left|S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} + \mathcal{O}\left(\dfrac{1}{N_{c}^{2}}\right)\right) \, ,
+        \left|\hat{\mathcal{S}}_{\mu}^{n+2}V^{\mu}\right|^{2} = e^{2}\left(\dfrac{g_{s}^{2}N_{c}}{2}\right)^{n}\left(\dfrac{N_{c}^{2}-1}{N_{c}}\right) \sum_{P(1,\ldots,n)} \left(\left|S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} + \mathcal{O}\left(\dfrac{1}{N_{c}^{2}}\right)\right) \, ,
     \end{equation}
-    where the subleading colour terms have been omitted.
+    where the subleading colour terms proportional to $1/N_{c}^{2}$ have been omitted.
+    The term proportional to $1/N_{c}$ is the leading colour term
+    and is the dominant term in the colour expansion.
 
     With the amplitude written in terms of the colour-ordered
     partial amplitudes, it is now possible to factorise (\ref{eqn:epem_me2})
-    exactly in the soft and collinear limits. In the limit where gluon
-    $j$ is soft, we have
+    exactly in the soft and collinear limits. Consider the limit where a final-state
+    gluon $j$ is soft, we have
     \begin{equation}\label{eqn:CO_soft_factorisation}
         \left|S_{\mu}(q_{1};1,\ldots,i,j,k,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} \rightarrow S_{ijk} \left|S_{\mu}(q_{1};1,\ldots,i,k,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} \, ,
     \end{equation}
@@ -549,7 +565,7 @@
         S_{ijk} = 4\dfrac{s_{ik}}{s_{ij}s_{jk}} \, ,
     \end{equation}
     is the well-known eikonal factor. We see that the colour-ordered
-    amplitude on the RHS of (\ref{eqn:eikonal_factor}) has gluon $j$
+    amplitude on the RHS of (\ref{eqn:CO_soft_factorisation}) has gluon $j$
     removed but the ordering of all hard partons remain unchanged.
 
     In the collinear limit where partons $i$ and $j$ become collinear
@@ -601,7 +617,7 @@
     In both these formulae the structure is of the form:
     tree-level splitting function multipled by a one-loop
     amplitude, plus a one-loop splitting function multiplied
-    by a tree-level amplitude as illustrated in in Fig ...
+    by a tree-level amplitude.
 
     In Section~\ref{sec:antenna_functions} we will give
     a brief overview of antenna functions where these one-loop
@@ -622,8 +638,8 @@
     Over the past few decades there has been a vast
     amount of research into devising methods to systematically
     isolate these singularities such that it is possible
-    to numerically achieve predictions of physical
-    quantities that are finite. To tackle this task, three
+    to make finite predictions of physical quantities numerically.
+    To tackle this problem, three
     main mathods have been proposed: phase-space slicing \cite{Fabricius:1981sx,Kramer:1986mc,Giele:1991vf},
     sector decomposition \cite{Binoth:2000ps,Binoth:2003ak}, and subtraction \cite{Ellis:1980nc}.
     
@@ -658,21 +674,23 @@
     of an additional external particle. The integrals over $\Phi_{n}$ and
     $\Phi_{n+1}$ are separately divergent but their sum is finite. To
     carry out a numerical calculation, it is therefore necessary
-    to regulate these divergences. In dimensional regularisation these
+    to regulate these divergences to make them explicit.
+    Using dimensional regularisation these
     divergences are mapped to poles in $\epsilon$.
 
     The motivation behind the subtraction method is that the
     divergences in (\ref{eqn:NLO_cs}) can be cancelled upon the insertion
-    of a counterterm evaluated in $\Phi_{n+1}$ and an integrated counterterm
-    evaluated in $\Phi_{n}$ such that the condition
+    of a counterterm evaluated in $\Phi_{n+1}$, $\mathcal{C}_{n+1}$,
+    and an integrated counterterm evaluated in $\Phi_{n}$, $\mathcal{I}_{n}$,
+    such that the condition
     \begin{equation}\label{eqn:subtraction_term_condition}
         \int \mathrm{d}\Phi_{n} \; \mathcal{I}_{n} - \int \mathrm{d}\Phi_{n+1} \; \mathcal{C}_{n+1} = 0 \, ,
     \end{equation}
-    holds. Here we have made use of the fact that
+    holds. Here phase-space factorisation is utilised:
     $\Phi_{n+1} \rightarrow \Phi_{n}\Phi_{1}$ when using
     an appropriate $3 \rightarrow 2$ momentum mapping such that
     \begin{equation}\label{eqn:integrated_counterterm}
-        \mathcal{I}_{n} = \int \Phi_{1} \; \mathcal{C}_{n+1}
+        \mathcal{I}_{n} = \int \Phi_{1} \; \mathcal{C}_{n+1} \, ,
     \end{equation}
     where $\Phi_{1}$ is the one-parton phase-space leading
     to $\epsilon$ poles once $\mathcal{C}_{n+1}$ is integrated over.
@@ -680,9 +698,9 @@
     pointwise approximation of $\mathcal{R}_{n+1}$ to cancel all IR
     divergences such that $\mathcal{R}_{n+1} - \mathcal{C}_{n+1}$ is finite.
     Additionally, since the pole structure in $\mathcal{V}_{n}$ is identical
-    to $\mathcal{R}_{n+1}$, $\mathcal{V}_{n} + \mathcal{I}_{n}$ will be finite
+    to $\mathcal{R}_{n+1}$ but with an opposite sign, $\mathcal{V}_{n} + \mathcal{I}_{n}$ will be finite
     by construction.
-    Inserting this into (\ref{eqn:NLO_cs}) we get
+    Inserting the subtraction terms into (\ref{eqn:NLO_cs}) we get
     \begin{equation}\label{eqn:NLO_subtraction}
         \sigma^{\mathrm{NLO}} = \int \mathrm{d}\Phi_{n} \left[\mathcal{B}_{n} + \mathcal{V}_{n} + \mathcal{I}_{n}\right] + \int \mathrm{d}\Phi_{n+1} \left[\mathcal{R}_{n+1} - \mathcal{C}_{n+1}\right] \, ,
     \end{equation}
@@ -704,11 +722,12 @@
     that have been applied to NNLO QCD.
 
     In the next sections we will describe in detail two sets of functions
-    that are used to build subtraction terms: Catani-Seymour dipoles,
+    that are used to build subtraction terms: Catani-Seymour dipoles, and
     antenna functions. However, we will not construct the counterterms explicitly.
     In other words, we are interested in the approximations of the matrix elements
     in the soft and collinear limits as these are universal and can
-    be applied to any process. These functions will become instrumental
+    be applied to any process, and not the subtraction terms themselves.
+    These functions will become instrumental
     during our construction of matrix element emulators in Chapters
     \ref{chapter:fame1}, \ref{chapter:fame2}, and \ref{chapter:fame3}.
 
@@ -721,8 +740,8 @@
     $i$, $j$, and $k$ where $i$ is the emitting parton, $j$ is
     the unresolved emitted parton, and $k$ is a spectator parton.
     Since the dipoles only depend on three partons, to map out
-    all the singular limits, it will be required to construct all
-    permutations of dipole functions.
+    all the singular limits in a process, it is necessary to construct all
+    the permutations of dipole functions.
 
     Dipole functions can be separated into four categories
     depending on whether the emitter and spectator are in the
@@ -735,8 +754,10 @@
     dipoles are required to capture all IR singular behaviour.
 
     In the following we will describe in detail the FF dipoles
+    and the associated matrix element factorisation formula,
     but only give a brief description of the remaining dipoles as
-    the structure of the factorisation formula is essentially identical.
+    the structure of the terms and factorisation formulae
+    are essentially identical.
 
     \begin{figure}
         \centering
@@ -761,12 +782,12 @@
         \vspace{30pt}
         \caption{Schematic diagrams of the four classes of Catani-Seymour
             dipoles, $\mathcal{D}$. The dipoles are named according to
-            whether the emitter and spectator are in the initial or final-state.
-            lEach dipole consists of a composite particle (denoted by tilde)
+            whether the emitter and spectator are in the initial (upper indices) or final-state (lower indices).
+            Each dipole consists of a composite particle (denoted by tilde)
             that decays into two partons, and a spectator that recoils
             to conserve momentum. The grey blob represents the hard scattering process,
             with incoming and outgoing lines representing initial and final-state
-            partons, respectively. represents the splitting
+            partons, respectively. The black circle represents the splitting
             function within the dipole function which contains the divergent
             behaviour.}
         \label{fig:CS_dipoles}
@@ -787,10 +808,10 @@
                 {}_{n}\langle 1, &\ldots, \widetilde{ij}, \ldots, \tilde{k}, \ldots, n+1 | \dfrac{\boldsymbol{T}_{k} \cdot \boldsymbol{T}_{ij}}{\boldsymbol{T}_{ij}^{2}} \boldsymbol{V}_{ij,k} | 1, \ldots, \widetilde{ij}, \ldots, \tilde{k}, \ldots, n+1 \rangle_{n} \, ,
             \end{split}
         \end{equation}
-        where $\boldsymbol{T}_{i}$ are colour charges and $\boldsymbol{V}_{ij,k}$
+        where $\boldsymbol{T}_{i}$ are the colour-charge operators and $\boldsymbol{V}_{ij,k}$
         is a matrix in the helicity space of the emitter embedding the
         IR divergent behaviour.
-        The sum can be understood as summing over all possible
+        The sum in (\ref{eqn:FF_factorisation}) can be understood as summing over all possible
         3 leg permutations to capture all the soft and collinear limits.
         The reduced matrix element on the RHS of (\ref{eqn:D_ijk})
         is obtained by replacing the partons $i$ and $j$ with
@@ -808,7 +829,7 @@
             y_{ij,k} = \dfrac{p_{i}p_{j}}{p_{i}p_{j} + p_{i}p_{k} + p_{j}p_{k}} \, .
         \end{equation}
         Equations (\ref{eqn:FF_mapping}) and (\ref{eqn:y_ijk})
-        are a $2\rightarrow 3$ momenta mapping that maps
+        are a $3 \rightarrow 2$ momenta mapping that maps
         $p_{i} + p_{j} + p_{k} \rightarrow \tilde{p}_{ij} + \tilde{p}_{k}$.
         The mapping ensures momentum conservation is maintained across all of phase-space and
         all particles are kept on-shell:
@@ -822,14 +843,15 @@
         The matrices $\boldsymbol{V}_{ij,k}$ are functions of
         $y_{ij,k}$ and the splitting variables $\tilde{z}$
         \begin{equation}\label{eqn:zi}
-            \tilde{z}_{i} = \dfrac{p_{i}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} = 1 - \tilde{z}_{i} \, ,
+            \tilde{z}_{i} = \dfrac{p_{i}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} = 1 - \tilde{z}_{i} \, .
         \end{equation}
-        which are analogous to the $z$ from Altarelli-Parisi splitting functions.
-        $\boldsymbol{V}_{ij,k}$ acts on the spin indices of the emitter and emitted
-        parton, but is independent of the type of the spectator. Making the dependence
-        on partons $i$ and $j$ explicit we list all the kernels here
+        They are analogous to the $z$ from Altarelli-Parisi splitting functions.
+        $\boldsymbol{V}_{ij,k}$ acts on the spin indices of the composite particle $\widetilde{ij}$
+        , but is independent of the type of the spectator. Making the spin-dependence
+        on parton $\widetilde{ij}$ explicit ($s$ and $s'$ for $\widetilde{ij}=\,$fermion, and $\mu$ and $\nu$ for $\widetilde{ij}=\,$gluon)
+        we list all the kernels here
         \begin{align}\label{eqn:FF_V_ijk}
-            &\langle s | \boldsymbol{V}_{q_{i}g_{j},k} | s' \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-\tilde{z}_{i}(1-y_{ij,k})} - (1+\tilde{z}_{i}) - \epsilon(1-\tilde{z}_{i})\right] \delta_{ss'} \, , \nonumber \\
+            &\langle s | \boldsymbol{V}_{q_{i}g_{j},k} | s' \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-\tilde{z}_{i}(1-y_{ij,k})} - (1+\tilde{z}_{i}) - \epsilon \tilde{z}_{j} \right] \delta_{ss'} \, , \nonumber \\
             &\langle \mu | \boldsymbol{V}_{q_{i},\bar{q}_{j},k} | \nu \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} T_{R} \left[-g^{\mu\nu} - \dfrac{2}{p_{i}p_{j}}(\tilde{z}_{i}p_{i}^{\mu}-\tilde{z}_{j}p_{j}^{\mu})(\tilde{z}_{i}p_{i}^{\nu}-\tilde{z}_{j}p_{j}^{\nu})\right] \, , \nonumber \\
             \begin{split}
                 &\langle \mu | \boldsymbol{V}_{g_{i}g_{j},k} | \nu \rangle = 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[-g^{\mu\nu}\left(\dfrac{1}{1-\tilde{z}_{i}(1-y_{ij,k})} + \dfrac{1}{1-\tilde{z}_{j}(1-y_{ij,k})} - 2\right) \right. \\
@@ -837,7 +859,7 @@
             \end{split}
         \end{align}
 
-        A key feature of these kernels and are that they smoothly interpolate
+        A key feature of these kernels are that they smoothly interpolate
         between the soft and collinear limits, meaning they do not double count
         any limit. Additionally, they only contain divergences in the
         $p_{i}p_{j} \rightarrow 0$ limit and not for any other pair of
@@ -853,13 +875,10 @@
         are not explicitly available. It is possible to average over the spin indices in (\ref{eqn:FF_V_ijk})
         to obtain the spin-averaged splitting functions
         \begin{align}\label{eqn:FF_avg_V_ijk}
-            &\langle \boldsymbol{V}_{q_{i}g_{j},k} \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-\tilde{z}_{i}(1-y_{ij,k})} - (1+\tilde{z}_{i}) - \epsilon(1-\tilde{z}_{i})\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{q_{i}g_{j},k} \rangle = 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-\tilde{z}_{i}(1-y_{ij,k})} - (1+\tilde{z}_{i}) - \epsilon \tilde{z}_{j} \right] \, , \nonumber \\
             &\langle \boldsymbol{V}_{q_{i}\bar{q}_{j},k} \rangle = \, 8\pi \mu^{2\epsilon} \alpha_{s} T_{R} \left[1-\dfrac{2\tilde{z}_{i}\tilde{z}_{j}}{1-\epsilon}\right] \, , \nonumber \\
             &\langle \boldsymbol{V}_{g_{i}g_{j},k} \rangle = 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{1}{1-\tilde{z}_{i}(1-y_{ij,k})}+\dfrac{1}{1-\tilde{z}_{j}(1-y_{ij,k})}-2+\tilde{z}_{i}\tilde{z}_{j}\right] \, .
         \end{align}
-        These spin-averaged functions will form the set of basis functions
-        that map out all the IR singular limits in matrix elements
-        in Chapter~\ref{chapter:fame1}.
 
     \subsection{Final-initial dipoles}
         For the case of final-state emitter and initial-state
@@ -871,7 +890,8 @@
                 &\sum_{i,j}\sum_{a} \mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},\ldots) + \ldots \, ,
             \end{split}
         \end{equation}
-        where the new dipole contribution appears on the second line. $a$ represents an initial-state parton.
+        where the new dipole contribution appears on the second line.
+        The initial-state parton is represented as $a$.
         The dipole term $\mathcal{D}_{ij}^{a}$ is given by
         \begin{equation}\label{eqn:D_aij}
             \begin{split}
@@ -894,12 +914,12 @@
         \end{equation}
         The recoil parameter $x_{ij,a}$ and splitting variables $\tilde{z}$ are given by
         \begin{align}\label{eqn:x_ija}
-            &x_{ij,a} = \dfrac{p_{i}p_{a} + p_{j}p_{a} - p_{i}p_{j}}{(p_{i}p_{a} + p_{j}p_{a}} \, , \\
-            &\tilde{z}_{i} = \dfrac{p_{i}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} = 1 - \tilde{z}_{1} \, .
+            &x_{ij,a} = \dfrac{p_{i}p_{a} + p_{j}p_{a} - p_{i}p_{j}}{(p_{i}p_{a} + p_{j}p_{a})} \, , \\
+            &\tilde{z}_{i} = \dfrac{p_{i}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} = 1 - \tilde{z}_{i} \, .
         \end{align}
         The spin-averaged splitting functions are given as
         \begin{align}\label{eqn:FI_V_aij}
-            &\langle \boldsymbol{V}_{q_{i}g_{j},a} \rangle = 8\pi \mu^{2\epsilon}\alpha_{s} C_{F} \left[\dfrac{2}{1 - \tilde{z}_{i} + (1-x_{ij,a})} - (1+\tilde{z}_{i}) - \epsilon(1-\tilde{z}_{i})\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{q_{i}g_{j},a} \rangle = 8\pi \mu^{2\epsilon}\alpha_{s} C_{F} \left[\dfrac{2}{1 - \tilde{z}_{i} + (1-x_{ij,a})} - (1+\tilde{z}_{i}) - \epsilon \tilde{z}_{j} \right] \, , \nonumber \\
             &\langle \boldsymbol{V}_{q_{i}\bar{q}_{j},a} \rangle = 8\pi \mu^{2\epsilon}\alpha_{s} T_{R} \, \left[1-\dfrac{2\tilde{z}_{i}\tilde{z}_{j}}{1-\epsilon}\right] \, , \nonumber \\
             &\langle \boldsymbol{V}_{g_{i}g_{j},a} \rangle = 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{1}{\tilde{z}_{j} + (1-x_{ij,a})} + \dfrac{1}{\tilde{z}_{i} + (1-x_{ij,a})} - 2 + \tilde{z}_{i}\tilde{z}_{j}\right] \, .
         \end{align}
@@ -944,12 +964,12 @@
 
         The spin-averaged splitting functions are
         \begin{align}\label{eqn:V_aik}
-            &\langle \boldsymbol{V}_{k}^{q_{a}g_{i}} \rangle = \dfrac{n_{s}(\tilde{q})}{n_{s}(q)} \; 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-x_{ik,a} + u_{i}} + (1+x_{ik,a}) - \epsilon(1-x_{ik,a})\right] \, , \nonumber \\
+            &\langle \boldsymbol{V}_{k}^{q_{a}g_{i}} \rangle = \dfrac{n_{s}(q)}{n_{s}(\tilde{q})} \; 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[\dfrac{2}{1-x_{ik,a} + u_{i}} + (1+x_{ik,a}) - \epsilon(1-x_{ik,a})\right] \, , \nonumber \\
             &\langle \boldsymbol{V}_{k}^{g_{a}\bar{q}_{i}} \rangle = \dfrac{n_{s}(g)}{n_{s}(\tilde{q})} \; 8\pi \mu^{2\epsilon} \alpha_{s} T_{R} \left[1 - \dfrac{2x_{ik,a}(1-x_{ik,a})}{1-\epsilon}\right] \, , \nonumber \\
             &\langle \boldsymbol{V}_{k}^{g_{a}g_{i}} \rangle = \dfrac{n_{s}(g)}{n_{s}(\tilde{g})} \; 16\pi \mu^{2\epsilon} \alpha_{s} C_{A} \left[\dfrac{1}{1-x_{ik,a} + u_{i}} + \dfrac{1-x_{ik,a}}{x_{ik,a}} - 1 + x_{ik,a}(1-x_{ik,a}) \right] \, , \nonumber \\
             &\langle \boldsymbol{V}_{k}^{q_{a}q_{i}} \rangle = \dfrac{n_{s}(q)}{n_{s}(\tilde{g})} \; 8\pi \mu^{2\epsilon} \alpha_{s} C_{F} \left[(1-\epsilon)x_{ik,a} + 2\dfrac{1-x_{ik,a}}{x_{ik,a}} \right] \, ,
         \end{align}
-        where $n_{s}(a)$ is the number of polarisations of particle a.
+        where $n_{s}(a)$ is the number of polarisations of particle $a$.
         For fermions $n_{s}(q) = n_{s}(\bar{q}) = 2$
         and for gluons $n_{s}(g) = d-2$. In the limit $\epsilon \rightarrow 0$
         all ratios of $n_{s}$ cancel to give unity.
@@ -980,7 +1000,7 @@
         modifies the momenta for all other final-state momenta (even non-QCD particles) $k_{j}$:
         \begin{align}\label{eqn:II_mapping}
             \tilde{p}_{ai}^{\mu} &= x_{i,ab} \, p_{a}^{\mu} \, , \nonumber \\
-            \tilde{k}_{j}^{\mu} &= k_{j}^{\mu} - \dfrac{2k_{j}(K+\widetilde{K})}{(K+\widetilde{K})^{2}}(K+\widetilde{K})^{\mu} + \dfrac{2k_{j}K}{K^{2}}\widetilde{K}^{\mu} \, , \\
+            \tilde{k}_{j}^{\mu} &= k_{j}^{\mu} - \dfrac{2k_{j} \cdot (K+\widetilde{K})}{(K+\widetilde{K})^{2}}(K+\widetilde{K})^{\mu} + \dfrac{2k_{j} \cdot K}{K^{2}}\widetilde{K}^{\mu} \, , \\
             x_{i,ab} &= \dfrac{p_{a}p_{b} - p_{i}p_{a}-p_{i}p_{b}}{p_{a}p_{b}} \, . \nonumber
         \end{align}
         where $K$ and $\widetilde{K}$ are the total momenta
@@ -1024,7 +1044,10 @@
         where it is understood that for a given partonic process,
         the matrix element in the different soft and collinear limits will be
         reproduced by summing over all the possible dipoles that are
-        relevant. The omitted  terms are non-divergent.
+        relevant and hence will form the set of basis functions for
+        approximating the matrix elements in Chapters \ref{chapter:fame1}
+        and \ref{chapter:fame3}. The omitted terms are non-divergent
+        in all of phase-space.
 
     \subsection{Treatment of massive partons}
         The dipoles described in this section so far have
@@ -1039,12 +1062,11 @@
 
         The universality of infrared divergent structure
         extends to massive quarks \cite{Catani:2000ef}.
-        Massive partons are treated in detail in Reference\cite{Catani:2002hc}
-        where the authors derive dipole
-        functions for massive partons. The expressions derived therein
+        In Reference \cite{Catani:2002hc} the authors derive dipole
+        functions for massive partons which
         are utilised in Chapter~\ref{chapter:fame3}, but will
         not be written here as the philosophy of constructing
-        the dipole functions is similar to those already described.
+        the massive dipole functions is similar to massless ones.
 
         The extension to massive quarks necessitates the straightforward
         modification of the master dipole factorisation formula
@@ -1070,8 +1092,8 @@
 
     In contrast to the dipole functions, where there is an identified
     emitter, antenna functions can have the unresolved parton
-    radiate from either of the two hard partons. In this sense,
-    an antenna is a linear combination of two dipoles.
+    radiate from either of the two hard partons in the antenna.
+    In this sense, an antenna is a linear combination of two dipoles.
 
     The discussion in this section will be limited to the
     situation of a massive colour-neutral boson decaying
@@ -1091,7 +1113,7 @@
     where $|M_{n}^{(\ell)}|^{2}$ is the $n$-body colour-ordered matrix
     element at loop-level $\ell$. $S_{ijk,IK}$ is a symmetry factor
     accounting for identical particles in the final-state
-    and for the presence of multiple antennae in the two-
+    and for the presence of multiple antennae in the two
     parton process. $I$ and $K$ are hard partons forming a colour
     connected antenna that radiates particle $j$. The identities
     of $i/I$ and $k/K$ defines the specific class of the
@@ -1107,7 +1129,7 @@
         \item Quark-gluon: $\tilde{\chi} \rightarrow \tilde{g}g$ + (partons),
         the decay of a heavy neutralino into a gluino and gluon with QCD radiation from the gluon-gluino pair \cite{Gehrmann-DeRidder:2005svg}.
         \item Gluon-gluon: $H \rightarrow gg$ + (partons),
-        the decay of a Higgs boson into a pair of gluons with QCD from the gluon pair \cite{Gehrmann-DeRidder:2005alt}.
+        the decay of a Higgs boson into a pair of gluons with QCD radiation from the gluon pair \cite{Gehrmann-DeRidder:2005alt}.
     \end{itemize}
     Along with the tree-level antenna, there are also the
     one-loop antennae. For the three-parton case these are given by
@@ -1121,8 +1143,8 @@
     $|M^{(1)}_{n+1}|^{2}\rightarrow S^{(0)}|M^{(1)}_{n}|^{2} + S^{(1)}|M^{(0)}_{n}|^{2}$,
     the term proportional to $X_{3}^{0}$ has to be removed
     to fulfill this requirement.
-    The antenna functions are summarised in Table~\ref{table:antenna_functions}, where
-    antenna functions are categorised by their class and radiative
+    The antenna functions are summarised in Table~\ref{table:antenna_functions},
+    where they are categorised by their class and radiative
     processes.
 
     \begin{table}[ht]
@@ -1146,7 +1168,7 @@
         \caption{Three-parton antenna functions at tree-level, $X_{3}^{0}$,
         and one-loop level, $X_{3}^{1}$. The different antenna functions at
         one-loop level correspond to the leading colour ($X_{3}^{1}$),
-        sub-leading colour ($\tilde{X}_{3}^{1}$), and closed quark loop
+        subleading colour ($\tilde{X}_{3}^{1}$), and closed quark loop
         ($\hat{X}_{3}^{1}$) contributions.}
         \label{table:antenna_functions}
     \end{table}
@@ -1207,7 +1229,7 @@
         \end{subfigure}
         \vspace{10pt}
         \caption{Three-parton antenna functions where the loop order
-            is implicitly illustrated in the grey circle,
+            is implicitly illustrated by the grey circle,
             and the grey ellipse represents all diagrams that give
             rise to the given external states. The hard radiators are
             depicted in red, where as the unresolved parton is coloured
@@ -1221,23 +1243,26 @@
     for multijet production in electron-positron
     annihiliation with a single quark flavour,
     namely the partonic channel $e^{-}e^{+} \rightarrow
-    q \bar{q}$ + $ng$.
-    For this we require the $A$, $D$, and $F$ antenna functions,
+    q \bar{q}$ + $n \, g$. The emulation of the NLO QCD K-factors
+    of this partonic process is examined in Chapter~\ref{chap:fame2}.
+    For this process we require the $A$, $D$, and $F$ antenna functions,
     which are illustrated in Figure~\ref{fig:antenna}.
     The $i,j,k$ indices will be fixed such that $q = 1$, $\bar{q} = 2$,
     and $g \in \{3, 4, 5\}$ in view of using the
-    antenna functions in a calculation where the momenta
+    antenna functions where the momenta
     of partons will have fixed indices in a phase-space
-    point.
+    point represented as an array.
 
     It will be useful to define the $\mathcal{P}oles$
     and $\mathcal{F}inite$ operators to extract the
     singular and finite contributions from an antenna
     function. However, there are still finite terms
-    from the $\mathcal{P}oles$ operator coming from
-    the IR singularity operators (cite here). Therefore,
+    from $\mathcal{P}oles(X)$ coming from the $\epsilon$-expansion
+    of the IR singularity operators given below. Therefore,
     care has to be taken to extract all the finite
-    remainders from the antenna functions.
+    remainders from the antenna functions when trying
+    to use them as basis functions for emulating the
+    finite part of the one-loop matrix element.
 
     For the one-loop antenna functions, there are three
     different functions corresponding to the: leading colour,
@@ -1251,7 +1276,7 @@
     approximately 10\% effect.
 
     The antenna functions have some functions in common,
-    namely the singularity operators (cite here)
+    namely the singularity operators
     \begin{align}\label{eqn:singularity_operators}
         \begin{split}
         \mathbf{I}_{q\bar{q}}^{(1)}(\epsilon, s_{q\bar{q}}) &= -\dfrac{e^{\epsilon\gamma}}{2\Gamma(1-\epsilon)} \bigg[\dfrac{1}{\epsilon^{2}} + \dfrac{3}{2\epsilon}\bigg] \mathrm{Re}(-s_{q\bar{q}})^{-\epsilon} \, , \\
@@ -1335,4 +1360,10 @@
     The other antenna functions have similar limiting behaviour,
     collapsing to the single collinear and soft splitting functions
     in the relevant regions of phase-space.
+
+    Utilising this property of the antenna functions, and the fact
+    that they naturally interpolate between the soft and collinear
+    limits due to being derived from physical matrix elements,
+    they can be used as a set of basis functions for approximating
+    matrix elements. This will be explored in Chapter~\ref{chapter:fame2}.
 \end{document}
