@@ -2,57 +2,92 @@
 \begin{document}
 \chapter{Introduction}
 \label{chapter:intro}
-The standard model of particle physics (SM) is our current best working
-theory that describes the phenomenon we observe, for  example,
- at collider experiments.
-The large hadron collider (LHC) is a high energy proton-proton
-collider experiment that allows us to study the fundamental particles
-laid out in the standard model.
 
-The interaction of these fundamental particles are described
-by scattering amplitudes. The standard model allows us to
-calculate these amplitudes, or matrix elements, from first
-principles. A key challenge in the past few decades has been
-to compute these matrix elements for increasing number of
-final state particles and for higher orders in perturbative
-expansions in fixed order calculations. Although there
-has been tremendous progress in this sector a complication
-that naturally arises is that the evaluation of these matrix
-elements becomes increasingly time-consuming due to their
-algebraic complexity.
+The Large Hadron Collider (LHC) at CERN has been colliding
+particles since 2009 with each successive run increasing the centre-of-mass
+energy of the collision (7-13.6 TeV). With the experiment operating
+over the course of decades, there is a vast quantity of
+experimental data collected that has to be compared with
+theoretical predictions. Currently, the theory predictions
+are made with the Standard Model (SM) of
+particle physics which describes the fundamental particles
+of nature and their interactions.
 
-The topic of this thesis is to apply modern machine learning
-techniques to reduce the time spent evaluating these
-complex matrix elements. Considering the physical properties
-of these matrix elements allows us to implement physics
-knowledge into these machine learning algorithms giving
-us higher levels of performance than would otherwise be
-achievable.
+The standard paradigm for comparing
+theory and experiment is to simulate the particle collisions
+from the initial collision all the way through
+to the detection of the hundreds of particles produced in the collision.
+General purpose Monte Carlo event generators are the de-facto
+tool designed to generate these simulated events.
+With the large number of scattering events collected at
+the LHC already, and with even more expected at the High Luminosity LHC,
+the rate of event generation is at risk of
+being outpaced by experimental data collection.
 
-The structure of this thesis is as follows: in Chapter~\ref{chapter:intro}
-I will recap the necessary concepts from the standard
-model, in particular, on quantum chromodynamics (QCD), the sector
+The process of generating simulated events can be broadly
+split up into three segments:
+the highly energetic hard scattering process, 
+the subsequent cascading of particles (parton shower),
+and the formation of bound states detected (hadronisation).
+While hadronisation is based on phenomological models,
+the hard scattering and parton shower are derived
+from the SM and are theoretically well-motivated.
+
+The hard scattering process can be formulated as a probability
+for particles to collide, represented by matrix elements.
+These matrix elements are formally calculated order-by-order
+in perturbation theory with each order leading
+to increasingly difficult computations. In practice,
+these matrix elements are provided in libraries interfaced
+to the event generators and evaluation is largely automated for many
+of the most important processes. However, the evaluation time
+for these complex expressions becomes problematic
+when generating the large samples required to compare with
+experiments, especially when a significant portion of time
+spent simulating an event is spent on the matrix element
+evaluation.
+
+The focus of this thesis will be on applying modern
+machine learning methods to accelerate the evaluation
+of matrix elements, hence speeding up the event
+generation process in general. Machine learning algorithms
+have become ubiquitous in many fields and their applicability
+to a wide range of problems have made them a popular choice
+in the high energy physics community as well. By combining the
+well understood behaviour of matrix elements in specific
+kinematic regions with powerful machine learning
+algorithms, the construction of physics-inspired machine
+learning models unlocks higher levels of performance
+than would otherwise be achievable.
+
+The structure of this thesis is as follows: in this chapter
+I will recap the necessary concepts from the SM,
+in particular quantum chromodynamics (QCD), the sector
 which governs the behaviour of quarks and gluons. Furthermore,
-the relationship between theory and experiment will be elaborated on.
+the relationship between theory and experiment will be elaborated on
+with the introduction of cross-sections and their relation
+to matrix elements.
 
-In Chapter~\ref{chapter:qcd} I will discuss the challenges that arise
-in fixed order perturbative calculations and the current methods
-that have been adopted in the community to deal with them. These
-methods also form the basis of our physics knowledge which we
+In Chapter~\ref{chapter:qcd}, I will discuss the challenges that arise
+in fixed-order perturbative calculations and the current methods
+that have been adopted in the community to deal with them. Some of
+these methods also form the theoretical foundation which we
 embed into the machine learning algorithm. This procedure is 
 described in detail in Chapter~\ref{chapter:fame1} for electron-positron
 annihilation for tree-level matrix element emulation.
 A similar philosophy is applied in Chapter~\ref{chapter:fame2}
-where next-to-leading order QCD k-factors are emulated.
+where next-to-leading order QCD k-factors are emulated for
+the same processes.
 These two chapters discuss in detail the procedure for
-electron-positron annihilation, however, the most relevant
-experiment currently is the LHC which is colliding protons.
-The extension to hadron-hadron colliders is detailed in
-Chapter~\ref{chapter:fame3} where we explore using the
+constructing emulators for electron-positron annihilation,
+however, the more relevant processes for the LHC are in
+proton-proton initiated collisions. The extension
+to this scenario is detailed in Chapter~\ref{chapter:fame3}
+where we also explore using the
 emulator in a novel implementation to replace traditional
 matrix element providers in the event generator SHERPA.
-
-Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
+Finally, I will summarise and conclude the thesis in
+Chapter~\ref{chapter:conclusion}.
 
 \section{The Standard Model of particle physics}
     The Standard Model of particle physics (SM) is our current
@@ -64,8 +99,8 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     anomalous magnetic moment of the electron, agreeing with experimental
     measurements to more than 10 significant figures \cite{Aoyama:2017uqe},
     and the discovery of the Higgs boson in 2012 by the ATLAS \cite{ATLAS:2012yve}
-    and CMS experiments \cite{CMS:2012qbp} at the Large Hadron Collider
-    (LHC) which was theorised decades prior.
+    and CMS experiments \cite{CMS:2012qbp} at the LHC
+    which was theorised decades prior.
 
     The SM is a gauge quantum field theory (QFT) where particles
     are described as excitations in quantum fields. It can be specified
@@ -214,7 +249,7 @@ Finally, I will conclude the thesis in Chapter~\ref{chapter:conclusion}.
     the strong coupling constant becomes small, a
     property known as asymptotic freedom. A consequence
     of this is that predictions made in QCD can be expressed
-    in the form of perturbative expansions in $\alpha_{s}$.
+    in the form of perturbative expansions in $\alpha_{s}$ (see Section~\ref{sec:xs}).
 
     To remove unphysical degrees of freedom from the
     theory we need to gauge-fix the theory
