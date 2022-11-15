@@ -174,7 +174,7 @@
     the missing higher order terms. The conventional way
     that the community estimates the uncertainty associated
     with this residual dependence is by carrying out
-    a scale variation (see Section~\ref{sec:scale_variations}). 
+    a scale variation (see Section~\ref{sec:scale_variations}).
 
 \subsection{Running of the coupling constant}\label{sec:alpha_running}
     The renormalisation scale introduced during regularisation
@@ -410,7 +410,10 @@
     is a scale parameter. In this limit the matrix element
     can be written as
     \begin{equation}\label{eqn:soft_factorisation}
-        |\mathcal{M}_{n+1}|^{2} \rightarrow -\dfrac{1}{\lambda^{2}}8\pi \mu^{2\epsilon}\alpha_{s} \sum_{i}\dfrac{1}{p_{i}q}\sum_{k \neq i} \dfrac{p_{k}p_{i}}{(p_{i} + p_{k})q} \; {}_{n}\langle 1, \ldots, n+1 | \bm{T}_{k} \cdot \bm{T}_{i} | 1, \ldots, n+1 \rangle_{n} \, ,
+        \begin{split}
+        |\mathcal{M}_{n+1}|^{2} \rightarrow &-\dfrac{1}{\lambda^{2}}8\pi \mu^{2\epsilon}\alpha_{s} \sum_{i}\dfrac{1}{p_{i}q} \sum_{k \neq i} \dfrac{p_{k}p_{i}}{(p_{i} + p_{k})q} \\
+        &{}_{n}\langle 1, \ldots, j-1, j+1, \ldots, n+1 | \bm{T}_{k} \cdot \bm{T}_{i} | 1, \ldots, j-1, j+1, \ldots, n+1 \rangle_{n} \, ,
+        \end{split}
     \end{equation}
     where terms less singular than $1 / \lambda^{2}$ have been
     neglected. The reduced matrix element represented by the
@@ -456,7 +459,7 @@
     \end{equation}
     In this limit the matrix element can be written as
     \begin{equation}\label{eqn:F_collinear_factorisation}
-        |\mathcal{M}_{n+1}|^{2} \rightarrow \dfrac{1}{p_{i}p_{j}}4\pi \mu^{2\epsilon}\alpha_{s} \; {}_{n} \langle 1, \ldots, n+1 | \hat{P}_{ij}(z, k_{\perp}) | 1, \ldots, n+1 \rangle_{n} \, ,
+        |\mathcal{M}_{n+1}|^{2} \rightarrow \dfrac{1}{p_{i}p_{j}}4\pi \mu^{2\epsilon}\alpha_{s} \; {}_{n} \langle 1, \ldots, ij, \ldots, n+1 | \hat{P}_{ij}(z, k_{\perp}) | 1, \ldots, ij, \ldots, n+1 \rangle_{n} \, ,
     \end{equation}
     where terms less singular than $k_{\perp}^{2}$ have been neglected.
     This reduced matrix element is obtained by replacing the partons
@@ -535,7 +538,7 @@
     \end{equation}
     In this expression we have the electromagnetic gauge coupling
     $e$ and the strong gauge coupling $g_{s}$ appearing. The colour
-    structure has been factored into a product of fundamental group
+    structure has been factorised into a product of fundamental group
     generators where the indices $a_{i} \in \{1,\ldots, N_{c}^{2}-1\}$
     and $c_{i} \in \{1,\ldots,N_{c}\}$. This leaves the colour-ordered
     partial amplitude $S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})$ depending
@@ -550,7 +553,7 @@
         \left|\hat{\mathcal{S}}_{\mu}^{n+2}V^{\mu}\right|^{2} = e^{2}\left(\dfrac{g_{s}^{2}N_{c}}{2}\right)^{n}\left(\dfrac{N_{c}^{2}-1}{N_{c}}\right) \sum_{P(1,\ldots,n)} \left(\left|S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} + \mathcal{O}\left(\dfrac{1}{N_{c}^{2}}\right)\right) \, ,
     \end{equation}
     where the subleading colour terms proportional to $1/N_{c}^{2}$ have been omitted.
-    The term proportional to $1/N_{c}$ is the leading colour term
+    The first term in the sum is the leading colour term
     and is the dominant term in the colour expansion.
 
     With the amplitude written in terms of the colour-ordered
@@ -640,7 +643,7 @@
     isolate these singularities such that it is possible
     to make finite predictions of physical quantities numerically.
     To tackle this problem, three
-    main mathods have been proposed: phase-space slicing \cite{Fabricius:1981sx,Kramer:1986mc,Giele:1991vf},
+    main methods have been proposed: phase-space slicing \cite{Fabricius:1981sx,Kramer:1986mc,Giele:1991vf},
     sector decomposition \cite{Binoth:2000ps,Binoth:2003ak}, and subtraction \cite{Ellis:1980nc}.
     
     By now the method of choice at NLO QCD is subtraction,
@@ -688,7 +691,7 @@
     \end{equation}
     holds. Here phase-space factorisation is utilised:
     $\Phi_{n+1} \rightarrow \Phi_{n}\Phi_{1}$ when using
-    an appropriate $3 \rightarrow 2$ momentum mapping such that
+    an appropriate $3 \rightarrow 2$ momentum mapping \cite{Catani:1996vz,Kosower:2002su} such that
     \begin{equation}\label{eqn:integrated_counterterm}
         \mathcal{I}_{n} = \int \Phi_{1} \; \mathcal{C}_{n+1} \, ,
     \end{equation}
@@ -733,31 +736,34 @@
 
 \section{Catani-Seymour dipoles}\label{sec:CS_dipoles}
     Catani-Seymour dipoles introduced in Ref.~\cite{Catani:1996vz}
-    are process independent functions that reproduce the IR
+    are process-independent functions that reproduce the IR
     singular behaviour of matrix elements. They depend on the
     momenta and quantum numbers of three partons in the real-emission
     phase-space. These three partons are identified by indices
     $i$, $j$, and $k$ where $i$ is the emitting parton, $j$ is
     the unresolved emitted parton, and $k$ is a spectator parton.
-    Since the dipoles only depend on three partons, to map out
-    all the singular limits in a process, it is necessary to construct all
-    the permutations of dipole functions.
+    In order to map out all the singular limits in a process, it is
+    necessary to construct all permutations of the dipole functions
+    since the dipoles only depends on three partons.
 
     Dipole functions can be separated into four categories
     depending on whether the emitter and spectator are in the
     initial-state or the final-state, as illustrated in Figure~\ref{fig:CS_dipoles}.
     Namely, there are final-final (FF) dipoles, final-initial dipoles (FI),
     initial-final (IF) dipoles and initial-initial (II) dipoles where
-    the nomenclature is emitter-spectator dipole.
-    For electron-positron annihilations only FF dipoles are required,
-    but for any hadronic collision the inclusion of the remaining
-    dipoles are required to capture all IR singular behaviour.
+    the nomenclature refers to the emitter-spectator dipole.
+    For electron-positron annihilations only FF dipoles are required
+    since electrons (positrons) do not carry any colour charge
+    and so there is no initial-state radiation.
+    However, for any hadronic collision the inclusion of the remaining
+    dipoles are required to capture all IR-singular behaviour arising
+    from the initial-state emissions.
 
     In the following we will describe in detail the FF dipoles
     and the associated matrix element factorisation formula,
     but only give a brief description of the remaining dipoles as
     the structure of the terms and factorisation formulae
-    are essentially identical.
+    generalise analogously.
 
     \begin{figure}
         \centering
@@ -786,7 +792,7 @@
             Each dipole consists of a composite particle (denoted by tilde)
             that decays into two partons, and a spectator that recoils
             to conserve momentum. The grey blob represents the hard scattering process,
-            with incoming and outgoing lines representing initial and final-state
+            with incoming and outgoing lines representing initial- and final-state
             partons, respectively. The black circle represents the splitting
             function within the dipole function which contains the divergent
             behaviour.}
@@ -798,7 +804,7 @@
         dipole factorisation formula where matrix elements in the limit
         $p_{i}p_{j} \rightarrow 0$ can be written as
         \begin{equation}\label{eqn:FF_factorisation}
-            {}_{n+1} \langle 1, \ldots, n+1 | | 1, \ldots, n+1 \rangle_{n+1} = \sum_{i,j}\sum_{k\neq i,j}\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) + \ldots \, ,
+            {}_{n+1} \langle 1, \ldots, n+1 | 1, \ldots, n+1 \rangle_{n+1} = \sum_{i,j}\sum_{k\neq i,j}\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) + \ldots \, ,
         \end{equation}
         where terms not singular in the limit $p_{i}p_{j} \rightarrow 0$
         are omitted, and the dipole is
@@ -817,7 +823,7 @@
         is obtained by replacing the partons $i$ and $j$ with
         a single parton $\widetilde{ij}$, and replacing parton
         $k$ with a parton $\tilde{k}$. $\tilde{k}$ has all the
-        same quantum numbers as $k$, where as the
+        same quantum numbers as $k$, whereas the
         partonic nature of $\widetilde{ij}$ depends on
         the specific splitting process (c.f. Section~\ref{sec:me_collinear}).
         The momenta of these particles are modified in the following way
@@ -846,8 +852,8 @@
             \tilde{z}_{i} = \dfrac{p_{i}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{k}}{p_{i}p_{k} + p_{j}p_{k}} = 1 - \tilde{z}_{i} \, .
         \end{equation}
         They are analogous to the $z$ from Altarelli-Parisi splitting functions.
-        $\boldsymbol{V}_{ij,k}$ acts on the spin indices of the composite particle $\widetilde{ij}$
-        , but is independent of the type of the spectator. Making the spin-dependence
+        $\boldsymbol{V}_{ij,k}$ acts on the spin indices of the composite particle $\widetilde{ij}$,
+        but is independent of the type of the spectator. Making the spin-dependence
         on parton $\widetilde{ij}$ explicit ($s$ and $s'$ for $\widetilde{ij}=\,$fermion, and $\mu$ and $\nu$ for $\widetilde{ij}=\,$gluon)
         we list all the kernels here
         \begin{align}\label{eqn:FF_V_ijk}
@@ -871,7 +877,7 @@
         functions in these respective limits.
 
         In this thesis we will be focussing on the emulation of
-        colour and spin-averaged matrix elements. Therefore the spin-indices
+        colour- and spin-averaged matrix elements. Therefore the spin-indices
         are not explicitly available. It is possible to average over the spin indices in (\ref{eqn:FF_V_ijk})
         to obtain the spin-averaged splitting functions
         \begin{align}\label{eqn:FF_avg_V_ijk}
@@ -885,13 +891,13 @@
         spectator we have the dipole factorisation formula
         \begin{equation}\label{eqn:FI_factorisation}
             \begin{split}
-                {}_{n+1}\langle 1, \ldots, n+1; a, \ldots |&| 1, \ldots, n+1; a, \ldots \rangle_{n+1} = \\
+                {}_{n+1}\langle 1, \ldots, n+1; a, \ldots |& 1, \ldots, n+1; a, \ldots \rangle_{n+1} = \\
                 &\sum_{i,j}\sum_{k\neq i,j} \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},\ldots) \\
                 &\sum_{i,j}\sum_{a} \mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},\ldots) + \ldots \, ,
             \end{split}
         \end{equation}
         where the new dipole contribution appears on the second line.
-        The initial-state parton is represented as $a$.
+        The initial-state parton is denoted by $a$.
         The dipole term $\mathcal{D}_{ij}^{a}$ is given by
         \begin{equation}\label{eqn:D_aij}
             \begin{split}
@@ -913,10 +919,12 @@
             \end{split}
         \end{equation}
         The recoil parameter $x_{ij,a}$ and splitting variables $\tilde{z}$ are given by
-        \begin{align}\label{eqn:x_ija}
-            &x_{ij,a} = \dfrac{p_{i}p_{a} + p_{j}p_{a} - p_{i}p_{j}}{(p_{i}p_{a} + p_{j}p_{a})} \, , \\
-            &\tilde{z}_{i} = \dfrac{p_{i}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} = 1 - \tilde{z}_{i} \, .
-        \end{align}
+        \begin{equation}\label{eqn:x_ija}
+        \begin{split}
+                &x_{ij,a} = \dfrac{p_{i}p_{a} + p_{j}p_{a} - p_{i}p_{j}}{(p_{i}p_{a} + p_{j}p_{a})} \, , \\
+                &\tilde{z}_{i} = \dfrac{p_{i}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} \, , \quad \tilde{z}_{j} = \dfrac{p_{j}p_{a}}{p_{i}p_{a} + p_{j}p_{a}} = 1 - \tilde{z}_{i} \, .
+            \end{split}
+        \end{equation}
         The spin-averaged splitting functions are given as
         \begin{align}\label{eqn:FI_V_aij}
             &\langle \boldsymbol{V}_{q_{i}g_{j},a} \rangle = 8\pi \mu^{2\epsilon}\alpha_{s} C_{F} \left[\dfrac{2}{1 - \tilde{z}_{i} + (1-x_{ij,a})} - (1+\tilde{z}_{i}) - \epsilon \tilde{z}_{j} \right] \, , \nonumber \\
@@ -928,7 +936,7 @@
         For the case of initial-state emitter and final-state spectator,
         the dipole factorisation formula is given as
         \begin{equation}\label{eqn:IF_factorisation}
-            {}_{n+1} \langle 1, \ldots, n+1; a || 1, \ldots, n+1; a \rangle_{n+1} = \sum_{a,i}\sum_{k \neq i}\mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a}) + \ldots \, ,
+            {}_{n+1} \langle 1, \ldots, n+1; a | 1, \ldots, n+1; a \rangle_{n+1} = \sum_{a,i}\sum_{k \neq i}\mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a}) + \ldots \, ,
         \end{equation}
         where there is only one initial-state parton. The dipole is given by
         \begin{equation}\label{eqn:D_aik}
@@ -1004,7 +1012,7 @@
             x_{i,ab} &= \dfrac{p_{a}p_{b} - p_{i}p_{a}-p_{i}p_{b}}{p_{a}p_{b}} \, . \nonumber
         \end{align}
         where $K$ and $\widetilde{K}$ are the total momenta
-        of the dipole before and after the mapping. They are given by
+        of the dipole before and after the mapping, respectively. They are given by
         \begin{align}\label{eqn:II_mapping2}
             \begin{split}
             K^{\mu} &= p_{a}^{\mu} + p_{b}^{\mu} - p_{i}^{\mu} \, ,\\
@@ -1036,15 +1044,15 @@
         formula
         \begin{equation}\label{eqn:dipole_factorisation_master}
             \begin{split}
-            {}_{n+1} \langle 1, &\ldots, n+1 || 1, \ldots, n+1 \rangle_{n+1} = \\
+            {}_{n+1} \langle 1, &\ldots, n+1 | 1, \ldots, n+1 \rangle_{n+1} = \\
             &\sum_{i,j}\sum_{k \neq i, j} \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \sum_{i,j}\sum_{a} \mathcal{D}_{ij}^{a}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) \\
             &\sum_{a,i}\sum_{k \neq i} \mathcal{D}_{k}^{ai}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \sum_{a,i}\sum_{b \neq a} \mathcal{D}^{ai,b}(p_{1},\ldots,p_{n+1};p_{a},p_{b}) + \ldots \, ,
             \end{split}
         \end{equation}
         where it is understood that for a given partonic process,
         the matrix element in the different soft and collinear limits will be
-        reproduced by summing over all the possible dipoles that are
-        relevant and hence will form the set of basis functions for
+        reproduced by summing over all the relevant dipoles. Meaning that
+        the dipole functions can be used as a set of basis functions for
         approximating the matrix elements in Chapters \ref{chapter:fame1}
         and \ref{chapter:fame3}. The omitted terms are non-divergent
         in all of phase-space.
@@ -1054,7 +1062,7 @@
         treated all partons to be massless. Since quarks are massive
         particles it is not possible in general to treat them
         as massless. This is especially true for the top
-        quark which has a mass of approximately 175 GeV, the
+        quark which has a mass of 172.69 GeV (cite here, pdg), the
         most massive SM particle. In the case of partonic
         processes involving top quarks, it is therefore
         necessary to include mass effects into the dipole
@@ -1064,8 +1072,8 @@
         extends to massive quarks \cite{Catani:2000ef}.
         In Reference \cite{Catani:2002hc} the authors derive dipole
         functions for massive partons which
-        are utilised in Chapter~\ref{chapter:fame3}, but will
-        not be written here as the philosophy of constructing
+        are used in Chapter~\ref{chapter:fame3}, but will
+        not be written here as the procedure of constructing
         the massive dipole functions is similar to massless ones.
 
         The extension to massive quarks necessitates the straightforward
