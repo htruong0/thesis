@@ -37,43 +37,42 @@
     The computation of matrix elements essentially reduces down
     to evaluating Feynman diagrams which are analytical expressions
     built up from the Feynman rules of a theory (c.f. QCD Feynman rules
-    \ref{fig:qcd_feynman_rules}). In evaluating certain
+    Figure \ref{fig:qcd_feynman_rules}). In evaluating certain
     topologies of Feynman diagrams, integral expressions
     containing unconstrained momenta will give rise to
     singularities. The divergences
     associated with high energy modes are ultraviolet
-    (UV) divergences and on the opposite end of the energy
-    spectrum, low energy modes give rise to 
-    infrared (IR) divergences.
+    (UV) divergences, and on the opposite end of the energy
+    spectrum, there are infrared (IR) divergences associated
+    with low energy modes.
 
     The de-facto methods to alleviate these
-    divergences are through regularisation
+    divergences are through renormalisation
     for UV divergences, and through subtraction
     schemes for IR divergences. Both of these
     methods will be discussed in this section.
 
 \subsection{Ultraviolet divergences}\label{sec:UV}
     During intermediate steps of calculations,
-    such as the compututation of loop diagrams seen in
+    such as the computation of loop diagrams seen in
     Figure~\ref{fig:bubble_diagram},
     we have to evaluate integrals of the form
     \begin{equation}\label{eqn:loop_integral}
         I_{\mathrm{UV}} = \int_{0}^{\Lambda} \dfrac{\mathrm{d}^{4}\ell}{(2\pi)^{4}}\dfrac{1}{\ell^{2}(\ell+p)^{2}} \sim \log{\Lambda} \, ,
     \end{equation}
-    where a cutoff scale $\Lambda$ has been introduced to
+    where a cut-off scale $\Lambda$ has been introduced to
     capture the divergence as the loop momenta
     $\ell \rightarrow \infty$. It is clear that the
     integral diverges in this high energy limit,
     hence the name ultraviolet divergence.
-    This UV divergence cannot influence the
-    experimentally observable quantities at experiments,
-    which are finite, because the final observable
-    should not depend on the intermediate steps taken
-    to get there.
-    Infinities associated with UV divergences
-    are removed via the process of renormalisation
-    which introduces counterterms in the Lagrangian
-    to exactly cancel these divergences.
+    These divergences can be systematically
+    removed by replacing the bare masses
+    and fields of the theory with their measured
+    physical values, a process named renormalisation.
+    In practice, this amounts to introducing
+    counterterms that exactly cancel the corresponding
+    UV divergences at the same order in perturbation
+    theory.
 
     \begin{figure}
         \includegraphics[scale=1.2]{qcd/bubble_diagram.pdf}
@@ -90,7 +89,10 @@
     is based on the observation that the integral
     (\ref{eqn:loop_integral}), which is carried
     out in $d=4$ space-time dimensions, would be finite
-    if $d < 4$.
+    if we move away from $d=4$ dimensions
+    \footnote{In dimensional regularisation it is possible to regulate
+    the integral regardless of if $d > 4$ or $d < 4$, it would amount
+    to a sign difference.}.
 
     In DR we define $d = 4 - 2\epsilon$ such that
     after Feynman parametrisation (\ref{eqn:loop_integral})
@@ -139,7 +141,7 @@
     % is taken the scale dependence drops out.
 
     The inclusion of counterterms into the theory can be
-    thought of as renormalisations of the bare fields
+    thought of as redefinitions of the bare fields
     and couplings in the QCD Lagrangian (\ref{eqn:L_QCD}) to restore predictive
     power to the theory. The renormalised fields and couplings
     can be given as (see for instance Ref.~\cite{mangano1999introduction})
@@ -243,6 +245,7 @@
     and the behaviour of hadrons cannot be predicted
     from perturbation theory. Instead phenomenological
     models have to be used to describe these processes.
+    This will be briefly touched on in Section~\ref{sec:anatomy_event}.
     
 \subsection{Infrared divergences}\label{sec:IR_divergences}
     In Section~\ref{sec:UV} we saw how divergences
@@ -276,7 +279,7 @@
         I_{\mathrm{V}} = \dfrac{\mathrm{i}}{(4\pi)^{2}Q^{2}}\left(\dfrac{-Q^{2}}{4\pi}\right)^{-\epsilon}\dfrac{\Gamma(1+\epsilon)\Gamma(1-\epsilon)^{2}}{\Gamma(1-2\epsilon)}\left[\dfrac{1}{\epsilon^{2}}\right] \, ,
     \end{equation}
     where $Q = (p_{1} + p_{2})$. There is a double $\epsilon$ pole manifest,
-    corresponding to the soft and collinear divergence.
+    corresponding to the associated soft and collinear divergences in real emission corrections.
 
     \begin{figure}
         \includegraphics[scale=1.2]{qcd/vertex_correction.pdf}
@@ -293,10 +296,10 @@
     \end{equation}
     where $p_{i}$ and $p_{j}$ are the 4-momenta of partons $i$ and $j$
     in the hard scattering.
-    When either of the partons beecome soft, $E_{i,j}\rightarrow 0$,
+    When either of the partons become soft, $E_{i,j}\rightarrow 0$,
     or when they go collinear to each other, $\theta_{ij} \rightarrow 0$,
     the matrix element will diverge if $s_{ij}$ appears
-    in the demoninator. These scenarios correspond to an external
+    in the denominator. These scenarios correspond to an external
     particle becoming unresolved.
 
     In Section~\ref{sec:renormalisation}, we removed UV divergences
@@ -420,7 +423,7 @@
     colour + helicity vector inner product is obtained by removing
     the soft gluon from the $(n+1)$-body matrix element.
     The indices $i$, $j$, and $k$ label partons involved
-    in the factorsation process: $i$ is the emitter parton,
+    in the factorisation process: $i$ is the emitter parton,
     $j$ is the emitted parton, and $k$ is a parton accounting
     for the colour correlations. The scale $\mu$ can be identified as the
     renormalisation scale, and $\bm{T_{i}}$ is the colour-charge
@@ -448,7 +451,7 @@
     where $p^{\mu}$ denotes the collinear direction
     of the two partons, $k_{\perp}^{\mu}$ specifies
     the transverse direction perpendicular to the
-    collinear direciton ($p \cdot k_{\perp} = 0$), and $n^{\mu}$ is an auxiliary
+    collinear direction ($p \cdot k_{\perp} = 0$), and $n^{\mu}$ is an auxiliary
     vector satisfying the conditions $n^{2} = 0$ and $k_{\perp} \cdot n = 0$.
     $z$ is the fraction of momenta carried away from
     the collinear momentum by parton $i$.
@@ -542,7 +545,7 @@
     generators where the indices $a_{i} \in \{1,\ldots, N_{c}^{2}-1\}$
     and $c_{i} \in \{1,\ldots,N_{c}\}$. This leaves the colour-ordered
     partial amplitude $S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})$ depending
-    only on kinematical variables. In this partial amplitude, the gluons
+    only on kinematic variables. In this partial amplitude, the gluons
     are emitted in an ordered fashion from the quarks, meaning the quarks
     have a fixed position in the partial amplitude.
     The sum over $P(1,\ldots,n)$ represents the sum over all permutations
@@ -552,8 +555,8 @@
     \begin{equation}\label{eqn:epem_me2}
         \left|\hat{\mathcal{S}}_{\mu}^{n+2}V^{\mu}\right|^{2} = e^{2}\left(\dfrac{g_{s}^{2}N_{c}}{2}\right)^{n}\left(\dfrac{N_{c}^{2}-1}{N_{c}}\right) \sum_{P(1,\ldots,n)} \left(\left|S_{\mu}(q_{1};1,\ldots,n;\bar{q}_{2})V^{\mu}\right|^{2} + \mathcal{O}\left(\dfrac{1}{N_{c}^{2}}\right)\right) \, ,
     \end{equation}
-    where the subleading colour terms proportional to $1/N_{c}^{2}$ have been omitted.
-    The first term in the sum is the leading colour term
+    where the sub-leading colour terms proportional to $1/N_{c}^{2}$ have been omitted.
+    The left-most term in the sum is the leading colour term
     and is the dominant term in the colour expansion.
 
     With the amplitude written in terms of the colour-ordered
@@ -618,7 +621,7 @@
     are the one-loop splitting functions \cite{Bern:1999ry}.
 
     In both these formulae the structure is of the form:
-    tree-level splitting function multipled by a one-loop
+    tree-level splitting function multiplied by a one-loop
     amplitude, plus a one-loop splitting function multiplied
     by a tree-level amplitude.
 
@@ -652,7 +655,7 @@
     that exactly replicate the IR divergent behaviour of matrix
     elements. While there is not one single subtraction scheme
     that is universally used, the general form of a subtraction term
-    must fulfill the requirements of replicating the matrix element
+    must fulfil the requirements of replicating the matrix element
     behaviour in all IR singular limits, and be analytically integrable
     over the regions of phase-space corresponding to these IR limits.
 
@@ -664,7 +667,7 @@
     where $\mathcal{B}_{n}$ is the Born (tree-level) matrix
     element and $\Phi_{n}$ is the $n$-body phase-space.
     At the next order in perturbation theory, we have the NLO
-    cross-section which recieves contributions from the real and virtual
+    cross-section which receives contributions from the real and virtual
     corrections
     \begin{equation}\label{eqn:NLO_cs}
         \sigma^{\mathrm{NLO}} = \int \mathrm{d}\Phi_{n} \; \left[\mathcal{B}_{n} + \mathcal{V}_{n}\right] + \int \mathrm{d}\Phi_{n+1} \; \mathcal{R}_{n+1} \, ,
@@ -713,7 +716,7 @@
     finite now.
 
     The counterterm $\mathcal{C}_{n+1}$ has been kept general
-    but specific exmples of automated subtractions schemes include
+    but specific examples of automated subtractions schemes include
     Catani-Seymour (CS) \cite{Catani:1996vz,Catani:2002hc},
     Frixione-Kunszt-Signer (FKS) \cite{Frixione:1995ms,Frixione:1997np},
     and antenna subtraction \cite{Campbell:1998nn,Kosower:1997zr,Kosower:2003bh}.
@@ -872,7 +875,7 @@
         momenta. In the soft and collinear limits, the dipole function
         $\mathcal{D}_{ij,k}$ correctly reproduces the matrix element factorisation
         behaviour seen in (\ref{eqn:soft_factorisation}) and (\ref{eqn:F_collinear_factorisation}),
-        repsectively. In particular, $\boldsymbol{V}_{ij,k}$ becomes
+        respectively. In particular, $\boldsymbol{V}_{ij,k}$ becomes
         proportional to the eikonal factor and Altarelli-Parisi splitting
         functions in these respective limits.
 
@@ -1062,7 +1065,7 @@
         treated all partons to be massless. Since quarks are massive
         particles it is not possible in general to treat them
         as massless. This is especially true for the top
-        quark which has a mass of 172.69 GeV (cite here, pdg), the
+        quark which has a mass of 172.69 GeV \cite{Workman:2022ynf}, the
         most massive SM particle. In the case of partonic
         processes involving top quarks, it is therefore
         necessary to include mass effects into the dipole
@@ -1084,7 +1087,7 @@
 
 \section{Antenna functions}\label{sec:antenna_functions}
     Another set of functions that can be used to construct
-    subtractions terms in NLO \cite{Kosower:1997zr,Campbell:1998nn}
+    subtraction terms in NLO \cite{Kosower:1997zr,Campbell:1998nn}
     and NNLO QCD \cite{Gehrmann-DeRidder:2004ttg,Gehrmann-DeRidder:2005btv}
     are the antenna functions. They are derived from physical
     matrix elements and so by construction contain the correct
@@ -1092,7 +1095,7 @@
     they are derived from colour-ordered matrix elements so they
     follow the colour-ordered factorisation properties outlined
     in Section~\ref{sec:CO_factorisation}. In the factorisation
-    formulae, the colour-ordered matrix elements factorised
+    formulae, the colour-ordered matrix elements factorises
     exactly into a colour-ordered matrix element with one parton
     removed multiplied by a singular factor. Since this factorisation
     is exact, and the IR behaviour is universal, it is possible
@@ -1105,7 +1108,7 @@
 
     The discussion in this section will be limited to the
     situation of a massive colour-neutral boson decaying
-    to massless QCD partons, suitable for multijet production
+    to massless QCD partons, suitable for multi-jet production
     in electron-positron annihilation. Additionally, we
     assume that there will only ever be at most one unresolved
     parton in the final-state. The antenna formalism has been
@@ -1139,7 +1142,7 @@
         \item Gluon-gluon: $H \rightarrow gg$ + (partons),
         the decay of a Higgs boson into a pair of gluons with QCD radiation from the gluon pair \cite{Gehrmann-DeRidder:2005alt}.
     \end{itemize}
-    Along with the tree-level antenna, there are also the
+    Along with the tree-level antennae, there are also the
     one-loop antennae. For the three-parton case these are given by
     \begin{equation}\label{eqn:X31}
         X_{3}^{1}(i,j,k) = S_{ijk,IK} \dfrac{|M_{n+1}^{(1)}(i,j,k)|^{2}}{|M_{n}^{(0)}(I,K)|^{2}} - X_{3}^{0}(i,j,k) \dfrac{|M_{n}^{(1)}(I,K)|^{2}}{|M_{n}^{(0)}(I,K)|^{2}} \, ,
@@ -1150,7 +1153,7 @@
     and (\ref{eqn:1L_collinear_factorisation}) are of the form
     $|M^{(1)}_{n+1}|^{2}\rightarrow S^{(0)}|M^{(1)}_{n}|^{2} + S^{(1)}|M^{(0)}_{n}|^{2}$,
     the term proportional to $X_{3}^{0}$ has to be removed
-    to fulfill this requirement.
+    to fulfil this requirement.
     The antenna functions are summarised in Table~\ref{table:antenna_functions},
     where they are categorised by their class and radiative
     processes.
@@ -1176,7 +1179,7 @@
         \caption{Three-parton antenna functions at tree-level, $X_{3}^{0}$,
         and one-loop level, $X_{3}^{1}$. The different antenna functions at
         one-loop level correspond to the leading colour ($X_{3}^{1}$),
-        subleading colour ($\tilde{X}_{3}^{1}$), and closed quark loop
+        sub-leading colour ($\tilde{X}_{3}^{1}$), and closed quark loop
         ($\hat{X}_{3}^{1}$) contributions.}
         \label{table:antenna_functions}
     \end{table}
@@ -1248,8 +1251,8 @@
     \end{figure}
 
     Below we list the antenna functions relevant
-    for multijet production in electron-positron
-    annihiliation with a single quark flavour,
+    for multi-jet production in electron-positron
+    annihilation with a single quark flavour,
     namely the partonic channel $e^{-}e^{+} \rightarrow
     q \bar{q}$ + $n \, g$. The emulation of the NLO QCD K-factors
     of this partonic process is examined in Chapter~\ref{chapter:fame2}.
@@ -1274,13 +1277,13 @@
 
     For the one-loop antenna functions, there are three
     different functions corresponding to the: leading colour,
-    subleading colour, and closed quark look contributions.
+    sub-leading colour, and closed quark look contributions.
     It is sufficient to consider the leading colour
     structure in this thesis as the remaining contributions
-    are subleading. Ignoring subleading terms in
+    are sub-leading. Ignoring sub-leading terms in
     colour is equivalent to taking the large $N_{c}$
     limit. For QCD where $N_{c} = 3$, neglecting
-    subleading colour terms amounts to an
+    sub-leading colour terms amounts to an
     approximately 10\% effect.
 
     The antenna functions have some functions in common,
@@ -1361,7 +1364,7 @@
     Examining (\ref{eqn:A30}) more closely, it becomes clear
     that the correct IR behaviour is exhibited by the antenna
     function. The first two terms correspond to the gluon
-    going collinear with the quark and antiquark. The final
+    going collinear with the quark and antiquark, respectively. The final
     term encapsulates singularity in the limit of the gluon
     going soft.
 
