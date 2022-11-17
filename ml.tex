@@ -24,16 +24,16 @@
     automates learning from data.
     By now, machine learning is ubiquitous in
     particle physics analysis, from collection
-    of data from experiments all the way to novel
+    of data from experiments, all the way to novel
     applications on the theory side.
 
     Around the turn of the last decade the culmination
-    of advancement in hardware and machine learning training algorithms
+    of advancement in hardware and training algorithms
     led to an explosion in research in the
     machine learning community, specifically in the
     utilisation of very large neural networks. The accuracy
     of these deep neural networks greatly outperformed the
-    previous state-of-the-art \cite{NIPS2012_c399862d,russakovsky2015imagenet} and
+    previous state of the art \cite{NIPS2012_c399862d,russakovsky2015imagenet} and
     lead to the widespread use of neural networks across
     a range of tasks \cite{Schmidhuber_2015}.
     This led to the rise of programming
@@ -51,8 +51,8 @@
     This leads to the design of the ATLAS and CMS experiments
     to contain of the order 100 million detection elements
     in an attempt to disentangle these events. With these large
-    arrays, terabytes of data are harvested per second from
-    each collision. This presents a practical challenge for data
+    arrays, terabytes of data are harvested from
+    every collision. This presents a practical challenge for data
     collection where machine learning has could provide a solution.
     Indeed, boosted decision trees have been use
     to enhance triggers \cite{CMS:2020cmk} to accept or
@@ -64,7 +64,7 @@
     In view of the upgrades at the LHC and the upcoming
     HL-LHC providing unprecedented integrated luminosity,
     it is important that the generation of simulated samples
-    speeds up. This prompted the explosion of research
+    is accelerated. This prompted the explosion of research
     in machine learning applications on the theory side.
     Studies have been carried out on many stages of the event
     generation process.
@@ -75,14 +75,14 @@
     and end-to-end event generation \cite{Gao:2020zvv,DiSipio:2019imz,Butter:2019cae,Butter:2021csz,ArjonaMartinez:2019ahl}.
     For a more complete overview of active research,
     a living review that is archiving advancements in the
-    field is available at \cite{Feickert:2021ajf}.
-    For more traditional reviews, see for instance
+    field is available at Ref. \cite{Feickert:2021ajf}.
+    For more traditional reviews, see Refs.
     \cite{Guest:2018yhq,Radovic:2018dip,Butter:2022rso}.
 
     The research carried out in these areas have shown
     promising results but a challenge that remains
     is to interface these novel machine learning methods
-    to existing event generators.
+    to existing event generators for real-world use.
     There is scepticism regarding the use of machine learning
     algorithms in production due to their lack of interpretability \cite{Grojean:2022mef},
     as well as their use as black-boxes which precludes predictability \cite{Schwartz:2022njo}.
@@ -95,7 +95,7 @@
     We will then proceed to discuss their
     application to modelling matrix
     elements with a review of the current
-    state-of-the-art methods.
+    state of the art methods.
 
 \section{Neural networks}
     Neural networks are a machine learning algorithm
@@ -112,14 +112,13 @@
     In a machine learning context, the fitting of a
     model to training data is termed training the model.
     Once the model is fitted, it is customary to use
-    an unbiased dataset that is distinct from the training set
-    to evaluate the final model performance. This dataset is
-    the test set.
+    an unbiased dataset that is distinct from the training set, the test set,
+    to evaluate the final model performance.
 
 \subsection{Model of a neuron}
     In this context, a neuron is described by
     \begin{equation}\label{eqn:neuron}
-        y = \phi(\mathbf{w}^{T}\mathbf{x} + b)
+        y = \phi(\mathbf{x}; \theta) = \phi(\mathbf{w}^{T}\mathbf{x} + b)
     \end{equation}
     where the model inputs, $\mathbf{x}$, are multiplied
     by the model weights, $\mathbf{w}$, before being summed
@@ -133,7 +132,7 @@
     \begin{figure}
         \ctikzfig{img/ml/neuron}
         \caption{A schematic diagram of a neuron. The model inputs
-        $\mathbf{x}$ and weights $\mathbf{w}$ are vectors, where as
+        $\mathbf{x}$ and weights $\mathbf{w}$ are vectors, whereas
         the bias $b$ is a scalar. The weighted inputs are summed with
         the bias before passing through an activation function
         to give the scalar output $y$.}
@@ -141,12 +140,12 @@
     \end{figure}
     
     Some of the more well-known activation functions are
-    the sigmoid function, hyperbolic tangent, rectified linear unit (ReLU) \cite{Nair2010RectifiedLU}.
+    the sigmoid function, hyperbolic tangent, and the rectified linear unit (ReLU) \cite{Nair2010RectifiedLU}.
     A less familiar class of activation functions are the
     sigmoid linear units (SiLU) \cite{Hendrycks2016BridgingNA},
     of which swish \cite{DBLP:journals/corr/abs-1710-05941} is an example.
     The functional forms of these
-    functions are summarised in Table~\ref{table:activation_functions}.
+    functions and their gradients are summarised in Table~\ref{table:activation_functions}.
     There is no single activation function that is the best
     for any given task, and it is common practice to choose activation
     functions on a case-by-case basis.
@@ -189,7 +188,7 @@
     outputs for the overall model, and does not specify
     anything about the layers preceding, hence the term hidden.
     The neural network is free to change the parameters
-    in these layers to best approximate the target function,
+    in these hidden layers to best approximate the target function
     $g(\mathbf{x})$.
     Output layers are functionally the same as hidden
     layers, except that their outputs are taken as the
@@ -214,7 +213,7 @@
     to the number of nodes in the hidden layers.
 
     The output of a densely-connected neural network can
-    be formulated by repeatedly applying (\ref{eqn:neuron})
+    be formulated by repeatedly applying Eq. (\ref{eqn:neuron})
     to give
     \begin{equation}\label{eqn:nn_output}
         f(\mathbf{x}; \theta) = \boldsymbol{\phi}^{(n)}(\ldots \boldsymbol{\phi}^{(2)}(\; \boldsymbol{\phi}^{(1)}(\mathbf{x}; \theta^{(1)})\; ; \theta^{(2)}) \; ; \theta^{(n)}) \, ,
@@ -270,7 +269,7 @@
 
     Since neural networks are generally aimed at
     learning non-linear functions, the loss surface
-    corresponding to (\ref{eqn:MSE}) is
+    corresponding to Eq. (\ref{eqn:MSE}) is
     a function of many variables, and is likely highly
     non-convex with many local minima.
     The methods of choice for traversing these loss surfaces
@@ -298,7 +297,7 @@
     respect to entire training set) by having an efficient
     estimation of the gradient that is accurate enough
     for practical applications. In modern machine learning
-    libraries, the updating of weights in (\ref{eqn:gradient_descent})
+    libraries, the updating of weights in Eq. (\ref{eqn:gradient_descent})
     is carried out via matrix multiplications which are
     highly efficient on graphics-processing units (GPUs),
     and the gradients are computed numerically with the aid
@@ -311,7 +310,7 @@
     is the basis upon which many of the most widely
     adopted optimisers \cite{kiefer1952stochastic,hintonrmsprop,Kingma:2014vow}
     are based on. For an overview of these optimisers, see for instance
-    Reference \cite{Ruder:2016lil}.
+    Ref. \cite{Ruder:2016lil}.
 
     \subsection{Optimisation of hyperparameters}
     Another set of parameters that need to be optimised
@@ -319,7 +318,7 @@
     Hyperparameters are parameters that are
     not explicitly parameters of the model, instead they control
     the speed and quality of the training process.
-    For instance, the learning rate in ({\ref{eqn:gradient_descent}}) is
+    For instance, the learning rate in Eq. ({\ref{eqn:gradient_descent}}) is
     an important hyperparameter whose initial value has
     to be chosen carefully to observe a good rate of convergence.
     Some other examples would be
@@ -334,7 +333,7 @@
     reasons. Firstly, the dimensionality of parameter space to choose from is large,
     and so the curse of dimensionality kicks in rapidly.
     Secondly, there is no exact a priori way to evaluate the
-    final performance of the neural network given a set of
+    final performance of a neural network given a set of
     hyperparameters, meaning training has to take place for
     some steps before the final model performance can be estimated.
     
@@ -346,8 +345,8 @@
     these methods are quick to implement, the number of trials
     to land on a good set of hyperparameters could potentially
     be very large. Methods which aim to reduce the number
-    of trials have been proposed in the literature, see for example
-    Reference \cite{Yu2020HyperParameterOA} for a review.
+    of trials have been proposed in the literature, see Ref.
+    \cite{Yu2020HyperParameterOA} for a review.
     Below we discuss two paradigms of hyperparameter optimisation
     that aim to reduce number of trials when doing hyperparameter searches.
 
@@ -376,9 +375,9 @@
     been proposals of combining Bayesian optimisation and
     the bandit-based approaches \cite{falkner2018bohb}.
     
-    In practice the area of hyperparameter optimisation
+    In practice, the area of hyperparameter optimisation
     is still extremely computationally expensive even with
-    the more advanced methods. Given a sensible set of hyperparameters,
+    the more advanced methods outlined above. Given a sensible set of hyperparameters,
     one has to balance the additional time spent tuning with the
     relatively incremental improvements in performance. For this reason,
     the hyperparameter tuning in novel machine learning experiments
@@ -397,8 +396,8 @@
     a bottleneck in event generation, and so building a
     fast surrogate model would accelerate this process.
     Once a fast and accurate surrogate model has been
-    built, it can supplement the traditional matrix
-    element generator to increase statistical power of the sample
+    built, it can supplement traditional matrix
+    element generators to increase statistical power of the sample
     by predicting on many more phase-space points. This
     requires the accumulated error in the surrogate model
     predictions to be lower than the statistical error in the
@@ -421,7 +420,8 @@
     element generators, and sufficiently accurate. Neural
     network predictions are fast by virtue of them being
     simple matrix multiplications, and because they are predicted
-    in batches, vectorisation is automatic. Therefore the difficulty
+    in batches, vectorisation is automatic\footnote{Event generators currently generate events one at a time, however, neural network predictions are still highly performant for single predictions.}.
+    Therefore the difficulty
     in building a good surrogate model is in controlling
     the accuracy.
 
@@ -477,10 +477,10 @@
     with good agreement in histogrammed distributions. However,
     the per-point agreement was lacking.
 
-    This FKS partitioning method was applied in Reference \cite{Aylett-Bullock:2021hmo}
+    This FKS partitioning method was applied in Ref. \cite{Aylett-Bullock:2021hmo}
     for diphoton plus jet production, where the authors presented a
-    use case of the emulator with a novel interface to the Sherpa event generator.
-    This work was revisited in \cite{Badger:2022hwf},
+    use case of the emulator with a novel interface to the {\Sherpa} event generator.
+    This work was revisited in Ref. \cite{Badger:2022hwf},
     where particular attention was paid to quantifying the uncertainty associated
     with the neural network prediction. This uncertainty was
     modelled with a Bayesian neural network which enabled
@@ -508,21 +508,23 @@
     In Chapter~\ref{chapter:fame1}, we show that by using
     Catani-Seymour dipoles as a set of basis functions, tree-level
     matrix elements for $e^{+}e^{-} \rightarrow q \bar{q}$ + up to 3 gluons
-    can be emulated accurately to well below 1\% accuracy,
+    can be emulated accurately to well below 1\% per-point accuracy,
     even for the highest multiplicity. Extending this study
     to the one-loop level is done in Chapter~\ref{chapter:fame2},
     where antenna functions replace Catani-Seymour dipoles as
-    the basis functions.
+    the basis functions. Accuracy was observed to be of the
+    order 1\% for the 5 parton case, with good scaling
+    to higher multiplicities.
 
     The question of uncertainty of the neural network
-    prediction is important as it contributes to the total
+    prediction is important as it directly contributes to the total
     theoretical uncertainty. An alternative to quantifying
     the uncertainty of the neural network prediction is to
     bypass the usage of the neural network prediction itself
     in production.
     Instead it can be used as a proxy for the exact matrix
     element in event unweighting. This was explored in
-    Reference \cite{Danziger:2021eeg},
+    Ref. \cite{Danziger:2021eeg},
     where it was shown that with a surrogate model of the event
     weight it was possible to use a double unweighting
     algorithm to increase the rate of event unweighting.
