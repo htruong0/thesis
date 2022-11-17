@@ -55,6 +55,7 @@
 \usepackage[margin=15mm,hang]{caption}
 \usepackage{subcaption}
 \usepackage{perpage} % Allows to reset counters on each page
+\counterwithout{footnote}{chapter}
 % \MakePerPage{footnote} % Resets footnote counters on each page
 
 
@@ -109,3 +110,19 @@
 	range-units = single % only write unit once
 } 
 \DeclareSIUnit\fb{\femto\barn}
+
+
+% some physics small caps
+\newcommand{\Sherpa}{S\protect\scalebox{0.8}{HERPA}\xspace}
+\newcommand{\Pythia}{P\protect\scalebox{0.8}{YTHIA}\xspace}
+\newcommand{\Herwig}{H\protect\scalebox{0.8}{ERWIG}\xspace}
+\newcommand{\MadGraph}{M\protect\scalebox{0.8}{AD}G\protect\scalebox{0.8}{RAPH}\xspace}
+\newcommand{\MadLoop}{M\protect\scalebox{0.8}{AD}L\protect\scalebox{0.8}{OOP}\xspace}
+\newcommand{\fastjet}{F\protect\scalebox{0.8}{AST}J\protect\scalebox{0.8}{ET}\xspace}
+\newcommand{\OpenLoops}{O\protect\scalebox{0.8}{PEN}L\protect\scalebox{0.8}{OOPS}\xspace}
+\newcommand{\Collier}{C\protect\scalebox{0.8}{OLLIER}\xspace}
+\newcommand{\Recola}{R\protect\scalebox{0.8}{ECOLA}\xspace}
+\newcommand{\Njet}{N\protect\scalebox{0.8}{JET}\xspace}
+\newcommand{\MCFM}{M\protect\scalebox{0.8}{CFM}}
+\newcommand{\Foam}{F\protect\scalebox{0.8}{OAM}\xspace}
+\newcommand{\Vegas}{V\protect\scalebox{0.8}{EGAS}\xspace}
