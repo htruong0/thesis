@@ -1,6 +1,6 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
-\chapter{Monte Carlo Event Generators}\label{chap:MC}
+\chapter{Monte Carlo Event Generators}\label{chapter:MC}
     At particle collider experiments,
     the collisions between incoming particles can lead
     to highly complex final-states with a large number
@@ -17,17 +17,17 @@
     their kinematic hardness (c.f. Section~\ref{sec:factorisation}).
     The standard tools used
     to simulate these stages of an event are general-purpose
-    Monte Carlo event generators (event generators), see
-    for example Reference \cite{Buckley:2011ms} for a review.
+    Monte Carlo event generators, see
+    Ref. \cite{Buckley:2011ms} for a review.
     These are indispensable tools that help
     bridge the gap between theoretical predictions
     and experimental measurements with nearly all
     analyses made at the ATLAS and CMS experiments
     involving some form of event generator usage.
     General-purpose event generators
-    such as Herwig \cite{Bahr:2008pv,Bellm:2015jjp},
-    Pythia \cite{Sjostrand:2006za,Bierlich:2022pfr},
-    and Sherpa \cite{Gleisberg:2008ta,Sherpa:2019gpd} all broadly share 
+    such as {\Herwig} \cite{Bahr:2008pv,Bellm:2015jjp},
+    {\Pythia} \cite{Sjostrand:2006za,Bierlich:2022pfr},
+    and {\Sherpa} \cite{Gleisberg:2008ta,Sherpa:2019gpd} all broadly share 
     the same features at a high-level, but each framework
     carries subtle differences. Hence, it is common
     to use many different event generators
@@ -61,23 +61,23 @@
     The purpose of this chapter is to give a brief overview
     of Monte Carlo integration in the context of event
     generation, a more in-depth treatment of the
-    specifics of Monte Carlo methods can be found in, for example, Reference
+    specifics of Monte Carlo methods can be found in Ref.
     \cite{James:1980yn}.
 
     The basic idea of Monte Carlo integration is to approximate
-    the integral of a function $f(\vec{x})$ by sampling it
-    in $d$-dimensional parameter space points $\vec{x}$
+    the integral of a function $f(\mathbf{x})$ by sampling it
+    in $d$-dimensional parameter space points $\mathbf{x}$
     \begin{equation}\label{eqn:MC_integration}
-        I = \int_{V} \mathrm{d}^{d}x \; f(\vec{x}) \approx \langle I(f) \rangle_{x} = V \dfrac{1}{N} \sum_{i=1}^{N} f(\vec{x}_{i}) = V \langle f \rangle_{x} \, ,
+        I = \int_{V} \mathrm{d}^{d}x \; f(\mathbf{x}) \approx \langle I(f) \rangle_{x} = V \dfrac{1}{N} \sum_{i=1}^{N} f(\mathbf{x}_{i}) = V \langle f \rangle_{x} \, ,
     \end{equation}
-    where the points $\vec{x}$ are randomly,
+    where the points $\mathbf{x}$ are randomly,
     uniformly sampled in the volume $V$. $\langle f \rangle_{x}$
     denotes the average of $f$ over these uniformly sampled
     points. The law of large numbers ensures that the
     estimator $\langle I(f) \rangle_{x}$ will converge to
     the true value $I$ for $N \rightarrow \infty$. As a
     result of the central limit theorem, the function evaluations
-    $f(\vec{x}_{i})$ will follow a Gaussian distribution with
+    $f(\mathbf{x}_{i})$ will follow a Gaussian distribution with
     mean $\langle I(f) \rangle_{x}$,
     meaning an error estimate on the estimator is given by
     the standard error of the mean
@@ -87,7 +87,7 @@
     which falls as $1/\sqrt{N}$, with no dependence
     on $d$.
 
-    An algorithm that samples points $\vec{x}$ is called
+    An algorithm that samples points $\mathbf{x}$ is called
     an integrator. To make use of the random numbers sampled,
     they need to be mapped to quantities that are useful in a simulation
     setting. The most commonly used mapping is to map
@@ -106,7 +106,7 @@
 
     One such method is importance sampling which
     aims to reduce the variance via a remapping of the
-    uniformly sampled variables $\vec{x}$
+    uniformly sampled variables $\mathbf{x}$
     to a more suitable non-uniform distribution.
     In the context of particle physics,
     this corresponds to using a mapping of random numbers
@@ -115,19 +115,19 @@
     more frequently in regions where the matrix element
     is large in magnitude. Integrators inspired by the pole
     structure of multi-parton QCD processes have been
-    studied in References \cite{Draggiotis:2000gm,vanHameren:2002tc}.
+    studied in Refs. \cite{Draggiotis:2000gm,vanHameren:2002tc}.
     
     Another common variance reduction technique is
     stratified sampling which divides the integration
     volume into sub-volumes, or bins. The overall integral
-    and variances are the sums of the partial results
+    and variance are the sums of the partial results
     in each bin. The overall variance is minimised when
     the contributions from each bin are equal. This
     is achieved by sampling more from bins where the integral
     is rapidly fluctuating (and not necessarily large),
-    and less from bins where the integral has less fluctuations.
+    and less from bins where the integral has fewer fluctuations.
     
-    In practice, state-of-the-art event generators
+    In practice, state of the art event generators
     combine the concepts of importance sampling and stratified
     sampling with adaptive sampling \cite{Lepage:1977sw,Lepage:2020tgj}
     and multi-channelling methods \cite{Kleiss:1994qy,Ohl:1998jn}
@@ -135,10 +135,11 @@
 
     \section{Event unweighting}\label{sec:unweighting}
     Once a suitable configuration of momenta
-    has been found by the integrator, this point forms the basis of an
+    has been found by the integrator, this phase-space point forms the basis of an
     event. The matrix element of interest can be evaluated at
     this phase-space point at the desired order in perturbation
-    theory (see Section~\ref{sec:me_generators}). Additionally, there will be an associated Jacobian
+    theory (see Section~\ref{sec:me_generators}).
+    Additionally, there will be an associated Jacobian
     from the mapping from random variables to the four-momenta.
     This Jacobian, along with the PDF weights and flux factors,
     are referred to as the phase-space weight, $J_{i}$. Taking
@@ -169,11 +170,11 @@
     \begin{algorithm}
         \caption{Rejection sampling for unweighting events}\label{alg:unweighting}
         \While{unweighting}{
-            generate random phase-space point $\vec{x}$\;
-            evaluate event weight $w \gets w(\vec{x})$\;
+            generate random phase-space point $\mathbf{x}$\;
+            evaluate event weight $w \gets w(\mathbf{x})$\;
             generate uniform random number $r \gets$ Random(0, 1)\;
             \If{$w / w_{\mathrm{max}} > r$}{
-                \KwRet $\vec{x}$ and $\tilde{w} \gets 1$\;
+                \KwRet $\mathbf{x}$ and $\tilde{w} \gets 1$\;
                 % $\tilde{w} \gets \max(1,\; w / w_{\mathrm{max}})$\;
             }
         }
@@ -198,19 +199,19 @@
 
     An alternative to improving the unweighting efficiency
     itself is to accelerate the process of unweighting itself. This
-    was explored in Reference \cite{Danziger:2021eeg} wherein a
+    was explored in Ref. \cite{Danziger:2021eeg} wherein a
     novel two-stage unweighting procedure employing a surrogate
     model of the exact event weight was used to decrease the amount of
     time spent unweighting events. This idea will be elaborated on
     in Chapter~\ref{chapter:fame3} where we build upon
-    Reference \cite{Danziger:2021eeg} by increasing the fidelity of
+    Ref. \cite{Danziger:2021eeg} by increasing the fidelity of
     the surrogate model.
 
     \section{Anatomy of an event}\label{sec:anatomy_event}
     The simulation of an event can be split up into three
     main stages: the hard scattering process, followed by
     the parton shower, and finally hadronisation.
-    This is motivated by the factorisation theorem (Section~\ref{sec:factorisation})
+    This is motivated by the factorisation theorem (c.f. Section~\ref{sec:factorisation})
     which separates the high energy regimes from the low
     energy regimes.
 
@@ -223,7 +224,7 @@
 
     As seen in Eq. (\ref{eqn:matrix_element}),
     the exact matrix element is approximated by a perturbative
-    series in a coupling constant. By now it is standard to
+    series in a coupling parameter. By now it is standard to
     have at least the LO and NLO contributions in this expansion.
     The calculations of
     tree-level \cite{Mangano:2002ea,Krauss:2001iv,Gleisberg:2008fv,Cafarella:2007pc,Alwall:2011uj,Kilian:2007gr}
@@ -235,11 +236,11 @@
     the Binoth Les Houches Accord \cite{Binoth:2010xt,Alioli:2013nda}.
     For more information on the machinery developed to
     compute matrix elements at tree-level and
-    one-loop level required for SM predictions, see for instance Reference \cite{Campbell:2017hsr}.
+    one-loop level required for SM predictions, see Ref. \cite{Campbell:2017hsr}.
     NNLO and N$^{3}$LO QCD corrections have been computed
     for select processes but have yet to be reach the
     level of automation of NLO.
-    For a review of recent advancements see References \cite{Caola:2022ayt,Campbell:2022qmc}.
+    For a review of recent advancements see Refs. \cite{Caola:2022ayt,Campbell:2022qmc}.
     
     Matrix element calculations account for a large
     portion of the total event generation time \cite{Bothmann:2022thx}.
@@ -283,14 +284,14 @@
 
     \subsection*{Hadronisation}\label{sec:hadronisation}
     The simulation of the formation of hadrons in the low-energy regime
-    of an event generator follow phenomenological, non-perturbative models.
+    of an event generator follows phenomenological, non-perturbative models.
     These hadronisation models require the combination
     of quarks and antiquarks to form colourless hadrons.
     The two main classes of models used to simulate
     hadronisation are the cluster models \cite{Webber:1983if,Winter:2003tt}
     and string models \cite{Andersson:1983ia}.
     For more discussion on hadronisation
-    see for example Reference \cite{Webber:1999ui}.
+    see Ref. \cite{Webber:1999ui}.
 
     \section{A note on theoretical uncertainties}\label{sec:scale_variations}
     The partonic cross-section, $\hat{\sigma}(\mu_{F}, \mu_{R})$, has
@@ -302,7 +303,7 @@
 
     The most widely adopted approach to estimate the
     theoretical uncertainties associated with these
-    missing higher order terms is to carry out a seven-point
+    missing higher order terms is to carry out a seven point
     scale variation. Typically in a calculation,
     $\mu_{0} = \mu_{F} = \mu_{R}$ where $\mu_{0}$ depends on the specifics
     of the process of interest. Taking the value of the
@@ -322,7 +323,7 @@
     where $\delta$ is determined from the scale variations.
     However, there is no single, well agreed upon definition
     of $\delta$ \cite{Cacciari:2011ze}.
-    The reasoning behind this approach is that $\delta$
+    The rationale behind taking this approach is that $\delta$
     is approximately the same order as the true missing
     higher order terms.
 
