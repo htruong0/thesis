@@ -5,21 +5,9 @@
 
 \section{Introduction}
 \label{sec:intro}
-Neural networks (NN) first appeared in the field of particle physics as a tool for event discrimination in the analysis of collider data. 
-Since then neural networks and other machine learning techniques have proved useful in many other areas of the field. 
-On the theory prediction side they have been used 
-to improve the efficiency of Monte Carlo sampling \cite{Bendavid:2017zhk,Klimek:2018mza,Bothmann:2020ywa,Verheyen:2020bjw,Chen_2021}, 
-to accelerate the simulation of radiation within a jet~\cite{Carrazza:2019cnt,Bothmann:2018trh,Dohi:2020eda}, 
-to streamline the processes of generation and unweighting of simulated event samples 
-\cite{Gao:2020zvv,Otten:2018kum,Hashemi:2019fkn,DiSipio:2019imz,Butter:2019cae,Bishara:2019iwh,Backes:2020vka,Butter:2020qhk,Alanazi:2020klf,Nachman:2020fff}.
-Closer to the experimental measurements 
-they have also been used to emulate detector simulation \cite{Paganini:2017dwg,SHiP:2019gcl,Derkach:2019qfk,Alanazi:2020jod},
- they can be used to perform unfolding \cite{Andreassen:2019cjw} or correcting for detector effects \cite{Bellagente:2019uyp},
-and perform pileup subtraction \cite{Andreassen:2019cjw}. 
-
 The capacity of neural networks to approximate intricate functions have already been 
 used to provide fast calculations of production cross-sections~\cite{Otten:2018kum,Buckley:2020bxg}.
-In this article we investigate whether NNs can approximate production cross-sections more differentially by replacing computationally expensive 
+In this chapter we investigate whether NNs can approximate production cross-sections more differentially by replacing computationally expensive 
 matrix element calculations. 
 The challenge with this endeavour is that matrix elements are plagued with numerous divergences that arise from infrared divergences.
 In previous works \cite{Badger:2020uow,Aylett-Bullock:2021hmo} a combination of individual neural networks were used 
@@ -31,12 +19,12 @@ we note that the accuracy of the interpolation at the level of individual points
 histograms. In addition, the performance of the extrapolation outside of its training phase-space 
 (i.e. more singular configurations than those considered to fit the model) is problematic.   
 
-In this article we present a different approach to the emulation of matrix elements that incorporates the factorisation 
+In this chapter we present a different approach to the emulation of matrix elements that incorporates the factorisation 
 properties of the matrix elements in the interpolation model and therefore is able to safely 
 extrapolate the matrix element in regions more singular than that covered by the data used for the training of the emulator. We find
 that our interpolator also displays a much improved pointwise accuracy.
 
-The article is organised as follows. 
+This chapter is organised as follows. 
 Section~\ref{sec:fitting} introduces our factorisation-aware 
 deep neural network model, Section~\ref{sec:results} showcases our results with a comparison with the 
 model from Ref.~\cite{Badger:2020uow} in Section~\ref{sec:n3jet_comparison}, and an analysis of the performance of our model in Section~\ref{sec:mainresult}. 
@@ -45,7 +33,7 @@ behaviour on random trajectories in phase-space in Section~\ref{sec:trajectories
 Our conclusions are presented in Section~\ref{sec:conclusion} 
 and some discussion of specific details are collected in the appendices so as not to distract from the main discussion.
 
-We provide code to reproduce the methodology detailed in this article \cite{fame_repo}.
+Computer code to reproduce the methodology detailed in this chapter is provided at \cite{fame_repo}.
 
 \section{Fitting framework}\label{sec:fitting}
 For this work we consider the $e^+e^-\rightarrow Z / \gamma^{*} \rightarrow q\bar q +n g$ matrix elements for $n$ up to and including 3, 
@@ -61,8 +49,8 @@ The simplest implementation of an emulator would be to take the input as the kin
 Our approach modifies both the input of the NN and its target, as described in the following sections.
 
 \subsection{Infrared divergences and dipole factorisation formula}
-It is well known that in soft and collinear limits the matrix element in $n+1$-body phase-space factorises into a singular factor and a reduced matrix element in $n$-body phase-space \cite{Altarelli:1977zs,BASSETTO1983201}.
-This factorisation was used by Catani and Seymour \cite{Catani:1996vz} to construct subtraction terms for the real radiation part of a NLO calculation.
+It is well known that in soft and collinear limits the matrix element in $(n+1)$-body phase-space factorises into a singular factor and a reduced matrix element in $n$-body phase-space \cite{Altarelli:1977zs,BASSETTO1983201} (Section~\ref{sec:me_factorisation}).
+This factorisation was used by Catani and Seymour \cite{Catani:1996vz} to construct subtraction terms for the real radiation part of a NLO calculation (Section~\ref{sec:CS_dipoles}).
 They introduced a factorisation formula with universal dipoles that smoothly interpolates 
 between the soft and collinear limits to capture the singular structure in these regions of phase-space.
 The dipole factorisation formula can be written schematically as
@@ -173,7 +161,7 @@ $y$ is finally standardised to a zero mean and unit variance.
 
 \paragraph*{Training, validation, and testing datasets}
 In Ref. \cite{Badger:2020uow}, the authors used 500k training samples to train their models.
-For a fair comparison of our respective methods, we follow their methodology closely by constructing our models to be as close as possible to theirs and generate training and testing data by using code from their project repository \cite{n3jet_repo}\footnote{for our main results we generate all data using our own code}.
+For a fair comparison of our respective methods, we follow their methodology closely by constructing our models to be as close as possible to theirs and generate training and testing data by using code from their project repository \cite{n3jet_repo}\footnote{For our main results we generate all data using our own code}.
 Our model architectures will not be identical due to the difference in our methods, details of our model architecture are given in Section~\ref{sec:architecture}.
 Results of this comparison are presented in Section~\ref{sec:n3jet_comparison}.
 
@@ -271,7 +259,7 @@ Ensembling models is a well-known technique within machine learning, for a revie
 
 Each model in the ensemble is initialised with different weights according to the `Glorot uniform' distribution, and trained on the same but randomly shuffled dataset, resulting in models that have been exposed to different distributions of the training data.
 After sufficient training, each model will have a distinct set of parameters that have similar predictive power.
-The prediction for the matrix element is then the mean of the outputs of all models in the ensemble\footnote{if not explicitly stated, all references to neural network predictions from henceforth refers to the prediction from the ensemble of networks}.
+The prediction for the matrix element is then the mean of the outputs of all models in the ensemble\footnote{If not explicitly stated, all references to neural network predictions henceforth refers to the prediction from the ensemble of networks}.
 Taking the mean will give a more accurate and robust prediction as averaging over the different models will reduce variance due to over/underfitting in the training phase.
 We choose to have 20 models in our ensembles because we begin to see diminishing returns in the accuracy of per-point predictions after this.
 Another advantage of training an ensemble of models is that we have a measure of uncertainty, due to the neural networks, on the model predictions by calculating the standard error of the mean.
@@ -357,7 +345,7 @@ The extra hidden nodes and layers introduces more parameters into the model allo
 We found that to get good performance, we had to balance the size of the training dataset used and the size of the network. i.e. a small network is not expected to capture all the variations in a large dataset as easily as a larger network would, due to the smaller number of parameters available to the network.
 Of course, we also had to consider more physical constraints such as the time spent on training the neural networks which limits both the size of training datasets and architecture.
 In Figure~\ref{fig:error_500k_vs_40m}, we show the improvements in accuracy of our main NNs compared to the smaller NNs from Section~\ref{sec:n3jet_comparison}.
-Although the training and testing data for the smaller NNs are not identical due to differences in code used to generate the sets\footnote{although RAMBO is used for phase-space generation in both works, the selection criteria is different (JADE algorithm vs $k_{t}$ algorithm)}, for this comparison it suffices to show that the larger NNs are orders of magnitude more accurate than the smaller NNs.
+Although the training and testing data for the smaller NNs are not identical due to differences in code used to generate the sets\footnote{Although RAMBO is used for phase-space generation in both works, the selection criteria is different (JADE algorithm vs $k_{t}$ algorithm).}, for this comparison it suffices to show that the larger NNs are orders of magnitude more accurate than the smaller NNs.
 
 \begin{figure}
     \centering
@@ -417,7 +405,7 @@ As another test of our emulator we assess the accuracy of our predictions on ran
 These random phase-space trajectories are generated by connecting two random points in phase-space continuously without excluding any region of phase-space.
 This presents an interesting and challenging test of the interpolation and extrapolation abilities of the NNs as some parts of the trajectories may lie outside of the phase-space region of the training datasets.
 We show the results for 5-jet trajectories as this is the highest multiplicity we considered, predictions on lower multiplicities are better-behaved.
-We investigated 50 different random trajectories\footnote{the corresponding plots are available in a document attached to this submission}. For the discussion in this article 
+We investigated 50 different random trajectories. For the discussion in this section
 we chose one that contains many interesting features, namely the matrix elements span many orders of magnitudes and there are distinct peaks in the trajectory.
 In Figure~\ref{fig:random_trajectory} we show the predictions by the three 5-jet models trained on data with different global phase-space cuts for this trajectory.
 Left column shows the actual matrix element prediction and right column shows the ratios of the prediction to {\NJet}.
@@ -511,7 +499,7 @@ Given that the general performance of the NNs of all three phase-space cuts are 
 to more of the complete phase-space.
 
 \section{Conclusion}\label{sec:conclusion}
-In this article we presented a new strategy to emulate matrix elements using a neural network. By leveraging the knowledge of 
+In this chapter we presented a new strategy to emulate matrix elements using a neural network. By leveraging the knowledge of 
 the factorisation properties of the matrix elements our model is able to extrapolate well outside of its training range. 
 We showed that using this method we obtain significantly improved per-point accuracy than obtained in previous works. 
 We also showed that the per-point accuracy of the model is not significantly affected by the generation cut for the training, which means that
@@ -520,7 +508,7 @@ it would be possible to train our emulator on very inclusive cuts, allowing them
 The accuracy of the emulation could allow users to augment the training dataset to reduce the MC error of cross-sections or distributions while using 
 fewer computing resources compared to the original calculation. We leave the investigation of this aspect to further work.
 
-Our method was demonstrated in this article using a tree-level process, but it could be generalised to higher order matrix elements by adapting the set 
-of ingredients made available to the network for the interpolation. Specifically, we can include extra terms into our ansatz to help capture additional divergences at higher orders. We look forward to applying this method to such cases.
+Our method was demonstrated in this chapter using a tree-level process, but it could be generalised to higher order matrix elements by adapting the set 
+of ingredients made available to the network for the interpolation. This is explicitly shown in the next chapter for the same process at NLO QCD.
 
 \end{document}
