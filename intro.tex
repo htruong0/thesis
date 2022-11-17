@@ -44,7 +44,7 @@ to the event generators and evaluation is largely automated for many
 of the most important processes. However, the evaluation time
 for these complex expressions becomes problematic
 when generating the large samples required to compare with
-experiments. Especially when a significant portion of time
+experiments. Especially when a significant portion of the time
 spent simulating an event is spent on evaluating matrix
 elements.
 
@@ -130,14 +130,14 @@ Chapter~\ref{chapter:conclusion}.
     considered in the SM, and so it is not described.
     Each of the three fundamental forces described by the SM is mediated
     by the exchange of a gauge boson. The massless gauge bosons mediating the strong
-    and EM force are the gluon $g$ and photon $\gamma$,
+    and EM forces are the gluon $g$ and photon $\gamma$,
     respectively. For the weak force the gauge bosons are the $W^{\pm}$
     and $Z^{0}$ bosons, which attain a mass through the Higgs mechanism \cite{Englert:1964et,Higgs:1964pj,Guralnik:1964eu}
     during EWSB, elucidating the Higgs boson $H$.
 
     The matter content of the SM consists of fermions, which can be split
     into quarks and leptons. Quarks are massive and experience the strong,
-    weak, and EM force. Leptons are defined by their lack of colour charge,
+    weak, and EM forces. Leptons are defined by their lack of colour charge,
     meaning they do not experience the strong force. Leptons can be separated
     into charged leptons (electron $e$, muon $\mu$, tau $\tau$
     and their antiparticles) which experience the weak and EM force, and 
@@ -170,7 +170,7 @@ Chapter~\ref{chapter:conclusion}.
     $\mathcal{L}_{\mathrm{fermion}}$ describes how fermions interact with
     gauge fields as well as their kinetic terms,
     $\mathcal{L}_{\mathrm{Higgs}}$ describes the Higgs field,
-    $\mathcal{L}_{\mathrm{Yukawa}}$ describes the interaction between the Higgs
+    $\mathcal{L}_{\mathrm{Yukawa}}$ describes the interactions between the Higgs
     field and fermions,
     $\mathcal{L}_{\mathrm{GF}}$ is a gauge fixing term,
     and $\mathcal{L}_{\mathrm{ghost}}$ is a ghost term.
@@ -267,15 +267,16 @@ Chapter~\ref{chapter:conclusion}.
     \begin{equation}\label{eqn:L_GF}
         \mathcal{L}_{\mathrm{GF}} = -\dfrac{1}{2\xi}(\partial^{\mu}A_{\mu}^{a})^{2} \, ,
     \end{equation}
-    where $\xi = 1$ corresponds to the Feynman-'t-Hooft gauge.
+    where $\xi = 1$ corresponds to the Feynman-'t Hooft gauge.
     The ghost Lagrangian is most commonly written
     in the Faddeev-Popov procedure as
     \begin{equation}\label{eqn:L_ghost}
         \mathcal{L}_{\mathrm{ghost}} = (\partial_{\mu}\bar{c}^{a})(\delta^{ac}\partial_{\mu} + g_{s}f^{abc}A^{b}_{\mu})c^{c} \, ,
     \end{equation}
     where $c^{a}$ ($\bar{c}^{a}$) are Faddeev-Popov ghosts (antighosts).
-    The ghosts are unphysical external states but must be
-    included in internal lines for a gauge invariant theory.
+    The ghosts are unphysical particles and so cannot appear as
+    external states but must be included in internal lines for
+    a gauge invariant theory.
 
     \subsection{QCD Feynman rules}\label{sec:qcd_feynman}
     Now that we have written down the QCD Lagrangian,
@@ -289,7 +290,7 @@ Chapter~\ref{chapter:conclusion}.
     can occur.
 
     Expanding Eq. (\ref{eqn:L_QCD}) and extracting the terms
-    that mix the gauge and fermions fields, we get an interaction Lagrangian
+    that mix the gauge and fermion fields, we get an interaction Lagrangian
     \begin{equation}\label{L_int}
         \mathcal{L}_{\mathrm{int}} = g_{s}A^{a}_{\mu}\bar{\psi}_{i}^{f}\gamma^{\mu}T^{a}_{ij}\psi_{j}^{f}-g_{s}f^{abc}(\partial_{\mu}A^{a}_{\nu})A^{b,\,\mu}A^{c,\,\nu} -\dfrac{g_{s}^{2}}{4}f^{abc}A^{b}_{\mu}A^{c}_{\nu}f^{ade}A^{d,\,\mu}A^{e,\,\nu} \, ,
     \end{equation}
@@ -325,8 +326,8 @@ Chapter~\ref{chapter:conclusion}.
     in the SM can be found in Ref. \cite{Romao:2012pq}.
 
     From these Feynman rules, we identify that each
-    fermion-gluon and three gluon vertices
-    are associated with one power of $\alpha_{s}$ (due to squaring $g_{s}$),
+    fermion-gluon and three gluon vertex
+    is associated with one power of $\alpha_{s}$ (due to squaring $g_{s}$),
     and the four gluon vertex is associated with
     two powers of $\alpha_{s}$. This relationship
     between vertices and $\alpha_{s}$ allows
@@ -453,7 +454,7 @@ Chapter~\ref{chapter:conclusion}.
     of the splitting kernels as the probability of finding a parton
     $a$ in parton $b$ carrying a momentum fraction $x$ of the parent parton.
     
-    The momenta fractions, $x$, also link the
+    The momentum fractions, $x$, also link the
     squared centre-of-mass energies of the hadronic collision,
     denoted as $s$, to the partonic equivalent as
     \begin{equation}\label{eqn:E_cm_partonic}
@@ -471,11 +472,11 @@ Chapter~\ref{chapter:conclusion}.
     be discussed in Section~\ref{sec:scale_variations}
     in the context of theoretical uncertainties.
 
-    The discussion so far has been focused hadron-hadron
-    initiated scattering, however, a similar argument
+    The discussion so far has been focused on hadron-hadron
+    initiated scattering, however a similar argument
     can be made about electron-positron annihilation,
     where the electron-positron annihilates to form a
-    photon or $Z$ boson which fluctuates into a quark-antiquark
+    photon or $Z$ boson which decays into a quark-antiquark
     pair. For a sufficiently high energy collision,
     these interactions can be calculated in perturbation
     theory.
@@ -490,7 +491,7 @@ Chapter~\ref{chapter:conclusion}.
 
 \section{Scattering amplitudes and cross-sections}\label{sec:xs}
     At collider experiments we typically collide
-    two beams consisting of bundles of energetic
+    two beams consisting of bunches of energetic
     particles and analyse the resulting products
     of these collisions. The predictions that we make
     from our theoretical model are the partonic
@@ -499,12 +500,13 @@ Chapter~\ref{chapter:conclusion}.
     first consider the hard scattering of particles.
     To model the hard collisions in
     a collider experiment, we look at the specific
-    case of two particles colliding into $n$ particles.
+    case of two particles colliding and producing $n$ particles.
     Scattering amplitudes are used to mathematically
     describe these scattering processes.
     For an initial-state
     $|i\rangle$ and final-state $|f\rangle$
     the scattering amplitude can be written as
+    the overlap between the states
     \begin{equation}\label{eqn:scattering}
         \langle f | S | i \rangle \, ,
     \end{equation}
@@ -516,7 +518,7 @@ Chapter~\ref{chapter:conclusion}.
     \end{equation}
     The $S$-matrix encodes all the information
     about how the initial-state will evolve
-    into the final-state over time. By writing
+    over time. By writing
     the $S$-matrix in this way, all the interactions
     are separated into the transfer matrix $\mathcal{T}$,
     as the identity matrix describes the free theory.
@@ -524,14 +526,14 @@ Chapter~\ref{chapter:conclusion}.
     on the $S$-matrix, the matrix element,
     $\mathcal{M}$, is defined in the following expression
     \begin{equation}\label{eqn:S_matrix_element}
-        \langle f | \mathcal{T} | i \rangle = (2\pi)^{4} \delta^{4}\left(p_{a} + p_{b} - \sum_{f=1}^{n} p_{f}^{\mu}\right) \mathcal{M} \, ,
+        \langle f | \mathcal{T} | i \rangle = (2\pi)^{4} \delta^{4}\left(p_{a} + p_{b} - \sum_{f=1}^{n} p_{f}\right) \mathcal{M} \, ,
     \end{equation}
     where we take $p_{a}$ and $p_{b}$ to be
     the momenta of the two colliding
     particles in the initial-state, and $p_{f}$ to be the
-    momenta of the $n$ final-state particles.
+    momenta of the $n$ particles in the final-state.
     The probability of this process occurring
-    is the modulus squared of the scattering amplitude
+    is the modulus squared of the scattering amplitude\footnote{Neglecting the case of scattering with no interactions taking place.}
     \begin{equation}\label{eqn:S_prob}
         P = |\langle f | S | i \rangle|^{2} \propto | \langle f | \mathcal{M} | i \rangle |^{2}
     \end{equation}
@@ -545,10 +547,10 @@ Chapter~\ref{chapter:conclusion}.
     the cross-section, $\sigma$, as introduced in
     Eq. (\ref{eqn:hadronic_cs}). The cross-section is a property
     of the particles being scattered, and is independent
-    of the way the experiment is carried out.
+    of the way the experiment is carried out (disregarding energy scale of experiment).
     Since the hadronic cross-section factorises
     the soft energy effects into the non-perturbative PDFs,
-    which are determined once and for all
+    which are determined once, for all
     processes, the object of interest now becomes the
     partonic cross-section, $\hat{\sigma}$, which
     encodes the scattering information of the specific
@@ -595,7 +597,7 @@ Chapter~\ref{chapter:conclusion}.
     %     \mathrm{d}\Phi_{n} = (2\pi)^{d}\delta^{(d)}\left(p_{a} + p_{b} - \sum_{f} p_{f}^{\mu}\right) \prod_{f=1}^{n} \dfrac{\mathrm{d}^{d}p_{f}}{(2\pi)^{d-1}}\delta(p_{f}^{2} - m_{f}^{2})\theta(E_{f}) \, ,
     % \end{equation}
     \begin{equation}\label{eqn:dlips_4d}
-        \mathrm{d}\Phi_{n} = (2\pi)^{4}\delta^{4}\left(p_{a} + p_{b} - \sum_{f=1}^{n} p_{f}^{\mu}\right) \prod_{f=1}^{n} \dfrac{\mathrm{d}^{4}p_{f}}{(2\pi)^{3}}\delta(p_{f}^{2} - m_{f}^{2})\theta(E_{f}) \, ,
+        \mathrm{d}\Phi_{n} = (2\pi)^{4}\delta^{4}\left(p_{a} + p_{b} - \sum_{f=1}^{n} p_{f}\right) \prod_{f=1}^{n} \dfrac{\mathrm{d}^{4}p_{f}}{(2\pi)^{3}}\delta(p_{f}^{2} - m_{f}^{2})\theta(E_{f}) \, ,
     \end{equation}
     where the second $\delta$-function restricts
     the final-state particles to be on mass-shell
@@ -617,7 +619,7 @@ Chapter~\ref{chapter:conclusion}.
     Feynman diagrams. In this picture, matrix elements
     are exactly the sum over all Feynman diagrams\footnote{Since we are working on the level
     of $|\mathcal{M}|^{2}$, this would
-    be the sum of all interference of Feynman diagrams.}
+    be the sum of all interference terms.}
     for a particular process. However, for a given
     process the exact matrix element is a sum over
     infinitely many Feynman diagrams.
@@ -646,9 +648,8 @@ Chapter~\ref{chapter:conclusion}.
     loop or leg. In general, we have terms
     N$^{\mathrm{k}}$LO where each additional power of $\alpha_{s}$
     increases complexity of the computations, however,
-    because the expansion $\alpha_{s}$
-    is small, each additional term should contribute
-    less and less.
+    because $\alpha_{s}$ is small, each additional term
+    should contribute less and less.
     In principle, this means that the first terms dominate the expansion,
     and it should be sufficient to terminate the series after
     a few terms to reach an acceptable level of accuracy.
