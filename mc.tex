@@ -4,7 +4,7 @@
     At particle collider experiments,
     the collisions between incoming particles can lead
     to highly complex final-states with a large number
-    of particles. In a hadron collider, such as the LHC,
+    of particles. In any collider involving QCD processes,
     the particles we observe are not the constituents
     of the proton, the quarks and gluons. Instead we observe
     hadrons which are the bound states of these partons
@@ -54,8 +54,8 @@
     have already been applied to reduce the dimensionality.
     Therefore, instead of carrying out the integrals analytically,
     numerical methods become more attractive. The current
-    prevailing method is Monte Carlo integration which
-    has no scaling with the dimensionality of the integral,
+    prevailing method is Monte Carlo integration as the
+    integration error has no scaling with the dimensionality of the integral,
     and so can be used for arbitrarily high multiplicity final-states
     with no performance penalty compared to lower multiplicities.
     The purpose of this chapter is to give a brief overview
@@ -68,21 +68,23 @@
     the integral of a function $f(\mathbf{x})$ by sampling it
     in $d$-dimensional parameter space points $\mathbf{x}$
     \begin{equation}\label{eqn:MC_integration}
-        I = \int_{V} \mathrm{d}^{d}x \; f(\mathbf{x}) \approx \langle I(f) \rangle_{x} = V \dfrac{1}{N} \sum_{i=1}^{N} f(\mathbf{x}_{i}) = V \langle f \rangle_{x} \, ,
+        I = \int_{V} \mathrm{d}\mathbf{x} \; f(\mathbf{x}) \approx I_{N} = V \dfrac{1}{N} \sum_{i=1}^{N} f(\mathbf{x}_{i}) = V \langle f \rangle_{\mathbf{x}} \, ,
     \end{equation}
     where the points $\mathbf{x}$ are randomly,
-    uniformly sampled in the volume $V$. $\langle f \rangle_{x}$
+    uniformly sampled in the volume $V$. Given a sample of $N$
+    points $\{\mathbf{x}_{1}, \ldots, \mathbf{x}_{N}\} \in V$,
+    $\langle f \rangle_{\mathbf{x}}$
     denotes the average of $f$ over these uniformly sampled
     points. The law of large numbers ensures that the
-    estimator $\langle I(f) \rangle_{x}$ will converge to
+    estimator $I_{N}$ will converge to
     the true value $I$ for $N \rightarrow \infty$. As a
     result of the central limit theorem, the function evaluations
     $f(\mathbf{x}_{i})$ will follow a Gaussian distribution with
-    mean $\langle I(f) \rangle_{x}$,
+    mean $I_{N}$,
     meaning an error estimate on the estimator is given by
     the standard error of the mean
     \begin{equation}\label{eqn:MC_error}
-        \sigma_{I} = V \sqrt{\dfrac{\langle f^{2} \rangle_{x} - \langle f \rangle_{x}^{2}}{N}}
+        \sigma_{I} = V \sqrt{\dfrac{\langle f^{2} \rangle_{\mathbf{x}} - \langle f \rangle_{\mathbf{x}}^{2}}{N-1}}
     \end{equation}
     which falls as $1/\sqrt{N}$, with no dependence
     on $d$.
@@ -92,8 +94,9 @@
     they need to be mapped to quantities that are useful in a simulation
     setting. The most commonly used mapping is to map
     the random numbers to four-momenta. An example of a
-    simple integrator is the RAMBO algorithm \cite{Kleiss:1985gy,Platzer:2013esa}
-    which samples four-momenta space uniformly. Since the integrator
+    simple integrator is the {\RAMBO} algorithm \cite{Kleiss:1985gy,Platzer:2013esa}
+    which samples four-momenta space uniformly in a phase-space
+    integration. Since the integrator
     now effectively samples in momentum space, we refer to the points
     generated as phase-space points and so the terms integrator
     and phase-space generator are used interchangeably.
@@ -102,7 +105,8 @@
     dimensionality of the integral, meaning convergence is
     guaranteed for large enough $N$, there are variance
     reduction methods to more rapidly reduce the error
-    on the estimator.
+    on the estimator. These methods aim to reduce the numerator
+    in Eq.~(\ref{eqn:MC_error}).
 
     One such method is importance sampling which
     aims to reduce the variance via a remapping of the
@@ -142,32 +146,51 @@
     Additionally, there will be an associated Jacobian
     from the mapping from random variables to the four-momenta.
     This Jacobian, along with the PDF weights and flux factors,
-    are referred to as the phase-space weight, $J_{i}$. Taking
+    are referred to as the phase-space weight, $J_{\mathrm{PS}}$. Taking
     this phase-space weight together
     with the matrix element forms the event weight\footnote{For
     the more sophisticated sampling methods employed in event generators
     there will be additional weights involved.}
     \begin{equation}\label{eqn:event_weight}
-        w_{i} = |\mathcal{M}|_{i}^{2} J_{i} \, .
+        w = |\mathcal{M}|^{2} J_{\mathrm{PS}} \, .
     \end{equation}
     The event weight can be interpreted as the probability
     of the event occurring at an experiment \cite{Plehn:2009nd}.
-    By generating a number of events in this manner,
-    and histogramming them, a sample of weighted events is created.
+    By generating a number of events in this manner
+    a sample of weighted events is created. Cross-sections
+    and distributions can then be calculated by histogramming
+    these weights.
     
-    At experiments, collision events are either observed or unobserved,
-    meaning each observed configuration contributes equally to
-    the measured cross-sections, and so are equally weighted.
-    Therefore, in order to generate events that
-    compare to experiments, it is necessary to translate
-    weighted events into unit-weight events.
-    This process is known as unweighting and is typically
-    carried out using a rejection sampling algorithm, as
-    outlined in Algorithm~\ref{alg:unweighting}. The rejection
-    sampling algorithm makes use of $w_{\mathrm{max}}$ which is the
-    maximal event weight in the integration volume.
+    The generation of weighted events is generally undesirable
+    as many events will have small weights with only a few events
+    making sizeable contributions to predictions. Furthermore,
+    these small weights still have to be run through expensive detector
+    simulations, making the usage of weighted events highly inefficient.
+    Therefore, it has become customary to generate events
+    with equal relative weight, so-called unweighted events.
 
-    \begin{algorithm}
+    An additional reason to generate unweighted events is that
+    experimentalists would like the probability of events occurring
+    at colliders to be described only by their frequency and not
+    with any additional weights. Since unweighted events have
+    equal relative weight, they satisfy this criteria.
+
+    The process of generating unweighted events is known as
+    unweighting and is typically carried out using a rejection
+    sampling algorithm.
+    Events are accepted or rejected by comparing the ratio
+    $w / w_{\mathrm{max}}$ to a uniform random number, $r$,
+    sampled in the interval $[0, 1]$, where $w_{\mathrm{max}}$ is
+    the maximal event weight in the integration volume.
+    Events are then accepted if $w / w_{\mathrm{max}} > r$.
+    This can be interpreted as converting the event weights
+    into a probability of being accepted or rejected as
+    small event weights will have a low probability of being
+    accepted, whereas the opposite is true for large event weights.
+    The rejection algorithm is outlined explicitly in
+    Algorithm~\ref{alg:unweighting}.
+
+    \begin{algorithm}[ht]
         \caption{Rejection sampling for unweighting events}\label{alg:unweighting}
         \While{unweighting}{
             generate random phase-space point $\mathbf{x}$\;
@@ -185,7 +208,7 @@
     the number of total events generated. This is encapsulated
     in the unweighting efficiency
     \begin{equation}\label{eqn:unweighting_efficiency}
-        \varepsilon = \dfrac{N_{\mathrm{accepted}}}{N_{\mathrm{total}}} \, ,
+        \epsilon = \dfrac{N_{\mathrm{accepted}}}{N_{\mathrm{total}}} \, ,
     \end{equation}
     whose inverse is the average number of trial
     events required to obtain a single unweighted event.
@@ -200,7 +223,10 @@
     An alternative to improving the unweighting efficiency
     itself is to accelerate the process of unweighting itself. This
     was explored in Ref. \cite{Danziger:2021eeg} wherein a
-    novel two-stage unweighting procedure employing a surrogate
+    novel two-stage unweighting procedure employing a surrogate\footnote{The authors of Ref.~\cite{Danziger:2021eeg}
+    refer to their model approximating the event weight as a surrogate model, whereas in
+    this thesis we have used the term emulator. We will use these two terms interchangeably
+    henceforth.}
     model of the exact event weight was used to decrease the amount of
     time spent unweighting events. This idea will be elaborated on
     in Chapter~\ref{chapter:fame3} where we build upon
@@ -231,7 +257,7 @@
     and one-loop \cite{Berger:2008sj,Cullen:2011ac,Cullen:2014yla,Bevilacqua:2011xh,Hirschi:2011pa,Alwall:2014hca,Frederix:2018nkq,Campbell:1999ah,Campbell:2021vlt,Badger:2012pg,Cascioli:2011va,Buccioni:2019sur,Actis:2016mpe,Denner:2017wsf}
     matrix elements are now largely fully automated
     in NLO QCD and electroweak corrections.
-    Many of the modern matrix element generators are supplied
+    Many of the modern matrix element providers are supplied
     with a common generic interface to event generators,
     the Binoth Les Houches Accord \cite{Binoth:2010xt,Alioli:2013nda}.
     For more information on the machinery developed to
@@ -257,8 +283,10 @@
     Fixed-order calculations of matrix elements are limited
     to relatively few final-state particles due to the complexity
     of analytical expressions and their phase-space integrals.
-    They are also only accurate at high energy scales.
-    To evolve from the fixed-order
+    They are also only accurate at high energy scales. For low
+    transverse momentum emissions, large logarithms appearing at
+    every order breaks the $\alpha_{s}$ perturbative expansion.
+    To describe these kinematic regions, and to evolve from the fixed-order
     calculation to the non-perturbative regime where hadrons
     are formed, parton showers are employed in event generators.
 
@@ -284,7 +312,9 @@
 
     \subsection*{Hadronisation}\label{sec:hadronisation}
     The simulation of the formation of hadrons in the low-energy regime
-    of an event generator follows phenomenological, non-perturbative models.
+    of an event generator follows phenomenological models,
+    which are non-perturbative and consist of many
+    parameters fitted to data.
     These hadronisation models require the combination
     of quarks and antiquarks to form colourless hadrons.
     The two main classes of models used to simulate
@@ -293,7 +323,7 @@
     For more discussion on hadronisation
     see Ref. \cite{Webber:1999ui}.
 
-    \section{A note on theoretical uncertainties}\label{sec:scale_variations}
+    \section{Estimation of theoretical uncertainties}\label{sec:scale_variations}
     The partonic cross-section, $\hat{\sigma}(\mu_{F}, \mu_{R})$, has
     a dependence on both the factorisation scale and the
     renormalisation scale. Although these scales are unphysical,
@@ -324,7 +354,7 @@
     However, there is no single, well agreed upon definition
     of $\delta$ \cite{Cacciari:2011ze}.
     The rationale behind taking this approach is that $\delta$
-    is approximately the same order as the true missing
+    is approximately the same order of magnitude as the true missing
     higher order terms.
 
 \end{document}

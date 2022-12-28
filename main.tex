@@ -12,7 +12,26 @@
 
 \begin{abstract}
 %
-	This is some abstract about this thesis.
+	The LHC is a large-scale particle collider experiment
+	collecting vast quantities of experimental data to study the fundamental
+	particles, and forces, of nature. Theoretical predictions made with
+	the SM can be compared with observables measured at experiments.
+	These predictions rely on the use of Monte Carlo event generators to 
+	simulate events which demand the evaluation of a matrix element.
+	For high multiplicity processes this can take up a significant
+	portion of the time spent simulating an event.
+	In this thesis, we explore the usage of machine learning
+	to accelerate the evaluation of matrix elements by introducing a
+	factorisation-aware neural network model. Matrix elements are plagued with singular
+	structures in regions of phase-space where particles become soft or collinear,
+	however, the behaviour of the matrix element in these limits are well-understood.
+	By exploiting the factorisation property of matrix elements in these limits,
+	the model can learn how to best represent the approximation
+	of the matrix elements as a linear combination of singular functions.
+	We examine the application of the model to $e^{-}e^{+}$
+	annihilation matrix elements at tree-level and one-loop level, as well
+	as to leading order $pp$ collisions where the acceleration of event generation
+	is critical for current experiments.
 %
 \end{abstract}
 
@@ -28,12 +47,11 @@
 	Physics at Durham University. No part of this thesis has been
 	submitted elsewhere for any degree or qualification.
 
-	Research presented in this thesis is based on joint work
-	published in the articles:
+	Research presented in this thesis is based on joint work:
 	\begin{itemize}
 		\item Chapter \ref{chapter:fame1} is based on \cite{Maitre:2021uaa}: Daniel Ma\^{i}tre and Henry Truong, \textit{A factorisation-aware Matrix element emulator}, Journal of High Energy Physics, 2021 (11). 066.
-		\item Chapter \ref{chapter:fame2} is based on ...
-		\item Chapter \ref{chapter:fame3} is based on ...
+		\item Chapter \ref{chapter:fame2} is based on research with Daniel Ma\^{i}tre in preparation to be published.
+		\item Chapter \ref{chapter:fame3} is based on research with Timo Janßen, Daniel Ma\^{i}tre, Steffen Schumann, and Frank Siegert in preparation to be published.
 	\end{itemize}
 
 	Other research projects published during my studies but not included
@@ -48,25 +66,32 @@
 
 \begin{acknowledgements*}
 %
-	I would like to thank\ldots
+	The work carried out during this journey would not have been
+	possible without all the help and support from the people around me.
+	Firstly, I would like to express my gratitude to Michael Spannowsky, and
+	to my supervisor Daniel Ma\^{i}tre, who gave me a chance to undertake this
+	doctorate when nobody else did.
+	Daniel has always been supportive with his meticulous advice and constructive criticisms,
+	and I thank him for giving me the freedom to explore different avenues during our joint research projects.
+	
+	All the people at the IPPP, especially Trudy and Joanne, have fostered a comfortable working
+	and social environment of which I was very glad to be a part of.
+	To all the students who have come and gone during my time at the IPPP, it was a pleasure
+	to get to know you all. Special mentions go to Alan, Asli, Dorian, Francesco, Joe, Kevin, Marian,
+	Ryan, and of course all the wonderful people in OC215 and beyond.
+	Outside of the particles, shout-out to Aidan, Cameron, Ed, Jack, and Vicky for being great friends
+	who I could always have a laugh with and chat about anything. I want to say thank you to Jack
+	in particular for being a friend I could always count on for a good time, and a serious time.
+	
+	I want to express my deepest gratitude to my dear family and friends back home. Mum, dad, Annie,
+	and Tracy, Chris and Tyrone, your endless love and support has been more helpful than you can imagine
+	in completing this journey.
+
+	These past four years of my life have been tremendously formative in many ways. All the people
+	I have met, I have learned so much from, and I will cherish all
+	the memories that we shared together. I will leave Durham as a better person.
 %
 \end{acknowledgements*}
-
-\begin{epigraph*}
-%
-	This a place for some profound quote which sums up your work, feelings or
-	life.
-	\source{Some book}{A. Author}
-%
-\end{epigraph*}
-
-%\dedicationtext{This thesis is dedicated to}
-\begin{dedication*}
-%
-	Someone special
-	\also[and]{that other guy}
-%
-\end{dedication*}
 
 \cleardoublepage
 

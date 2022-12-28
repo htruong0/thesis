@@ -45,11 +45,11 @@ where the LHS is the actual expectation value (cross-section) of the random vari
 In our scenario the neural network reduces the variance of the residual distribution, meaning the gap in reality is small but there will always be an offset in the mean value learnt.
 
 \section{Phase-space trajectories}\label{appendix:fame1_trajectory_generation}
-We can see the RAMBO algorithm as a map from the unit hypercube in some high dimension into the $n$-particle phase-space. A flat distribution in the hypercube maps to a flat distribution in the multi-particle phase-space. 
-To generate our phase-space trajectories we pick two points at random in the unit hypercube and map the line between them using the RAMBO mapping. As a result, each point on the resulting trajectory has equal probability density in phase-space. 
-Any other phase-space generator that smoothly maps the unit hypercube to a multi-particle phase-space could replace RAMBO in this procedure and could lead to trajectories with very different characteristics. One could for example imagine a 
+We can see the {\RAMBO} algorithm as a map from the unit hypercube in some high dimension into the $n$-particle phase-space. A flat distribution in the hypercube maps to a flat distribution in the multi-particle phase-space. 
+To generate our phase-space trajectories we pick two points at random in the unit hypercube and map the line between them using the {\RAMBO} mapping. As a result, each point on the resulting trajectory has equal probability density in phase-space. 
+Any other phase-space generator that smoothly maps the unit hypercube to a multi-particle phase-space could replace {\RAMBO} in this procedure and could lead to trajectories with very different characteristics. One could for example imagine a 
 sophisticated algorithm that only maps points close to the boundary of the hypercube to soft or collinear configurations. Using such an algorithm would have trajectories that avoid configurations with many particles more collinear or soft than 
-the end-points of the trajectories. We find that with RAMBO the trajectories tend not to avoid difficult phase-space configurations and are therefore a good test of the extrapolation properties of our method.
+the end-points of the trajectories. We find that with {\RAMBO} the trajectories tend not to avoid difficult phase-space configurations and are therefore a good test of the extrapolation properties of our method.
 
 Figure~\ref{fig:detectorpath} shows the trajectory we chose in Section~\ref{sec:trajectories}.
 
@@ -63,4 +63,13 @@ Figure~\ref{fig:detectorpath} shows the trajectory we chose in Section~\ref{sec:
     \label{fig:detectorpath}
 \end{figure}
 
+Here we present another random phase-space trajectory similar to the one
+in Figure~\ref{fig:random_trajectory} to demonstrate that features of that
+figure are not unique.
+\begin{figure}
+    \includegraphics[width=\linewidth]{fame1/trajectory_1255.pdf}
+    \caption{Another random phase-space trajectory where the `double+single'
+    regions of phase-space are explicitly shown in blue.}
+    \label{fig:trajectory_1255}
+\end{figure}
 \end{document}
