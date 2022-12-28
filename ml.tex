@@ -51,8 +51,9 @@
     This leads to the design of the ATLAS and CMS experiments
     to contain of the order 100 million detection elements
     in an attempt to disentangle these events. With these large
-    arrays, terabytes of data are harvested from
-    every collision. This presents a practical challenge for data
+    arrays, petabytes of data are recorded every year
+    across all LHC experiments.
+    This presents a practical challenge for data
     collection where machine learning has could provide a solution.
     Indeed, boosted decision trees have been use
     to enhance triggers \cite{CMS:2020cmk} to accept or
@@ -110,7 +111,7 @@
     model with a neural network algorithm.
 
     In a machine learning context, the fitting of a
-    model to training data is termed training the model.
+    model to data is termed training the model.
     Once the model is fitted, it is customary to use
     an unbiased dataset that is distinct from the training set, the test set,
     to evaluate the final model performance.
@@ -118,7 +119,7 @@
 \subsection{Model of a neuron}
     In this context, a neuron is described by
     \begin{equation}\label{eqn:neuron}
-        y = \phi(\mathbf{x}; \theta) = \phi(\mathbf{w}^{T}\mathbf{x} + b)
+        y = \phi(\mathbf{w}^{T}\mathbf{x} + b) = \phi_{\theta}(\mathbf{x})
     \end{equation}
     where the model inputs, $\mathbf{x}$, are multiplied
     by the model weights, $\mathbf{w}$, before being summed
@@ -126,8 +127,10 @@
     and biases are the model parameters, $\theta$.
     This combination of terms is then modified
     by an activation function, $\phi$, which is carefully
-    chosen to perform a non-linear transformation. A neuron
-    is illustrated in Figure~\ref{fig:neuron}.
+    chosen to perform a non-linear transformation. The
+    notation $\phi_{\theta}$ represents an activation function
+    acting on $\mathbf{x}$ which has been combined with parameters $\theta$.
+    A neuron is illustrated in Figure~\ref{fig:neuron}.
     
     \begin{figure}
         \ctikzfig{img/ml/neuron}
@@ -216,9 +219,10 @@
     be formulated by repeatedly applying Eq. (\ref{eqn:neuron})
     to give
     \begin{equation}\label{eqn:nn_output}
-        f(\mathbf{x}; \theta) = \boldsymbol{\phi}^{(n)}(\ldots \boldsymbol{\phi}^{(2)}(\; \boldsymbol{\phi}^{(1)}(\mathbf{x}; \theta^{(1)})\; ; \theta^{(2)}) \; ; \theta^{(n)}) \, ,
+        % f(\mathbf{x}; \theta) = \boldsymbol{\phi}^{(n)}(\ldots \boldsymbol{\phi}^{(2)}(\; \boldsymbol{\phi}^{(1)}(\mathbf{x}; \theta^{(1)})\; ; \theta^{(2)}) \; ; \theta^{(n)}) \, ,
+        f(\mathbf{x}; \theta) = \boldsymbol{\phi}^{(n)}_{\theta}(\; \ldots \boldsymbol{\phi}^{(2)}_{\theta}\; (\boldsymbol{\phi}^{(1)}_{\theta}(\mathbf{x}) ) \; ) \, ,
     \end{equation}
-    where $\boldsymbol{\phi}^{(n)}$ and $\theta^{(n)}$
+    where $\boldsymbol{\phi}^{(n)}_{\theta}$
     denotes the outputs and parameters of layer $n$,
     where the output layer is included in this notation.
     By chaining together activation functions, and especially
@@ -249,7 +253,7 @@
     For regression tasks, such as approximating a function,
     a commonly used loss function is the mean squared error
     \begin{equation}\label{eqn:MSE}
-        L_{\mathrm{MSE}} = \dfrac{1}{N} \sum_{i=0}^{N} (g(\mathbf{x}_{i}) - y(\mathbf{x}_{i}; \theta))^{2} \, ,
+        L_{\mathrm{MSE}} = \dfrac{1}{N} \sum_{i=1}^{N} (g(\mathbf{x}_{i}) - y(\mathbf{x}_{i}; \theta))^{2} \, ,
     \end{equation}
     where $g(\mathbf{x}_{i})$ and $f(\mathbf{x}_{i}; \theta)$
     are samples from the target distribution, and model predictions
@@ -260,9 +264,9 @@
     an acceptable set of parameters can be reframed as an optimisation
     of the loss function. It should be noted that minimisation of
     the loss function is simply a proxy for maximising neural network
-    predictive power. Due to the training and testing datasets being finite,
+    predictive accuracy. Due to the training and testing datasets being finite,
     the generalisation of the neural network is not guaranteed for the
-    true underlying distribution from which the datasets are sampled
+    true underlying function from which the datasets are sampled
     from. This problem is generally referred to as overfitting.
     We will refer back to this problem in the context of
     fitting matrix elements in Section~\ref{sec:NN_ME}.
@@ -277,7 +281,8 @@
     to improve convergence. Broadly speaking, the algorithms
     iteratively update the neural network parameters based on the
     gradient of the loss with respect to these parameters
-    with some step size (or learning rate) $\eta$. That is
+    with some step size (or learning rate) $\eta$. The update
+    rule is given by
     \begin{equation}\label{eqn:gradient_descent}
         \theta \gets \theta - \eta \cdot \nabla_{\theta} L(\mathbf{x}_{\mathrm{batch}}; \theta) \, ,
     \end{equation}
@@ -313,10 +318,11 @@
     Ref. \cite{Ruder:2016lil}.
 
     \subsection{Optimisation of hyperparameters}
+    \label{sec:hyperparameters}
     Another set of parameters that need to be optimised
     are the model hyperparameters.
     Hyperparameters are parameters that are
-    not explicitly parameters of the model, instead they control
+    not explicitly trainable parameters of the model, instead they control
     the speed and quality of the training process.
     For instance, the learning rate in Eq. ({\ref{eqn:gradient_descent}}) is
     an important hyperparameter whose initial value has
@@ -330,8 +336,10 @@
     of hyperparameters can perform significantly worse
     than a more carefully chosen set. The process of tuning
     hyperparameters is often computationally expensive for two
-    reasons. Firstly, the dimensionality of parameter space to choose from is large,
-    and so the curse of dimensionality kicks in rapidly.
+    reasons. Firstly, the dimensionality of parameter space to
+    choose from is large, meaning the number of samples required
+    to effectively explore the parameter space grows rapidly --
+    this is the so-called curse of dimensionality.
     Secondly, there is no exact a priori way to evaluate the
     final performance of a neural network given a set of
     hyperparameters, meaning training has to take place for
@@ -398,11 +406,19 @@
     Once a fast and accurate surrogate model has been
     built, it can supplement traditional matrix
     element generators to increase statistical power of the sample
-    by predicting on many more phase-space points. This
+    by evaluating on many more phase-space points efficiently. This
     requires the accumulated error in the surrogate model
     predictions to be lower than the statistical error in the
     integration of matrix elements, which is a key motivation
     for building an accurate surrogate model.
+
+    Related to the problem of modelling matrix elements, in recent
+    years there has been work in applying machine learning
+    methods to learn: event weights \cite{Danziger:2021eeg},
+    cross-sections \cite{Otten:2018kum,Buckley:2020bxg},
+    analytic expressions of squared amplitudes \cite{Alnuqaydan:2022ncd},
+    contour deformations for multi-loop integrals \cite{Winterhalder:2021ngy},
+    and simplifying polylogarithms \cite{Dersy:2022bym}.
 
     The task of building a surrogate
     model for matrix elements is in principle straightforward.
@@ -413,7 +429,7 @@
     discussed in Sections~\ref{sec:MC_integration} and \ref{sec:me_generators},
     phase-space samplers and matrix element generators are
     now widely available so the acquisition of data is only
-    limited by time. Even then, this is a bottleneck only
+    limited by available computing time. Even then, this is a bottleneck only
     for the most expensive of processes as generation
     of data is trivial to parallelise. In the ideal case, the
     surrogate model would be faster than the matrix
@@ -441,14 +457,6 @@
     becomes more apparent for higher multiplicity final-states
     as there are more regions in phase-space for which
     the matrix element diverges.
-
-    Related to the problem of modelling matrix elements, in recent
-    years there has been work in applying machine learning
-    methods to learn: event weights \cite{Danziger:2021eeg},
-    cross-sections \cite{Otten:2018kum,Buckley:2020bxg},
-    analytic expressions of squared amplitudes \cite{Alnuqaydan:2022ncd},
-    contour deformations for multi-loop integrals \cite{Winterhalder:2021ngy},
-    and simplifying polylogarithms \cite{Dersy:2022bym}.
 
     Emulation of matrix elements directly have been
     carried out in recent years in various projects.
@@ -505,14 +513,15 @@
     Since this method relies on the factorisation of matrix
     elements, we collectively refer to these family of models
     as factorisation-aware models.
-    In Chapter~\ref{chapter:fame1}, we show that by using
-    Catani-Seymour dipoles as a set of basis functions, tree-level
+    In Chapter~\ref{chapter:fame1}, we show that by forming an ansatz
+    out of a linear combination of Catani-Seymour dipoles with
+    fitted coefficients, tree-level
     matrix elements for $e^{+}e^{-} \rightarrow q \bar{q}$ + up to 3 gluons
     can be emulated accurately to well below 1\% per-point accuracy,
     even for the highest multiplicity. Extending this study
     to the one-loop level is done in Chapter~\ref{chapter:fame2},
     where antenna functions replace Catani-Seymour dipoles as
-    the basis functions. Accuracy was observed to be of the
+    the ingredients in the ansatz. Accuracy was observed to be of the
     order 1\% for the 5 parton case, with good scaling
     to higher multiplicities.
 
@@ -520,16 +529,15 @@
     prediction is important as it directly contributes to the total
     theoretical uncertainty. An alternative to quantifying
     the uncertainty of the neural network prediction is to
-    bypass the usage of the neural network prediction itself
-    in production.
-    Instead it can be used as a proxy for the exact matrix
-    element in event unweighting. This was explored in
+    use the prediction in an intermediary step of a full
+    calculation, where the final prediction comes from the
+    accustomed matrix element providers. This was explored in
     Ref. \cite{Danziger:2021eeg},
     where it was shown that with a surrogate model of the event
     weight it was possible to use a double unweighting
     algorithm to increase the rate of event unweighting.
     In Chapter~\ref{chapter:fame3} we examine replacing
-    the original emulator in said work with a factorisation-aware
+    the original emulator in that work with a factorisation-aware
     model to study the potential gain factors with a more
     accurate model. As previously mentioned, a consequence of
     this two-stage unweighting

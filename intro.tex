@@ -5,7 +5,8 @@
 
 The Large Hadron Collider (LHC) at CERN has been colliding
 particles since 2009, with each successive run increasing the centre-of-mass
-energy of the collision (7-13.6 TeV). As the experiment has
+energy of the collision, from 7 TeV in Run 1 to 13.6 TeV
+at the time of writing. As the experiment has
 operated for over a decade, there is a vast quantity of
 experimental data collected that has to be compared with
 theoretical predictions. Currently, the theory predictions
@@ -21,8 +22,9 @@ General purpose Monte Carlo event generators are the de facto
 tool designed to generate these simulated events.
 With the large number of scattering events collected at
 the LHC already, and with even more expected at the High Luminosity LHC (HL-LHC),
-the rate of event generation is at risk of
-being outpaced by experimental data collection.
+the ability to generate the large simulated event samples
+required for theory predictions within the available computing
+budget presents a very real challenge.
 
 The process of generating simulated events can be broadly
 split up into three segments:
@@ -32,9 +34,9 @@ and the formation of bound states detected (hadronisation),
 which makes their way to the detectors.
 While hadronisation is based on phenomenological models,
 the hard scattering and parton shower are derived
-from the SM and are theoretically well-motivated.
+from the SM and are perturbatively defined.
 
-The hard scattering process can be formulated as a probability
+The hard scattering cross-section can be formulated as a probability
 for particles to collide, represented by matrix elements.
 These matrix elements are formally calculated order-by-order
 in perturbation theory, with each order leading
@@ -58,7 +60,7 @@ in the high energy physics community as well. By combining the
 well understood behaviour of matrix elements in specific
 kinematic regions with powerful machine learning
 algorithms, the construction of physics-inspired machine
-learning models unlocks higher levels of performance
+learning models unlocks higher levels of accuracy
 than would otherwise be achievable.
 
 The structure of this thesis is as follows: in this chapter
@@ -82,7 +84,7 @@ This construction of this neural network emulator is
 described in detail in Chapter~\ref{chapter:fame1} for tree-level
 electron-positron annihilation matrix element emulation.
 A similar philosophy is applied in Chapter~\ref{chapter:fame2}
-where next-to-leading order QCD K-factors are emulated for
+where next-to-leading order QCD k-factors are emulated for
 the same processes.
 These two chapters discuss in detail the procedure for
 constructing emulators for electron-positron annihilation,
@@ -90,8 +92,8 @@ however, the more relevant processes for the LHC are in
 proton-proton initiated collisions. The extension
 to this scenario is detailed in Chapter~\ref{chapter:fame3}
 where I also explore using the
-emulator in a novel implementation to supplement traditional
-matrix element providers in the event generator {\Sherpa}.
+emulator in a novel implementation to accelerate event unweighting
+in the event generator {\Sherpa}.
 Finally, I will summarise and conclude the thesis in
 Chapter~\ref{chapter:conclusion}.
 
@@ -126,8 +128,10 @@ Chapter~\ref{chapter:conclusion}.
         \mathrm{SU}(2)_{L} \times \mathrm{U}(1)_{Y} \xrightarrow{\mathrm{EWSB}} \mathrm{U}(1)_{\mathrm{EM}} \, ,
     \end{equation}
     giving rise to the electromagnetic and weak forces that we observe.
-    The effect of gravity is considered to be negligible on the scales
-    considered in the SM, and so it is not described.
+    The explanation of gravity in a QFT is an open problem and cannot currently
+    be included in the SM as any Lagrangian including gravity cannot be non-renormalised.
+    Fortunately, the effect of gravity is considered
+    to be negligible on the scales considered in the SM, and so it is ignored.
     Each of the three fundamental forces described by the SM is mediated
     by the exchange of a gauge boson. The massless gauge bosons mediating the strong
     and EM forces are the gluon $g$ and photon $\gamma$,
@@ -257,8 +261,6 @@ Chapter~\ref{chapter:conclusion}.
     property known as asymptotic freedom. A consequence
     of this is that predictions made in QCD can be expressed
     in the form of perturbative expansions in $\alpha_{s}$ (see Section~\ref{sec:xs}).
-    This is normally precluded as $\alpha_{s} > 1$ at low
-    energies.
 
     To remove unphysical degrees of freedom from the
     theory we need to fix the gauge
@@ -268,6 +270,9 @@ Chapter~\ref{chapter:conclusion}.
         \mathcal{L}_{\mathrm{GF}} = -\dfrac{1}{2\xi}(\partial^{\mu}A_{\mu}^{a})^{2} \, ,
     \end{equation}
     where $\xi = 1$ corresponds to the Feynman-'t Hooft gauge.
+    Ghosts and antighosts are anti-commuting fields
+    introduced for each gauge field as a way to conveniently compute
+    determinants occurring in the gauge fixing procedure.
     The ghost Lagrangian is most commonly written
     in the Faddeev-Popov procedure as
     \begin{equation}\label{eqn:L_ghost}
@@ -275,8 +280,9 @@ Chapter~\ref{chapter:conclusion}.
     \end{equation}
     where $c^{a}$ ($\bar{c}^{a}$) are Faddeev-Popov ghosts (antighosts).
     The ghosts are unphysical particles and so cannot appear as
-    external states but must be included in internal lines for
-    a gauge invariant theory.
+    external states. However, they must be included in internal lines for
+    a gauge invariant theory as the ghost loops cancel the unphysical
+    degrees of freedom in gluon loops.
 
     \subsection{QCD Feynman rules}\label{sec:qcd_feynman}
     Now that we have written down the QCD Lagrangian,
@@ -303,7 +309,7 @@ Chapter~\ref{chapter:conclusion}.
 
     To connect vertices we require propagators, which
     we can read off from the kinetic Lagrangian where
-    we collect terms from Eqns. (\ref{eqn:L_QCD}) and (\ref{eqn:L_GF}), 
+    we collect terms from Eqs. (\ref{eqn:L_QCD}) and (\ref{eqn:L_GF}), 
     \begin{equation}\label{L_kin}
         \mathcal{L}_{\mathrm{kin}} = -\dfrac{1}{4}(\partial_{\mu}A^{a}_{\nu}-\partial_{\nu}A^{a}_{\mu})^{2} - \dfrac{1}{2\xi}(\partial_{\mu}A^{a}_{\mu})^{2} + \bar{\psi}_{i}^{f}(\mathrm{i}\slashed{\partial}-m_{f})\psi_{i}^{f} \, ,
     \end{equation}
@@ -345,7 +351,7 @@ Chapter~\ref{chapter:conclusion}.
     in these proton-proton collisions rests on the use of
     the factorisation theorem, which enables the
     separation of low and high energy scales (so-called soft and hard).
-    Within the proton, there are quarks
+    Within the proton, there are quarks-antiquark pairs
     and gluons that are constantly absorbed and
     emitted on a timescale inversely proportional
     to the mass of the proton.
@@ -425,8 +431,8 @@ Chapter~\ref{chapter:conclusion}.
             P_{gq}(\frac{x}{z}) & P_{gg}(\frac{x}{z})
         \end{pmatrix}
         \begin{pmatrix}
-            f_{q/h}(x,\mu_{F}) \\
-            f_{g/h}(x,\mu_{F})
+            f_{q/h}(z,\mu_{F}) \\
+            f_{g/h}(z,\mu_{F})
         \end{pmatrix} \, ,
     \end{equation}
     where $P_{ba}(\frac{x}{z})$ are splitting functions
@@ -480,13 +486,22 @@ Chapter~\ref{chapter:conclusion}.
     pair. For a sufficiently high energy collision,
     these interactions can be calculated in perturbation
     theory.
-    Since electrons and positrons are not composite
-    particles, there is no requirement for PDFs,
-    therefore Eq. (\ref{eqn:hadronic_cs}) simplifies
-    to just the partonic cross-section, which
-    can be computed in perturbation theory.
+    Although electrons and positrons are fundamental
+    particles and not composite particles, the 
+    cross-sections in electron-positron collisions
+    have contributions from the initial-state radiation,
+    which also reduces the energy of the hard scattering.
+    One method to capture these effects is through
+    the use of process-independent structure functions \cite{Kuraev:1985hb}
+    which are analogous to PDFs. Therefore, the discussion
+    presented in this section applies to electron-positron
+    cross-sections as well.
     
-    The details of how partonic cross-sections, $\hat{\sigma}_{ab \rightarrow n}$,
+    We have seen that cross-section computations involve
+    the convolution of PDFs with partonic cross-sections,
+    $\hat{\sigma}_{ab \rightarrow n}$, which are
+    calculated in perturbation theory.
+    The details of how partonic cross-sections
     are computed is discussed in the next section.
 
 \section{Scattering amplitudes and cross-sections}\label{sec:xs}
@@ -541,15 +556,13 @@ Chapter~\ref{chapter:conclusion}.
     is the matrix element squared\footnote{Henceforth we refer to the matrix
     element squared as matrix element, unless stated otherwise.}.
     
-    Since detectors at collider experiments
-    have limited resolution, single scattering
-    events are not measured. Instead we consider
+    An observable that can be measured at experiments is
     the cross-section, $\sigma$, as introduced in
     Eq. (\ref{eqn:hadronic_cs}). The cross-section is a property
     of the particles being scattered, and is independent
     of the way the experiment is carried out (disregarding energy scale of experiment).
     Since the hadronic cross-section factorises
-    the soft energy effects into the non-perturbative PDFs,
+    the low energy effects into the non-perturbative PDFs,
     which are determined once, for all
     processes, the object of interest now becomes the
     partonic cross-section, $\hat{\sigma}$, which
@@ -564,10 +577,12 @@ Chapter~\ref{chapter:conclusion}.
     differential cross-section, $\mathrm{d}\hat{\sigma}$,
     where the cross-section can be differential
     in quantities such as energies and angles.
-    This is because the final-state particles
-    will be produced with a range of, for example,
-    energies and momenta, so the cross-section would
-    be vanishing for an exact momentum configuration.
+    This is because individual events at experiments
+    will be measured to be in a specific interval of
+    the differential quantity, meaning differential
+    cross-sections can be plotted as histograms. Predictions
+    can then be made on the theory side by binning simulated
+    events.
 
     The differential partonic cross-section can be written as
     \begin{equation}\label{eqn:dsigma}

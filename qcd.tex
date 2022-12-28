@@ -22,7 +22,7 @@
     that have the appropriate number of vertices,
     as each QCD vertex brings along a factor of $\alpha_{s}$.
 
-    In this chapter we will discuss the problems that
+    In this chapter we will discuss the challenges that
     arise when evaluating these Feynman diagrams and outline
     some solutions that have been widely adopted to circumvent
     these issues in order to provide real-world applicable predictions.
@@ -41,7 +41,7 @@
     topologies of Feynman diagrams, integral expressions
     containing unconstrained momenta will give rise to
     singularities. The divergences
-    associated with high energy modes are ultraviolet
+    associated with high energy modes are called ultraviolet
     (UV) divergences, and on the opposite end of the energy
     spectrum, there are infrared (IR) divergences associated
     with low energy modes.
@@ -149,7 +149,7 @@
         A_{\mathrm{bare}}^{\mu} &= \sqrt{Z_{3}} A_{R}^{\mu} \, ,\\
         g_{s,\mathrm{bare}} &= Z_{g} \mu_{R}^{\epsilon} g_{s,R} \, , \nonumber
     \end{align}
-    where it conventional to define $Z_{1} = Z_{g}Z_{2}\sqrt{Z_{3}}$
+    where it is conventional to define $Z_{1} = Z_{g}Z_{2}\sqrt{Z_{3}}$
     such that we can set $Z_{n} = 1 + \delta_{n}$ for $n \in \{1, 2, 3\}$.
     In this way we can write the renormalised Lagrangian as
     \begin{equation}
@@ -157,7 +157,7 @@
     \end{equation}
     where the counterterms appearing in $\mathcal{L}_{\mathrm{c.t.}}$
     are determined by calculating $\delta_{n}$. There is freedom
-    in the choice of $\delta_{n}$ which gives rise to
+    in the choice of the finite part of $\delta_{n}$ which gives rise to
     different regularisation schemes. The minimal subtraction
     (MS) scheme subtracts only the epsilon pole appearing
     in loop integrals. However, the most
@@ -166,7 +166,7 @@
     epsilon pole along with a universal constant appearing in all
     loop integrals.
 
-    In an all orders calculation of an observable,
+    In an all-orders calculation of an observable,
     there would be no dependence on the renormalisation
     scale as it is a remnant of the regularisation prescription.
     However, because in perturbative QCD observables
@@ -305,7 +305,7 @@
     has been renormalised. The resolution to IR divergences is given by the
     Block-Nordsieck \cite{Bloch:1937pw,Yennie:1961ad} and Kinoshita-Lee-Nauenberg
     (KLN) theorems \cite{Kinoshita:1962ur,Lee:1964is} which states
-    that at each order of perturbation theory, the virtual and real
+    that at each order of perturbation theory, the divergent parts of the real and virtual
     contributions exactly cancel out, leaving only finite corrections.
     This cancellation occurs because the infrared pole structure is
     identical in the real and virtual corrections, but with an opposite sign.
@@ -320,8 +320,14 @@
     with fixed-order perturbation theory must be insensitive to the
     emissions of soft or collinear particles. Any observable obeying
     this criteria is an infrared and collinear (IRC) safe observable.
-    This leads to the concept of jets \cite{Salam:2010nqg} which are collimated
-    particles combined according to some jet algorithm.    
+    This requirement of being insensitive to additional emissions
+    or arbitrarily soft emissions must also be met by jet definitions.
+    Jet definitions allow theorists and experimentalists to
+    systematically combine partons, hadrons, or energy deposits,
+    into collimated clusters called jets. Jets provide a way to relate
+    the produced hadrons back to the partons produced in the hard scattering
+    as they are broadly collimated in a similar direction.
+    For a review on jets see Ref.~\cite{Salam:2010nqg}.
 
     In DR, the singularities from soft and collinear divergences
     are manifest as $\epsilon$ poles which makes the cancellation
@@ -332,7 +338,7 @@
     Instead they are done numerically through the use
     of Monte Carlo methods (see Chapter~\ref{chapter:MC}),
     which requires the integral to be in
-    integer dimensions. Therefore, numerical techniques
+    integer dimensions. Therefore, techniques
     have been developed to deal with these IR divergences as well. The
     most common technique, subtraction, will be discussed in
     more detail in Section~\ref{sec:subtraction}.
@@ -424,8 +430,11 @@
     for the colour correlations.
     The scale $\mu$ can be identified as the
     renormalisation scale, and $\bm{T}_{i}$ is the colour-charge
-    operator. It acts on the colour vectors in the reduced matrix element
-    to give factors of $C_{A}$ and $C_{F}$, hence this factorisation is not exact.
+    operator. These operators act on the colour space in the
+    reduced matrix element to give rise to matrices,
+    hence this factorisation is not exact. The properties
+    of these operators are given in more detail in
+    Appendix~\ref{appendix:catani_seymour}.
 
     The matrix elements in Eq. (\ref{eqn:soft_factorisation}) are
     unambiguously defined only when momentum conservation is
@@ -481,11 +490,10 @@
     In general, it is possible for a final-state
     parton $i$ to become collinear with an initial-state parton $a$.
     This is described by the splitting process $a \rightarrow ai + i$.
-    In this case their momenta can be decomposed as
+    In this case only momenta $p_{i}$ needs to be modified as
     \begin{align}\label{eqn:I_collinear_momenta}
         \begin{split}
         p_{i}^{\mu} &= (1-x)p_{a}^{\mu} + k_{\perp}^{\mu} - \dfrac{k_{\perp}^{2}}{1-x}\dfrac{n^{\mu}}{2p_{a} \cdot n} \, , \\
-        p_{a}^{\mu} &= x p_{a}^{\mu} \, ,
         \end{split}
     \end{align}
     with the collinear limit defined as
@@ -503,14 +511,14 @@
     The specific type of parton $ai$ depends upon the types of $a$ and $i$.
 
     Similar to Eq. (\ref{eqn:soft_factorisation}) where the factorisation was
-    only true in the strict soft limit, Eqns. (\ref{eqn:F_collinear_factorisation})
+    only true in the strict soft limit, Eqs. (\ref{eqn:F_collinear_factorisation})
     and (\ref{eqn:I_collinear_factorisation}) are only
     true in the strict collinear limit. Away from these
     limits, care has to be taken to conserve momenta
     via the use of momenta mappings.
 
 \subsection{Factorisation of colour-ordered amplitudes}\label{sec:CO_factorisation}
-    The factorisation formulae expressed in Eqns. (\ref{eqn:soft_factorisation}),
+    The factorisation formulae expressed in Eqs. (\ref{eqn:soft_factorisation}),
     (\ref{eqn:F_collinear_factorisation}), and (\ref{eqn:I_collinear_factorisation})
     were not exact because of colour and spin correlations.
     It can be shown that the factorisation of matrix
@@ -519,7 +527,7 @@
     is separated from the kinematics. 
 
     In general, any QCD amplitude can be
-    colour decomposed, that is the colour structure is
+    colour-decomposed, that is the colour structure is
     separated from the kinematics. Consider the process $e^{+}e^{-} \rightarrow q\bar{q} + n \; g$\footnote{For the scope of this thesis it is sufficient
     to consider colour decomposition of electron-positron
     annihilation into a single quark pair plus gluons,
@@ -583,7 +591,7 @@
     partons in the colour-ordered amplitude), there will be no singular
     behaviour as $s_{ij} \rightarrow 0$.
 
-    In Eqns. (\ref{eqn:CO_soft_factorisation}) and (\ref{eqn:CO_collinear_factorisation}),
+    In Eqs. (\ref{eqn:CO_soft_factorisation}) and (\ref{eqn:CO_collinear_factorisation}),
     the colour-ordered amplitude factorises exactly into a
     colour-ordered amplitude with one parton removed, multiplied
     by a universal singular factor. This singular factor depends on the unresolved
@@ -596,7 +604,7 @@
     The discussion of matrix element factorisation so
     far has been focused on tree-level matrix elements.
     It has been shown that one-loop colour-ordered amplitudes
-    also factorise in the soft and collinear limits \cite{Bern:1994zx,Bern:1998sc,Kosower:1999xi}.
+    also factorise in the soft and collinear limits \cite{Bern:1994zx,Bern:1995ix,Bern:1998sc,Kosower:1999xi}.
     At the one-loop level, there are new universal singular
     functions and the factorisation formulae are modified.
 
@@ -631,7 +639,7 @@
 \section{Subtraction}\label{sec:subtraction}
     In Section~\ref{sec:IR_divergences} we discussed the
     structure of IR divergences and how the KLN theorem
-    necessitated the cancellation of IR divergences 
+    enforced the cancellation of IR divergences 
     arising from the virtual corrections and real-emission
     matrix elements once integrated over soft and collinear
     regions of phase-space, at each order in perturbation
@@ -698,7 +706,7 @@
     to $\epsilon$ poles once $\mathcal{C}_{n+1}$ is integrated over.
     The counterterm $\mathcal{C}_{n+1}$ should be a proper
     pointwise approximation of $\mathcal{R}_{n+1}$ to cancel all IR
-    divergences such that $\mathcal{R}_{n+1} - \mathcal{C}_{n+1}$ is finite.
+    divergences such that $\mathcal{R}_{n+1} - \mathcal{C}_{n+1}$ is integrable finite.
     Additionally, since the pole structure in $\mathcal{V}_{n}$ is identical
     to $\mathcal{R}_{n+1}$ but with an opposite sign, $\mathcal{V}_{n} + \mathcal{I}_{n}$ will be finite
     by construction.
@@ -742,7 +750,7 @@
     the unresolved emitted parton, and $k$ is a spectator parton.
     In order to map out all the singular limits in a process, it is
     necessary to construct all permutations of the dipole functions
-    since the dipoles only depends on three partons.
+    since each dipole function only depends on three partons.
 
     Dipole functions can be separated into four categories
     depending on whether the emitter and spectator are in the
@@ -805,7 +813,7 @@
             {}_{n+1} \langle 1, \ldots, n+1 | 1, \ldots, n+1 \rangle_{n+1} = \sum_{i,j}\sum_{k\neq i,j}\mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) + \ldots \, ,
         \end{equation}
         where terms not singular in the limit $p_{i}p_{j} \rightarrow 0$
-        are omitted, and the dipole is
+        are denoted by the ellipsis, and the dipole is
         \begin{equation}\label{eqn:D_ijk}
             \begin{split}
                 \mathcal{D}_{ij,k}(p_{1},\ldots,p_{n+1}) &= -\dfrac{1}{2p_{i}p_{j}} \\
@@ -832,7 +840,7 @@
         \begin{equation}\label{eqn:y_ijk}
             y_{ij,k} = \dfrac{p_{i}p_{j}}{p_{i}p_{j} + p_{i}p_{k} + p_{j}p_{k}} \, .
         \end{equation}
-        Eqns. (\ref{eqn:FF_mapping}) and (\ref{eqn:y_ijk})
+        Eqs. (\ref{eqn:FF_mapping}) and (\ref{eqn:y_ijk})
         are a $3 \rightarrow 2$ momenta mapping that maps
         $p_{i} + p_{j} + p_{k} \rightarrow \tilde{p}_{ij} + \tilde{p}_{k}$.
         The mapping ensures momentum conservation is maintained across all of phase-space and
@@ -869,7 +877,7 @@
         $p_{i}p_{j} \rightarrow 0$ limit and not for any other pair of
         momenta. In the soft and collinear limits, the dipole function
         $\mathcal{D}_{ij,k}$ correctly reproduces the matrix element factorisation
-        behaviour seen in Eqns. (\ref{eqn:soft_factorisation}) and (\ref{eqn:F_collinear_factorisation}),
+        behaviour seen in Eqs. (\ref{eqn:soft_factorisation}) and (\ref{eqn:F_collinear_factorisation}),
         respectively. In particular, $\boldsymbol{V}_{ij,k}$ becomes
         proportional to the eikonal factor and Altarelli-Parisi splitting
         functions in these respective limits.
@@ -1048,17 +1056,18 @@
         \end{equation}
         where it is understood that for a given partonic process,
         the matrix element in the different soft and collinear limits will be
-        reproduced by summing over all the relevant dipoles. Meaning that
-        the dipole functions can be used as a set of basis functions for
+        reproduced by summing over all the relevant dipoles, meaning that
+        the dipole functions can be used as a set of functional behaviours for
         approximating the matrix elements for arbitrary SM processes.
         This will be put into practice in Chapters \ref{chapter:fame1}
-        and \ref{chapter:fame3}. The omitted terms are non-divergent
+        and \ref{chapter:fame3}. The terms represented as ellipses in
+        the dipole factorisation formulae are non-divergent
         in all of phase-space.
 
     \subsection{Treatment of massive partons}
         The dipoles described in this section so far have
         treated all partons to be massless. Since quarks are massive
-        particles it is not possible in general to treat them
+        particles it is not always possible to treat them
         as massless. This is especially true for the top
         quark which has a mass of 172.69 GeV \cite{Workman:2022ynf}, the
         most massive SM particle. In the case of partonic
@@ -1102,7 +1111,7 @@
     In this sense, an antenna is a linear combination of two dipoles.
 
     The discussion in this section will be limited to the
-    situation of a massive colour-neutral boson decaying
+    situation of an off-shell colour-neutral boson decaying
     to massless QCD partons, suitable for multi-jet production
     in electron-positron annihilation. Additionally, we
     assume that there will only ever be at most one unresolved
@@ -1119,8 +1128,8 @@
     where $|M_{n}^{(\ell)}|^{2}$ is the $n$-body colour-ordered matrix
     element at loop-level $\ell$. $S_{ijk,IK}$ is a symmetry factor
     accounting for identical particles in the final-state
-    and for the presence of multiple antennae in the two
-    parton process. $I$ and $K$ are hard partons forming a colour
+    and for the presence of multiple antennae in the two-parton process.
+    $I$ and $K$ are hard partons forming a colour
     connected antenna that radiates particle $j$. The identities
     of $i/I$ and $k/K$ defines the specific class of the
     antenna function. There are three classes corresponding
@@ -1144,10 +1153,10 @@
     \end{equation}
     where $X_{3}^{1}$ are defined such that they are proportional
     to the one-loop singular functions mentioned in Section~\ref{sec:OL_factorisation}.
-    Since the one-loop factorisation formulae, Eqns. (\ref{eqn:1L_soft_factorisation})
+    Since the one-loop factorisation formulae, Eqs. (\ref{eqn:1L_soft_factorisation})
     and (\ref{eqn:1L_collinear_factorisation}), are of the form
     $|M^{(1)}_{n+1}|^{2}\rightarrow S^{(0)}|M^{(1)}_{n}|^{2} + S^{(1)}|M^{(0)}_{n}|^{2}$,
-    the term proportional to $S^(0)$, that is $X_{3}^{0}$, has to be removed
+    the term proportional to $S^{(0)}$, that is $X_{3}^{0}$, has to be removed
     in Eq. (\ref{eqn:X31}) to fulfil this requirement.
     The antenna functions are summarised in Table~\ref{table:antenna_functions},
     where they are categorised by their class and radiative
@@ -1265,19 +1274,19 @@
     of the IR singularity operators given below. Therefore,
     care has to be taken to extract all the finite
     contributions from the antenna functions when trying
-    to use them as basis functions for emulating the
+    to use them as part of an approximation for the
     finite part of the one-loop matrix element.
 
     For the one-loop antenna functions, there are three
     different functions corresponding to the leading colour,
-    sub-leading colour, and closed quark look contributions.
+    sub-leading colour, and closed quark loop contributions.
     It is sufficient to consider the leading colour
     structure in this thesis as the remaining contributions
     are sub-leading. Ignoring sub-leading terms in
     colour is equivalent to taking the large $N_{c}$
     limit. For QCD where $N_{c} = 3$, neglecting
     sub-leading colour terms amounts to an
-    approximately 10\% effect.
+    approximately 10\% effect. (cite here)
 
     The antenna functions have some functions in common,
     namely the singularity operators
@@ -1367,7 +1376,7 @@
     Utilising this property of the antenna functions, and the fact
     that they naturally interpolate between the soft and collinear
     limits due to being derived from physical matrix elements,
-    they can be used as a set of basis functions for approximating
-    matrix elements. The emulation of the NLO QCD K-factors
+    they can be combined in an ansatz for approximating
+    matrix elements. The emulation of the NLO QCD k-factors
     for electron-positron annihilation is explored in Chapter~\ref{chapter:fame2}.
 \end{document}

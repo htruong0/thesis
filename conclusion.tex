@@ -1,6 +1,105 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
-\chapter{Conclusion}
+\chapter{Conclusion and outlook}
 \label{chapter:conclusion}
+In this thesis we have presented a physics-inspired
+neural network model to emulate matrix elements. The
+application of using a neural network to fit functions
+is a common scenario, however, the unique singularity
+structure of physical matrix elements precludes a naive
+approach if accuracy is desired. Indeed, the per-point
+accuracy of matrix elements is generally desired, especially
+in the infrared regions of phase-space where the emergence of
+large weights can contribute significantly to the total cross-section.
+Fortunately, matrix elements factorise in these infrared
+regions of phase-space, with well-understood explicit functional forms
+describing the single soft and collinear limits.
+By incorporating these functions into the neural network model via an
+ansatz composed of a linear combination of these singular
+functions, it is possible to transform the problem of fitting
+a potentially rapidly changing function over phase-space
+to the fitting of more well-behaved coefficients. We
+dubbed this family of models factorisation-aware
+as the neural network learns to choose the relevant
+functional behaviours in specific soft and collinear limits
+where the fitted coefficients are constrained. Outside
+of these limits, we make use of the well documented fitting capabilities
+of neural networks to form an interpolation.
+
+We first demonstrated the use of the factorisation-aware
+model in Chapter~\ref{chapter:fame1}
+where we utilised the Catani-Seymour dipole functions as
+the singular functions in the ansatz to model tree-level
+electron-positron annihilation matrix elements. It was
+shown that by building these functions into the emulator,
+there was drastic improvements in per-point accuracy compared to
+existing methods, with accuracy well below 1\% for all processes studied.
+Furthermore, the inclusion of the singular
+functions describing infrared behaviour of the matrix
+elements allowed well-behaved extrapolation of the model
+into untrained regions of phase-space which were potentially
+more singular than those seen previously during training.
+
+The success of this approach prompted the study of applying
+the factorisation-aware model to emulate the more expensive
+one-loop matrix elements for the same family of processes,
+as seen in Chapter~\ref{chapter:fame2}.
+It was found that by adapting the
+Catani-Seymour dipole functions to the more relevant antenna functions
+containing one-loop singular behaviour, the
+accurate emulation of NLO QCD k-factors was achieved.
+In this study we also demonstrated that it was possible
+for the emulator to learn the renormalisation scale dependence
+of the one-loop matrix elements, allowing it to be used to
+carry out scale variations.
+We showed that $e^{+}e^{-} \rightarrow q \bar{q} ggg$ NLO k-factors
+could be predicted with accuracy at the 1\% level, representing a speed up in
+evaluation of over 3 orders of magnitude compared to {\MadLoop} on
+a single CPU core.
+
+The study of electron-positron annihilation matrix elements
+whilst important for planned future lepton-lepton colliders,
+is not critical for making predictions for the LHC. For that,
+hadron-hadron initiated matrix elements are much more relevant.
+In Chapter~\ref{chapter:fame3}, we extended the factorisation-aware
+model to hadronic collisions by incorporating the full set
+of massless and massive dipole functions. The inclusion of these
+functions into the emulation model allowed us to model $Z+\{4,5\}$ jets
+and $t\bar{t}+\{3,4\}$ jets matrix elements at leading order, which
+represent computationally expensive and phenomenologically relevant
+processes. We found
+that the accuracy of the emulator, while lower than in the cleaner
+$e^{+}e^{-}$ environment, was not surprising given that accuracy
+scales inversely with multiplicity and these were the highest
+multiplicity processes considered in this thesis.
+However, the well-behaved
+predictions in the infrared limits and the low population tails
+makes it suitable for use as a surrogate model for event
+weights in the context of event unweighting, where stability
+of predictions is desirable.
+
+We showed that using the emulator in a novel two-stage
+unweighting procedure, where small mismatch from the full event
+weight is corrected for, could reduce the time spent in unweighting
+a sample of events. We saw that the unweighting of events
+could be accelerated by well over 2 orders of
+magnitude for the most computationally expensive processes,
+$Z+5$ jets and $t\bar{t}+4$ jets.
+
+The factorisation-aware model presented in this thesis
+has been demonstrated to be a powerful tool to emulate
+matrix elements for a variety of processes, at
+tree-level and one-loop level, owing to the
+flexibility of the modelling philosophy.
+The path forward is clear: to reliably accelerate the generation of
+simulated unit-weight events required for LHC experiments, the
+modelling procedure has to be extended to arbitrary SM
+processes, both for colour-summed, and colour-sampled matrix
+elements, with an easy-to-use interface to general
+purpose Monte Carlo event generators.
+We have taken the first steps towards this by proving the viability
+of the model in a production setting by deploying it
+within the {\Sherpa} framework to successfully accelerate the
+process of unweighting events.
 
 \end{document}

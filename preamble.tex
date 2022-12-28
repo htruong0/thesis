@@ -8,11 +8,13 @@
 \usepackage[pdfusetitle]{hyperref} % hidelinks removes the boxes around links when viewed on screen, pdfusetitle option includes the thesis title and author in the PDF metadata
 \usepackage{cite} % Combine multiple citations in range
 \usepackage{xcolor}
+\usepackage{soul}
 \usepackage{multirow}
 \usepackage{tablefootnote}
 \usepackage{booktabs}
-\usepackage{algorithm2e}
+\usepackage[linesnumbered,ruled]{algorithm2e}
 \usepackage{tikzit}
+\usepackage{makecell}
 \input{img/ml/green_dot.tikzstyles}
 \RestyleAlgo{ruled}
 \hypersetup{
@@ -31,6 +33,9 @@
 \newcommand{\TensorFlow}{\texttt{TensorFlow}}
 \newcommand{\EarlyStopping}{\texttt{EarlyStopping}}
 \newcommand{\ReduceLROnPlateau}{\texttt{ReduceLROnPlateau}}
+\newcommand{\ONNX}{\texttt{ONNX}}
+\newcommand{\CUDA}{\texttt{CUDA}}
+\newcommand{\RatioEarlyStopping}{\texttt{RatioEarlyStopping}}
 
 % Nicer appearance / typesetting
 \usepackage[shrink=10,stretch=10]{microtype}
@@ -52,7 +57,7 @@
 \setlength{\parskip}{0.5em plus 3pt minus 3pt}
 
 % Format captions
-\usepackage[margin=15mm,hang]{caption}
+\usepackage[margin=2mm,hang]{caption}
 \usepackage{subcaption}
 \usepackage{perpage} % Allows to reset counters on each page
 \counterwithout{footnote}{chapter}
@@ -114,6 +119,7 @@
 
 % some physics small caps
 \newcommand{\Sherpa}{S\protect\scalebox{0.8}{HERPA}\xspace}
+\newcommand{\Amegic}{A\protect\scalebox{0.8}{MEGIC}\xspace}
 \newcommand{\Pythia}{P\protect\scalebox{0.8}{YTHIA}\xspace}
 \newcommand{\Herwig}{H\protect\scalebox{0.8}{ERWIG}\xspace}
 \newcommand{\MadGraph}{M\protect\scalebox{0.8}{AD}G\protect\scalebox{0.8}{RAPH}\xspace}
@@ -126,3 +132,4 @@
 \newcommand{\MCFM}{M\protect\scalebox{0.8}{CFM}}
 \newcommand{\Foam}{F\protect\scalebox{0.8}{OAM}\xspace}
 \newcommand{\Vegas}{V\protect\scalebox{0.8}{EGAS}\xspace}
+\newcommand{\RAMBO}{\texttt{RAMBO}}
