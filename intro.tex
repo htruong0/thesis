@@ -80,7 +80,7 @@ I discuss how bottlenecks in traditional event generator techniques
 motivates the usage of machine learning based approaches, with
 particular attention placed on using neural networks as emulators
 for matrix elements.
-This construction of this neural network emulator is
+The construction of this neural network emulator is
 described in detail in Chapter~\ref{chapter:fame1} for tree-level
 electron-positron annihilation matrix element emulation.
 A similar philosophy is applied in Chapter~\ref{chapter:fame2}
@@ -129,7 +129,7 @@ Chapter~\ref{chapter:conclusion}.
     \end{equation}
     giving rise to the electromagnetic and weak forces that we observe.
     The explanation of gravity in a QFT is an open problem and cannot currently
-    be included in the SM as any Lagrangian including gravity cannot be non-renormalised.
+    be included in the SM as any Lagrangian including gravity cannot be renormalised.
     Fortunately, the effect of gravity is considered
     to be negligible on the scales considered in the SM, and so it is ignored.
     Each of the three fundamental forces described by the SM is mediated
@@ -181,7 +181,7 @@ Chapter~\ref{chapter:conclusion}.
     The last two terms are required to remove unphysical degrees of freedom
     when gauge fixing the theory.
     All terms in the SM Lagrangian are invariant under local transformations
-    of the gauge group Eq. (\ref{eqn:SM_gauge}).
+    of the gauge group in Eq. (\ref{eqn:SM_gauge}).
 
     In the following section we will focus on the gauge, fermion, gauge-fixing
     and ghost Lagrangian terms in the framework of QCD, which is the most
@@ -194,7 +194,7 @@ Chapter~\ref{chapter:conclusion}.
     Quantum chromodynamics is the sector of the SM that
     describes the strong interaction. 
     QCD is a non-Abelian gauge theory with gauge group
-    $\mathrm{SU}(N_{c} = 3)_{c}$ where the charge is named colour.
+    $\mathrm{SU}(N_{c} = 3)$ where the charge is named colour.
     The gauge and fermion part of the QCD Lagrangian is
     \begin{equation}\label{eqn:L_QCD}
         \mathcal{L}_{\mathrm{QCD}} = -\dfrac{1}{4}F^{a}_{\mu\nu}F^{a, \, \mu\nu}
@@ -209,7 +209,7 @@ Chapter~\ref{chapter:conclusion}.
     The gauge fields $A^{a}_{\mu}$, corresponding to gluons, 
     appear in the quark covariant derivative
     \begin{equation}\label{eqn:covariant_deriv}
-        (D_{\mu})_{ij} = \delta_{ij}\partial_{\mu} - ig_{s}T^{a}_{ij}A^{a}_{\mu} \, ,
+        (D_{\mu})_{ij} = \delta_{ij}\partial_{\mu} - \mathrm{i}g_{s}T^{a}_{ij}A^{a}_{\mu} \, ,
     \end{equation}
     and the gauge field strength tensor
     \begin{equation}\label{eqn:F_munu}
@@ -661,7 +661,7 @@ Chapter~\ref{chapter:conclusion}.
     in $\alpha_{s}$, and the following term
     next-to-next-to-leading order has again an additional
     loop or leg. In general, we have terms
-    N$^{\mathrm{k}}$LO where each additional power of $\alpha_{s}$
+    N$^{k}$LO where each additional power of $\alpha_{s}$
     increases complexity of the computations, however,
     because $\alpha_{s}$ is small, each additional term
     should contribute less and less.
