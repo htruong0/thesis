@@ -126,7 +126,8 @@ QCD-enhanced behaviour at tree-level.
 \subsection{Generation of data}\label{sec:pp_data}
 Data is generated using the {\Sherpa} event generator
 with the {\Amegic} matrix element generator.
-Below we list the selection criteria for the phase-space sampling.
+Below we list the selection criteria for the phase-space sampling and
+document the parameters used for matrix element evaluation in Table~\ref{table:fame3_params}.
 
 \subsubsection*{Z+jets}
 For $Z$ boson production in association with jets,
@@ -161,6 +162,25 @@ phase-space cuts for the external top quarks. They are
 treated as on-shell in the matrix element calculation,
 $p_t^2 = p_{\bar{t}}^2 = m_t^2$ with $m_t = \SI{173.4}{\giga\electronvolt}$,
 and only decayed a posteriori.
+
+\begin{table}[t]
+    \centering
+    \begin{tabular}{ll}
+        \toprule
+        Parameters & \\
+        \midrule
+        Scales & \makecell[l]{$\mu_{R} = \mu_{F} = 91.188$ GeV for $Z+$jets \\ $\mu_{R} = \mu_{F} = 175$ GeV for $t\bar{t}+$jets} \\
+        \midrule
+        Masses & \makecell[l]{$m_{d} = 0.01$ GeV \\ $m_{u} = 0.005$ GeV \\ $m_{s} = 0.2$ GeV \\ $m_{c} = 1.42$ GeV \\ $m_{b} = 4.8$ GeV \\ $m_{t} = 173.21$ GeV \\ $m_{e} = 0.511$ MeV \\ $m_{\mu} = 0.105$ GeV \\ $m_{\tau} = 1.777$ GeV \\ $m_{Z} = 91.1876$ GeV \\ $m_{W} = 80.385$ GeV \\ $m_{H} = 125$ GeV} \\
+        \midrule
+        Couplings & \makecell[l]{$\alpha_{s}$ set by PDF \\ $\alpha_{e} = 1/137.03599976$} \\
+        \midrule
+        Decay widths & \makecell[l]{$\Gamma_{t} = 2$ GeV \\ $\Gamma_{\tau} = 2.26735 \times 10^{-12}$ GeV \\ $\Gamma_{Z} = 2.4952$ GeV \\ $\Gamma_{W} = 2.085$ GeV \\ $\Gamma_{H} = 4.07 \times 10^{-3}$ GeV} \\
+        \bottomrule
+        \end{tabular}
+    \caption{List of parameters for the matrix element generation. Masses and decay widths not listed explicitly have been set to zero.}
+    \label{table:fame3_params}
+\end{table}
 
 \subsection{Constructing the emulator}\label{sec:pp_emulator}
 The emulator is a dense neural network built using the {\Keras} API
