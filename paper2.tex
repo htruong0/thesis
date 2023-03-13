@@ -629,7 +629,7 @@ these regions as well as where there is more abundant data.
     of antenna functions subtracted to show renormalisation scale
     dependence in the remainder. Each trajectory is at one phase-space point
     sampled from {\RAMBO}, with $\mu_{R}$ spanning the range
-    $[s_{\mathrm{com}}/8, 8 s_{\mathrm{com}}]$. Each trajectory
+    $[\sqrt{s_{\mathrm{com}}}/8, 8 \sqrt{s_{\mathrm{com}}}]$. Each trajectory
     is composed of 1000 points.
     The region that $\mu_{R}$ was uniformly sampled from
     for training is indicated as a red band. The error bands on the NN
@@ -643,7 +643,7 @@ independent of the antenna functions. To produce
 a trajectory we first sample a phase-space point with
 the same cuts as described in Section~\ref{sec:1L_nn}, then we
 evaluate the k-factor at this phase-space point with $\mu_{R}$
-varying from $s_{\mathrm{com}}/8$ to $8s_{\mathrm{com}}$.
+varying from $\sqrt{s_{\mathrm{com}}}/8$ to $8\sqrt{s_{\mathrm{com}}}$.
 We choose to sample from a wider range than used for training
 to examine the $\mu_{R}$ extrapolation performance.
 After subtracting the sum of the antenna functions we see that the
