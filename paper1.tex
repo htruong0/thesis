@@ -105,7 +105,25 @@ $\alpha_{s}$ should have been evaluated at the scale $\mu_{R} = 1000$ GeV. This 
 in slightly different plots, but does not affect the validity of the key findings
 of this chapter.}, and the electromagnetic coupling constant has been set to $\alpha_{e} = 1.0 / 132.5070$.
 The mass of the $Z$-boson is taken to be $m_{Z} = 91.188$ GeV.
-These parameters and those not listed, are consistent with those in the Standard Model mode of \aNLO \cite{Alwall:2014hca}.
+Below we quote the full set of parameters entering the computer code
+used to evaluate matrix elements. We do not quote the renormalisation
+scale as it does not affect the value of tree-level matrix elements.
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{ll}
+        \toprule
+        Parameters & \\
+        \midrule
+        Masses & \makecell[l]{$m_{b} = 4.7$ GeV \\ $m_{t} = 173$ GeV \\ $m_{\tau} = 1.777$ GeV \\ $m_{Z} = 91.188$ GeV \\ $m_{W} = 80.419$ GeV \\ $m_{H} = 125$ GeV} \\
+        \midrule
+        Couplings & \makecell[l]{$\alpha_{s} = 0.118$ \\ $\alpha_{e} = 1/132.507$ \\ $G_{F} = 1.166390 \times 10 ^{-5}$ GeV$^{-2}$} \\
+        \midrule
+        Decay widths & \makecell[l]{$\Gamma_{t} = 1.4915$ GeV \\ $\Gamma_{Z} = 2.441404$ GeV \\ $\Gamma_{W} = 2.0467$ GeV \\ $\Gamma_{H} = 6.382339 \times 10^{-3}$ GeV} \\
+        \bottomrule
+        \end{tabular}
+    \caption{List of parameters for the matrix element generation. Masses and decay widths not listed explicitly have been set to zero.}
+    \label{table:fame1_params}
+\end{table}
 
 The phase-space points generated form the basis of our inputs to the neural network with the matrix elements as our fitting targets.
 As with most machine learning applications, we need to demonstrate that our neural network emulator has managed to generalise outside of the training dataset.
