@@ -213,9 +213,14 @@
     whose inverse is the average number of trial
     events required to obtain a single unweighted event.
     Unweighting efficiencies for high-multiplicity processes
-    are often well below 1\% \cite{Hoche:2019flt,Gao:2020zvv} and the development
-    of methods to improve the efficiency are an active area of research
-    \cite{Jadach:1999sf,Jadach:2002kn}.
+    are often well below 1\% \cite{Hoche:2019flt,Gao:2020zvv}.
+    The development of methods to improve the efficiency are an active
+    area of research \cite{Jadach:1999sf,Jadach:2002kn}, wherein the
+    authors explore an algorithm that adaptively splits up the integration
+    region in order to systematically reduce the ratio of
+    the maximum event weight to the average event weight. This leads to
+    increased unweighting efficiency when carrying out the rejection sampling
+    algorithm.
     These low efficiencies lead to most of the
     yearly event generator CPU budgets of LHC experiments to be spent on
     unweighting events \cite{HSFPhysicsEventGeneratorWG:2020gxw}.
